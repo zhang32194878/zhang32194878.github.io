@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zqblog.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="java 基础第二部分多线程程序|进程|线程 程序(program) 是为完成特定任务、用某种语言编写的一组指令的集合。即指一段静态的代码，静态对象  进程(process) 是程序的一次执行过程，或是正在运行的一个程序。是一个动态的过程：有它自身的产生、存在和消亡的过程。——生命周期  线程(thread)，进程可进一步细化为线程，是一个程序内部的一条执行路径 何时需要多线程 程序需要同时执行两">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java2">
+<meta property="og:url" content="http://zqblog.com/java2/index.html">
+<meta property="og:site_name" content="谦&#39;s Blog">
+<meta property="og:description" content="java 基础第二部分多线程程序|进程|线程 程序(program) 是为完成特定任务、用某种语言编写的一组指令的集合。即指一段静态的代码，静态对象  进程(process) 是程序的一次执行过程，或是正在运行的一个程序。是一个动态的过程：有它自身的产生、存在和消亡的过程。——生命周期  线程(thread)，进程可进一步细化为线程，是一个程序内部的一条执行路径 何时需要多线程 程序需要同时执行两">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://zqblog.com/java2/thread.png">
+<meta property="og:image" content="http://zqblog.com/java2/string.png">
+<meta property="og:image" content="http://zqblog.com/java2/hashMap.png">
+<meta property="og:image" content="http://zqblog.com/java2/io.png">
+<meta property="og:image" content="http://zqblog.com/java2/iostream.png">
+<meta property="article:published_time" content="2020-08-23T06:10:18.000Z">
+<meta property="article:modified_time" content="2020-08-25T16:27:26.486Z">
+<meta property="article:author" content="qianqian">
+<meta property="article:tag" content="zq">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zqblog.com/java2/thread.png">
+
+<link rel="canonical" href="http://zqblog.com/java2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>java2 | 谦's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="谦's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/zhang32194878" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">谦's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">用爱发电</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">23</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/zhang32194878" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zqblog.com/java2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avator.jpg">
+      <meta itemprop="name" content="qianqian">
+      <meta itemprop="description" content="有阴影的地方,一定有光">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="谦's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          java2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-23 14:10:18" itemprop="dateCreated datePublished" datetime="2020-08-23T14:10:18+08:00">2020-08-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-26 00:27:26" itemprop="dateModified" datetime="2020-08-26T00:27:26+08:00">2020-08-26</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="java-基础第二部分"><a href="#java-基础第二部分" class="headerlink" title="java 基础第二部分"></a>java 基础第二部分</h2><h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><h4 id="程序-进程-线程"><a href="#程序-进程-线程" class="headerlink" title="程序|进程|线程"></a>程序|进程|线程</h4><ul>
+<li><p>程序(program) 是为完成特定任务、用某种语言编写的一组指令的集合。即指一段静态的代码，静态对象</p>
+</li>
+<li><p>进程(process) 是程序的一次执行过程，或是正在运行的一个程序。是一个动态的过程：有它自身的产生、存在和消亡的过程。——生命周期</p>
+</li>
+<li><p>线程(thread)，进程可进一步细化为线程，是一个程序内部的一条执行路径</p>
+<h4 id="何时需要多线程"><a href="#何时需要多线程" class="headerlink" title="何时需要多线程"></a>何时需要多线程</h4></li>
+<li><p>程序需要同时执行两个或多个任务。</p>
+</li>
+<li><p>程序需要实现一些需要等待的任务时，如用户输入、文件读写操作、网络操作、搜索等。</p>
+</li>
+<li><p>需要一些后台运行的程序时</p>
+<h4 id="java中的线程创建及使用"><a href="#java中的线程创建及使用" class="headerlink" title="java中的线程创建及使用"></a>java中的线程创建及使用</h4></li>
+<li><p>Thread</p>
+<ul>
+<li>每个线程都是通过某个特定Thread对象的run()方法来完成操作的，经常把run()方法的主体称为线程体</li>
+<li>通过该Thread对象的start()方法来启动这个线程，而非直接调用run()</li>
+</ul>
+</li>
+<li><p>线程创建方式</p>
+<ul>
+<li>继承 Thread<ul>
+<li>定义子类继承Thread类。</li>
+<li>子类中重写Thread类中的run方法。</li>
+<li>创建Thread子类对象，即创建了线程对象。</li>
+<li>调用线程对象start方法：启动线程，调用run方法。</li>
+</ul>
+</li>
+<li>实现 Runnable 接口    <ul>
+<li>定义子类，实现Runnable接口。</li>
+<li>子类中重写Runnable接口中的run方法。</li>
+<li>通过Thread类含参构造器创建线程对象。</li>
+<li>将Runnable接口的子类对象作为实际参数传递给Thread类的构造器中。</li>
+<li>调用Thread类的start方法：开启线程，调用Runnable子类接口的run方法</li>
+</ul>
+</li>
+<li>实现Runnable接口方式将线程的创建与线程体分开了,非常适合多个相同线程来处理同一份资源。</li>
+<li>实现Callable接口<ul>
+<li>相比run()方法，可以有返回值</li>
+<li>方法可以抛出异常</li>
+<li>支持泛型的返回值</li>
+<li>需要借助FutureTask类，比如获取返回结果</li>
+<li>Future接口可以接受callable的返回值,需要将future放入Thread中使用</li>
+</ul>
+</li>
+<li><a href="/threadpool">使用线程池 ☆(ゝω･)v 详解</a><ul>
+<li>提高响应速度（减少了创建新线程的时间）</li>
+<li>降低资源消耗（重复利用线程池中线程，不需要每次都创建）</li>
+<li>便于线程管理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Thread类方法</p>
+<ul>
+<li>void start(): 启动线程，并执行对象的run()方法</li>
+<li>run(): 线程在被调度时执行的操作</li>
+<li>String getName(): 返回线程的名称</li>
+<li>setName(String name):设置该线程名称</li>
+<li>Thread currentThread(): 返回当前线程。在Thread子类中就是this，通常用于主线程和Runnable实现类</li>
+<li>static void yield()：线程让步<ul>
+<li>暂停当前正在执行的线程，把执行机会让给优先级相同或更高的线程</li>
+<li>若队列中没有同优先级的线程，忽略此方法</li>
+</ul>
+</li>
+<li>join() ：当某个程序执行流中调用其他线程的 join() 方法时，调用线程将被阻塞，直到 join() 方法加入的 join 线程执行完为止<ul>
+<li>低优先级的线程也可以获得执行</li>
+</ul>
+</li>
+<li>static void sleep(long millis)：(指定时间:毫秒) <ul>
+<li>令当前活动线程在指定时间段内放弃对CPU控制,使其他线程有机会被执行,时间到后重排队。</li>
+<li>抛出InterruptedException异常</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="线程调度"><a href="#线程调度" class="headerlink" title="线程调度"></a>线程调度</h4><ul>
+<li>同优先级线程组成先进先出队列（先到先服务）, 排队等待分配时间片</li>
+<li>对高优先级，优先抢占cpu    </li>
+<li>低优先级只是获得调度的概率低，并非一定是在高优先级线程之后才被调用</li>
+</ul>
+<h4 id="线程生命周期"><a href="#线程生命周期" class="headerlink" title="线程生命周期"></a>线程生命周期</h4><ul>
+<li>新建： 当一个Thread类或其子类的对象被声明并创建时，新生的线程对象处于新建状态</li>
+<li>就绪：处于新建状态的线程被start()后，将进入线程队列等待CPU时间片，此时它已具备了运行的条件，只是没分配到CPU资源</li>
+<li>运行：当就绪的线程被调度并获得CPU资源时,便进入运行状态， run()方法定义了线程的操作和功能 , 阻塞后重新进入就绪状态等待分配时间片</li>
+<li>阻塞：在某种特殊情况下，被人为挂起或执行输入输出操作时，让出 CPU 并临时中止自己的执行，进入阻塞状态</li>
+<li>死亡：线程完成了它的全部工作或线程被提前强制性地中止或出现异常导致结束<br><img src="/java2/thread.png" alt="thread"></li>
+</ul>
+<h4 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h4><ul>
+<li>解决线程同步问题可以使用同步代码块,或同步方法    </li>
+<li>锁机制 使用 Lock对象实现锁<ul>
+<li>ReentrantLock 类实现了 Lock ，它拥有与 synchronized 相同的并发性和内存语义，在实现线程安全的控制中，比较常用的是ReentrantLock，可以显式加锁、释放锁。</li>
+</ul>
+</li>
+</ul>
+<h4 id="线程通信"><a href="#线程通信" class="headerlink" title="线程通信"></a>线程通信</h4><ul>
+<li>wait() 与 notify() 和 notifyAll()<ul>
+<li>wait()：令当前线程挂起并放弃CPU、同步资源并等待，使别的线程可访问并修改共享资源，而当前线程排队等候其他线程调用notify()或notifyAll()方法唤醒，唤醒后等待重新获得对监视器的所有权后才能继续执行。</li>
+<li>notify()：唤醒正在排队等待同步资源的线程中优先级最高者结束等待</li>
+<li>notifyAll ()：唤醒正在排队等待资源的所有线程结束等待</li>
+</ul>
+</li>
+</ul>
+<h4 id="多线程深入理解-✪ω✪-详解"><a href="#多线程深入理解-✪ω✪-详解" class="headerlink" title="多线程深入理解 (✪ω✪) 详解"></a><a href="/juc">多线程深入理解 (✪ω✪) 详解</a></h4><h3 id="常用类"><a href="#常用类" class="headerlink" title="常用类"></a>常用类</h3><h4 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h4><ul>
+<li>String是一个final类，代表不可变的字符序列。 </li>
+<li>字符串是常量，用双引号引起来表示。它们的值在创建之后不能更改。 </li>
+<li>String对象的字符内容是存储在一个字符数组value[]中的,新版本java中字符串的存储改为了byte[]数组存储</li>
+<li>字符串常量存储在字符串常量池，目的是共享,new String() 才会新开辟空间</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">String s1 &#x3D; &quot;javaEE&quot;;</span><br><span class="line">String s2 &#x3D; &quot;javaEE&quot;;</span><br><span class="line">String s3 &#x3D; new String(&quot;javaEE&quot;);</span><br><span class="line">String s4 &#x3D; new String(&quot;javaEE&quot;);</span><br><span class="line">System.out.println(s1 &#x3D;&#x3D; s2);&#x2F;&#x2F;true</span><br><span class="line">System.out.println(s1 &#x3D;&#x3D; s3);&#x2F;&#x2F;false</span><br><span class="line">System.out.println(s1 &#x3D;&#x3D; s4);&#x2F;&#x2F;false</span><br><span class="line">System.out.println(s3 &#x3D;&#x3D; s4);&#x2F;&#x2F;false</span><br><span class="line">Person p1 &#x3D; new Person(&quot;Tom&quot;,12);</span><br><span class="line">Person p2 &#x3D; new Person(&quot;Tom&quot;,12);</span><br><span class="line">System.out.println(p1.name &#x3D;&#x3D; p2.name);&#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+<ul>
+<li>String 类<ul>
+<li>常量与常量的拼接结果在常量池。且常量池中不会存在相同内容的常量</li>
+<li>字符串拼接若有变量则放在堆中<br><img src="/java2/string.png" alt="string">    </li>
+</ul>
+</li>
+</ul>
+<p>若大量使用 如 : String s1 = “a”;s1 = s1 + “b”;会导致大量副本字符串对象存留在内存中，降低效率。如果这样的操作放到循环中，会极大影响程序的性能<br>为了解决此问题 引入了 StringBuffer类 和 StringBuilder类</p>
+<p>-StringBuffer(线程安全,同步方法)<br>    -  java.lang.StringBuffer代表可变的字符序列，JDK1.0中声明，可以对字符串内容进行增删，此时不会产生新的对象。<br>    -  StringBuffer 默认创建一个16长度的数组</p>
+<ul>
+<li>StringBuilder(线程不安全)<ul>
+<li>同上    </li>
+</ul>
+</li>
+</ul>
+<h4 id="Comparable-Comparator"><a href="#Comparable-Comparator" class="headerlink" title="Comparable/Comparator"></a>Comparable/Comparator</h4><ul>
+<li>比较器<ul>
+<li>自然排序：java.lang.Comparable<ul>
+<li>Comparable接口强行对实现它的每个类的对象进行整体排序。这种排序被称为类的自然排序。 </li>
+<li>实现 Comparable 的类必须实现 compareTo(Object obj) 方法，两个对象即通过 compareTo(Object obj) 方法的返回值来比较大小</li>
+<li>自己本类自带比较规则</li>
+</ul>
+</li>
+<li>方式二：定制排序：java.util.Comparator<ul>
+<li>专门创建一个类实现Comparator接口作为某种对象的比较器</li>
+<li>需要重写compare(Object o1,Object o2)方法，比较o1和o2的大小：</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Collections-工具类"><a href="#Collections-工具类" class="headerlink" title="Collections 工具类"></a>Collections 工具类</h4><ul>
+<li>Collections 是一个操作 Set、List 和 Map 等集合的工具类        </li>
+<li>排序操作：（均为static方法）<ul>
+<li>reverse(List)：反转 List 中元素的顺序</li>
+<li>shuffle(List)：对 List 集合元素进行随机排序</li>
+<li>sort(List)：根据元素的自然顺序对指定 List 集合元素按升序排序</li>
+<li>sort(List，Comparator)：根据指定的 Comparator 产生的顺序对 List 集合元素进行排序</li>
+<li>swap(List，int， int)：将指定 list 集合中的 i 处元素和 j 处元素进行交换</li>
+</ul>
+</li>
+<li>Collections 类中提供了多个 synchronizedXxx() 方法，该方法可使将指定集合包装成线程同步的集合    </li>
+</ul>
+<h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h3><ul>
+<li>Annotation 其实就是代码里的特殊标记, 这些标记可以在编译, 类加载, 运行时被读取, 并执行相应的处理。通过使用 Annotation, 程序员可以在不改变原有逻辑的情况下, 在源文件中嵌入一些补充信息。代码分析工具、开发工具和部署工具可以通过这些补充信息进行验证或者进行部署。</li>
+<li>在JavaEE/Android中注解占据了更重要的角色，例如用来配置应用程序的任何切面，代替JavaEE旧版中所遗留的繁冗代码和XML配置等    </li>
+<li>JDK内置的基本注解<ul>
+<li>@Override: 限定重写父类方法, 该注解只能用于方法</li>
+<li>@Deprecated: 用于表示所修饰的元素(类, 方法等)已过时。通常是因为所修饰的结构危险或存在更好的选择</li>
+<li>@SuppressWarnings: 抑制编译器警告</li>
+</ul>
+</li>
+<li>常见的注解<ul>
+<li>Servlet3.0提供了注解(annotation),使得不再需要在web.xml文件中进行Servlet的部署   </li>
+<li>@Transactional (阿里规约 : 此注解使用请手动回滚或指定回滚方法)</li>
+<li>程序可以调用 AnnotatedElement 来获得注解进行操作  </li>
+</ul>
+</li>
+</ul>
+<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><h4 id="Java-集合可分为-Collection-和-Map-两种体系"><a href="#Java-集合可分为-Collection-和-Map-两种体系" class="headerlink" title="Java 集合可分为 Collection 和 Map 两种体系"></a>Java 集合可分为 Collection 和 Map 两种体系</h4><ul>
+<li>Collection接口：单列数据，定义了存取一组对象的方法的集合<ul>
+<li>List：元素有序、可重复的集合</li>
+<li>Set：元素无序、不可重复的集合</li>
+</ul>
+</li>
+<li>Map接口：双列数据，保存具有映射关系“key-value对”的集合</li>
+</ul>
+<h4 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h4><ul>
+<li>鉴于Java中数组用来存储数据的局限性，我们通常使用List替代数组</li>
+<li>List集合类中元素有序、且可重复，集合中的每个元素都有其对应的顺序索引。</li>
+<li>List容器中的元素都对应一个整数型的序号记载其在容器中的位置，可以根据序号存取容器中的元素。</li>
+<li>JDK API中List接口的实现类常用的有：ArrayList、LinkedList和Vector。</li>
+</ul>
+<h5 id="ArrayList-类"><a href="#ArrayList-类" class="headerlink" title="ArrayList 类"></a>ArrayList 类</h5><ul>
+<li>ArrayList 是 List 接口的典型实现类、主要实现类</li>
+<li>本质上，ArrayList是对象引用的一个”变长”数组</li>
+<li>ArrayList的JDK1.8之前与之后的实现区别<ul>
+<li>JDK1.7：ArrayList像饿汉式，直接创建一个初始容量为10的数组,1.5倍扩容</li>
+<li>JDK1.8：ArrayList像懒汉式，一开始创建一个长度为0的数组，当添加第一个元素的时候才会初始化容量</li>
+</ul>
+</li>
+</ul>
+<h5 id="LinkedList-类"><a href="#LinkedList-类" class="headerlink" title="LinkedList 类"></a>LinkedList 类</h5><ul>
+<li>对于频繁的插入或删除元素的操作，建议使用LinkedList类，效率较高</li>
+<li>LinkedList：双向链表，内部没有声明数组，而是定义了Node类型的first和last，</li>
+</ul>
+<h5 id="Vector-类"><a href="#Vector-类" class="headerlink" title="Vector 类"></a>Vector 类</h5><ul>
+<li>Vector 是一个古老的集合，JDK1.0就有了。大多数操作与ArrayList相同，区别之处在于Vector是线程安全的(加了一个Synchronize)</li>
+<li>初始长度10,2倍扩容</li>
+</ul>
+<h4 id="Set-接口"><a href="#Set-接口" class="headerlink" title="Set 接口"></a>Set 接口</h4><ul>
+<li>Set 集合不允许包含相同的元素，如果试把两个相同的元素加入同一个Set 集合中，则添加操作失败。</li>
+</ul>
+<h5 id="HashSet-类"><a href="#HashSet-类" class="headerlink" title="HashSet 类"></a>HashSet 类</h5><ul>
+<li>HashSet 是 Set 接口的典型实现，大多数时候使用 Set 集合时都使用这个实现类。</li>
+<li>HashSet 具有以下特点：<ul>
+<li>不能保证元素的排列顺序</li>
+<li>HashSet 不是线程安全的</li>
+<li>集合元素可以是 null</li>
+</ul>
+</li>
+<li>HashSet 增加元素过程<ul>
+<li>当向 HashSet 集合中存入一个元素时，HashSet 会调用该对象的 hashCode() 方法来得到该对象的 hashCode 值，然后根据 hashCode 值，通过某种散列函数决定该对象在 HashSet 底层数组中的存储位置。（这个散列函数会与底层数组的长度相计算得到在数组中的下标，并且这种散列函数计算还尽可能保证能均匀存储元素，越是散列分布，该散列函数设计的越好）</li>
+<li>如果两个元素的hashCode()值相等，会再继续调用equals方法，如果equals方法结果为true，添加失败；如果为false，那么会保存该元素，但是该数组的位置已经有元素了，那么会通过链表的方式继续链接。 </li>
+<li>如果两个元素的 equals() 方法返回 true，但它们的 hashCode() 返回值不相等，hashSet 将会把它们存储在不同的位置，但依然可以添加成功。  </li>
+<li>底层也是数组，初始容量为16，当如果使用率超过0.75，（16*0.75=12）就会扩大容量为原来的2倍。（16扩容为32，依次为64,128….等）<h4 id="Map-接口"><a href="#Map-接口" class="headerlink" title="Map 接口"></a>Map 接口</h4></li>
+</ul>
+</li>
+<li>Map与Collection并列存在。用于保存具有映射关系的数据:key-value</li>
+<li>Map 中的 key 用Set来存放，不允许重复，即同一个 Map 对象所对应的类，须重写hashCode()和equals()方法</li>
+<li>HashMap 的底层实现<ul>
+<li>JDK 7及以前版本：HashMap是数组+链表结构(即为链地址法)</li>
+<li>JDK 8版本发布以后：HashMap是数组+链表+红黑树实现。<br><img src="/java2/hashMap.png" alt="hashmap"></li>
+</ul>
+</li>
+<li>重要常量<ul>
+<li>DEFAULT_INITIAL_CAPACITY : HashMap的默认容量，16</li>
+<li>MAXIMUM_CAPACITY ： HashMap的最大支持容量，2^30</li>
+<li>DEFAULT_LOAD_FACTOR：HashMap的默认加载因子</li>
+<li>TREEIFY_THRESHOLD：Bucket中链表长度大于该默认值，转化为红黑树 (能触发转化的两个条件是：一个是链表的长度达到8个，一个是数组的长度达到64个)</li>
+<li>UNTREEIFY_THRESHOLD：Bucket中红黑树存储的Node小于该默认值，转化为链表</li>
+<li>MIN_TREEIFY_CAPACITY：桶中的Node被树化时最小的hash表容量。（当桶中Node的数量大到需要变红黑树时，若hash表容量小于MIN_TREEIFY_CAPACITY时，此时应执行</li>
+<li>resize扩容操作这个MIN_TREEIFY_CAPACITY的值至少是TREEIFY_THRESHOLD的4倍。） </li>
+<li>当HashMap中的其中一个链的对象个数如果达到了8个，此时如果capacity没有达到64，那么HashMap会先扩容解决，如果已经达到了64,那么这个链会变成树，结点类型由Node变成TreeNode类型。当然，如果当映射关系被移除后，下次resize方法时判断树的结点个数低于6个，也会把树再转为链表。   <ul>
+<li><a href="/rbTree">红黑树</a> </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="queue-接口"><a href="#queue-接口" class="headerlink" title="queue 接口"></a>queue 接口</h4><ul>
+<li>此接口为队列接口用于创建队列</li>
+</ul>
+<h4 id="集合深入理解-✪ω✪-详解-面试集合看这一篇就够了"><a href="#集合深入理解-✪ω✪-详解-面试集合看这一篇就够了" class="headerlink" title="集合深入理解 (✪ω✪) 详解 !!面试集合看这一篇就够了!!"></a><a href="/collection">集合深入理解 (✪ω✪) 详解 !!面试集合看这一篇就够了!!</a></h4><h4 id="iterator"><a href="#iterator" class="headerlink" title="iterator"></a>iterator</h4><ul>
+<li>Iterator对象称为迭代器(设计模式的一种)，主要用于遍历 Collection 集合中的元素。</li>
+<li>Collection接口继承了java.lang.Iterable接口，该接口有一个iterator()方法，那么所有实现了Collection接口的集合类都有一个iterator()方法，用以返回一个实现了Iterator接口的对象。<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Iterator iter = coll.iterator();//回到起点</span><br><span class="line">while(iter.hasNext())&#123;</span><br><span class="line">    Object obj = iter.next();</span><br><span class="line">    if(obj.equals(&quot;Tom&quot;))&#123;</span><br><span class="line">    iter.remove();</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>增强for循环也可以对集合进行遍历</li>
+<li>foreach方法可以使用lambda表达式进行方法引用遍历</li>
+</ul>
+<h3 id="io流"><a href="#io流" class="headerlink" title="io流"></a>io流</h3><h4 id="File-类"><a href="#File-类" class="headerlink" title="File 类"></a>File 类</h4><ul>
+<li>java.io.File类：文件和文件目录路径的抽象表示形式，与平台无关</li>
+<li>构造器<ul>
+<li>public File(String pathname) 以pathname为路径创建File对象，可以是绝对路径或者相对路径，如果pathname是相对路径，则默认的当前路径在系统属性user.dir中存储。<ul>
+<li>绝对路径：是一个固定的路径,从盘符开始</li>
+<li>相对路径：是相对于某个位置开始</li>
+</ul>
+</li>
+<li>public File(String parent,String child)<br>  -以parent为父路径，child为子路径创建File对象。 </li>
+<li>public File(File parent,String child)<ul>
+<li>根据一个父File对象和子文件路径创建File对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>路径分隔符和系统有关：<ul>
+<li>windows和DOS系统默认使用“\”来表示 (要转义为\)</li>
+<li>UNIX和URL使用“/”来表示   </li>
+</ul>
+</li>
+<li>重要方法mkdir()和mkdirs()   <ul>
+<li>public boolean mkdir() ：创建文件目录。如果此文件目录存在，就不创建了。如果此文件目录的上层目录不存在，也不创建。 </li>
+<li>public boolean mkdirs() ：创建文件目录。如果上层文件目录不存在，一并创建</li>
+</ul>
+</li>
+</ul>
+<h4 id="流的分类"><a href="#流的分类" class="headerlink" title="流的分类"></a>流的分类</h4><ul>
+<li>按操作数据单位不同分为：字节流(8 bit)，字符流(16 bit)</li>
+<li>按数据流的流向不同分为：输入流，输出流</li>
+<li>按流的角色的不同分为：节点流，处理流    </li>
+</ul>
+<p>(抽象基类)      字节流         字符流<br>  输入流      InputStream      Reader<br>  输出流      OutputStream     Writer</p>
+<p><img src="/java2/io.png" alt="io"><br>io流的类很多不再一一列举了看个图吧(一个一个写代码太长了,好吧懒得写了,图片来源于3y大大)<br><img src="/java2/iostream.png" alt="iostream"></p>
+<h4 id="对象序列化"><a href="#对象序列化" class="headerlink" title="对象序列化"></a>对象序列化</h4><ul>
+<li>对象序列化机制允许把内存中的Java对象转换成平台无关的二进制流，从而允许把这种二进制流持久地保存在磁盘上，或通过网络将这种二进制流传输到另一个网络节点。</li>
+<li>序列化的好处在于可将任何实现了Serializable接口的对象转化为字节数据，使其在保存和传输时可被还原</li>
+<li>凡是实现Serializable接口的类都有一个表示序列化版本标识符的静态变量：<ul>
+<li>serialVersionUID用来表明类的不同版本间的兼容性。简言之，其目的是以序列化对象进行版本控制，有关各版本反序列化时是否兼容。</li>
+<li>如果类没有显示定义这个静态常量，它的值是Java运行时环境根据类的内部细节自动生成的。若类的实例变量做了修改，serialVersionUID 可能发生变化。故建议，显式声明</li>
+</ul>
+</li>
+</ul>
+<h4 id="深拷贝和浅拷贝-和nio里的0拷贝是两码事"><a href="#深拷贝和浅拷贝-和nio里的0拷贝是两码事" class="headerlink" title="深拷贝和浅拷贝(和nio里的0拷贝是两码事)"></a>深拷贝和浅拷贝(和nio里的0拷贝是两码事)</h4><ul>
+<li>浅拷贝 <ul>
+<li>对于数据类型是基本数据类型的成员变量，浅拷贝会直接进行值传递，   </li>
+<li>对于引用类型的变量,传递的是索引(也就是说对象是不会复制的)</li>
+</ul>
+</li>
+<li>深拷贝<ul>
+<li>和原来那个没有一毛钱关系</li>
+</ul>
+</li>
+<li>浅拷贝方法 :<ul>
+<li>构造器赋值</li>
+<li>重写clone()方法<ul>
+<li>需要实现Cloneable接口</li>
+<li>只重写要复制的类的clone()方法即可</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>深拷贝方法 :        <ul>
+<li>重写clone()方法<ul>
+<li>将要复制类中的引用类型变量全部重写clone()方法(这样就只剩基本数据类型了这样就是深拷贝了)</li>
+</ul>
+</li>
+<li>通过序列化与反序列化来copy类        </li>
+</ul>
+</li>
+</ul>
+<h4 id="Nio-new-IO-2-或叫-no-block-io-也可"><a href="#Nio-new-IO-2-或叫-no-block-io-也可" class="headerlink" title="Nio (new IO 2 或叫 no-block io 也可)"></a>Nio (new IO 2 或叫 no-block io 也可)</h4><ul>
+<li>Path代替File类<ul>
+<li>早期的Java只提供了一个File类来访问文件系统，但File类的功能比较有限，所提供的方法性能也不高。而且，大多数方法在出错时仅返回失败，并不会提供异常信息    </li>
+<li>可以通过Path path = Paths.get(“index.html”);创建Path</li>
+<li>也可以通过 Path path = Path.of(“index.html”); ps高版本</li>
+</ul>
+</li>
+<li>NIO 为同步非阻塞io<ul>
+<li>选择器 : 选择客户端进行io</li>
+<li>通道 : 将io放入通道传输</li>
+<li>缓冲区 : 可以和通道之间相互读写 客户端读写缓冲区 </li>
+</ul>
+</li>
+<li>三个之间的关系<ul>
+<li>每一个channel都对应一个buffer</li>
+<li>selector 会对应一个线程</li>
+<li>一个线程对应多个channel channel注册到selector</li>
+<li>程序切换到那个channel由事件决定的</li>
+<li>selector会根据不同的时间进行切换</li>
+<li>buffer就是一个内存块 底层是有一个数组的</li>
+<li>数据的读写是通过buffer来读写的 对于bio要么是输入流要么输出流不能双向 buffer可以 </li>
+</ul>
+</li>
+<li>I/0 模型 : 就是用什么样的通道进行数据的发送和接收<ul>
+<li>java 支持 三种网络编程模型I/O模式 : BIO.NIO.AIO</li>
+<li>BIO : 同步并阻塞(原生io) 服务器实现模式为一个链接一个线程 即客户端有链接请求时就需要启动一个线程,若这个链接什么都不做会造成不必要的开销</li>
+<li>NIO : 同步非阻塞 一个线程处理多个请求,客户端发送的链接请求都会注册到多路复用器上,多路复用器轮询到io请求就会处理</li>
+<li>AIO : 异步非阻塞(NIO2.0) 引入异步通道概念,采用Proactor模式 简化程序编写 有效请求才启动线程,特点是先由操作系统完成后才通知服务端启动线程处理,适用于连接数多且连接占用时间长的应用   </li>
+</ul>
+</li>
+</ul>
+<h4 id="nio详解๑O௰O๑"><a href="#nio详解๑O௰O๑" class="headerlink" title="nio详解๑Ő௰Ő๑)"></a><a href="/nio">nio详解๑Ő௰Ő๑)</a></h4><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>您的支持将鼓励我继续创作！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="qianqian 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="qianqian 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>qianqian
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://zqblog.com/java2/" title="java2">http://zqblog.com/java2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/pass-by-value/" rel="prev" title="pass_by_value">
+      <i class="fa fa-chevron-left"></i> pass_by_value
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/threadpool/" rel="next" title="threadpool">
+      threadpool <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#java-%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text">java 基础第二部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F-%E8%BF%9B%E7%A8%8B-%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">程序|进程|线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E9%9C%80%E8%A6%81%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">何时需要多线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA%E5%8F%8A%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">java中的线程创建及使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="nav-number">1.1.4.</span> <span class="nav-text">线程调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.1.5.</span> <span class="nav-text">线程生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="nav-number">1.1.6.</span> <span class="nav-text">线程同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">1.1.7.</span> <span class="nav-text">线程通信</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E2%9C%AA%CF%89%E2%9C%AA-%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.1.8.</span> <span class="nav-text">多线程深入理解 (✪ω✪) 详解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">常用类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#String%E7%B1%BB"><span class="nav-number">1.2.1.</span> <span class="nav-text">String类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Comparable-Comparator"><span class="nav-number">1.2.2.</span> <span class="nav-text">Comparable&#x2F;Comparator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Collections-%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">1.2.3.</span> <span class="nav-text">Collections 工具类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.3.</span> <span class="nav-text">注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-number">1.4.</span> <span class="nav-text">集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-%E9%9B%86%E5%90%88%E5%8F%AF%E5%88%86%E4%B8%BA-Collection-%E5%92%8C-Map-%E4%B8%A4%E7%A7%8D%E4%BD%93%E7%B3%BB"><span class="nav-number">1.4.1.</span> <span class="nav-text">Java 集合可分为 Collection 和 Map 两种体系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.2.</span> <span class="nav-text">List接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ArrayList-%E7%B1%BB"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">ArrayList 类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LinkedList-%E7%B1%BB"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">LinkedList 类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Vector-%E7%B1%BB"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">Vector 类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set-%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.3.</span> <span class="nav-text">Set 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HashSet-%E7%B1%BB"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">HashSet 类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map-%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.4.</span> <span class="nav-text">Map 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#queue-%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.5.</span> <span class="nav-text">queue 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E2%9C%AA%CF%89%E2%9C%AA-%E8%AF%A6%E8%A7%A3-%E9%9D%A2%E8%AF%95%E9%9B%86%E5%90%88%E7%9C%8B%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86"><span class="nav-number">1.4.6.</span> <span class="nav-text">集合深入理解 (✪ω✪) 详解 !!面试集合看这一篇就够了!!</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iterator"><span class="nav-number">1.4.7.</span> <span class="nav-text">iterator</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#io%E6%B5%81"><span class="nav-number">1.5.</span> <span class="nav-text">io流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#File-%E7%B1%BB"><span class="nav-number">1.5.1.</span> <span class="nav-text">File 类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.5.2.</span> <span class="nav-text">流的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">1.5.3.</span> <span class="nav-text">对象序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D-%E5%92%8Cnio%E9%87%8C%E7%9A%840%E6%8B%B7%E8%B4%9D%E6%98%AF%E4%B8%A4%E7%A0%81%E4%BA%8B"><span class="nav-number">1.5.4.</span> <span class="nav-text">深拷贝和浅拷贝(和nio里的0拷贝是两码事)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nio-new-IO-2-%E6%88%96%E5%8F%AB-no-block-io-%E4%B9%9F%E5%8F%AF"><span class="nav-number">1.5.5.</span> <span class="nav-text">Nio (new IO 2 或叫 no-block io 也可)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nio%E8%AF%A6%E8%A7%A3%E0%B9%91O%E0%AF%B0O%E0%B9%91"><span class="nav-number">1.5.6.</span> <span class="nav-text">nio详解๑Ő௰Ő๑)</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="qianqian"
+      src="/images/avator.jpg">
+  <p class="site-author-name" itemprop="name">qianqian</p>
+  <div class="site-description" itemprop="description">有阴影的地方,一定有光</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhang32194878" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhang32194878" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/weixin_42557255" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_42557255" rel="noopener" target="_blank"><i class="crosshairs fa-fw"></i>CSDN</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QIAN</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">67k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:01</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+    <script defer src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

@@ -6,7 +6,7 @@
   <link href="http://zqblog.com/atom.xml" rel="self"/>
   
   <link href="http://zqblog.com/"/>
-  <updated>2020-08-22T16:42:18.314Z</updated>
+  <updated>2020-08-25T16:16:50.703Z</updated>
   <id>http://zqblog.com/</id>
   
   <author>
@@ -15,6 +15,133 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nio</title>
+    <link href="http://zqblog.com/nio/"/>
+    <id>http://zqblog.com/nio/</id>
+    <published>2020-08-25T14:05:28.000Z</published>
+    <updated>2020-08-25T16:16:50.703Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;nio&quot;&gt;&lt;a href=&quot;#nio&quot; class=&quot;headerlink&quot; title=&quot;nio&quot;&gt;&lt;/a&gt;nio&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;nio 有两个版本,在1.4推出了nio,1.7又对io进行了升级推出了nio2</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>juc</title>
+    <link href="http://zqblog.com/juc/"/>
+    <id>http://zqblog.com/juc/</id>
+    <published>2020-08-24T08:35:11.000Z</published>
+    <updated>2020-08-26T06:25:45.327Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;多线程详解&quot;&gt;&lt;a href=&quot;#多线程详解&quot; class=&quot;headerlink&quot; title=&quot;多线程详解&quot;&gt;&lt;/a&gt;多线程详解&lt;/h3&gt;&lt;h4 id=&quot;ThreadLocal-类&quot;&gt;&lt;a href=&quot;#ThreadLocal-类&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>lock</title>
+    <link href="http://zqblog.com/lock/"/>
+    <id>http://zqblog.com/lock/</id>
+    <published>2020-08-24T06:47:31.000Z</published>
+    <updated>2020-08-25T06:11:19.592Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;java锁机制&quot;&gt;&lt;a href=&quot;#java锁机制&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>collection</title>
+    <link href="http://zqblog.com/collection/"/>
+    <id>http://zqblog.com/collection/</id>
+    <published>2020-08-23T10:35:09.000Z</published>
+    <updated>2020-08-26T05:44:36.055Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;深入理解Collection&quot;&gt;&lt;a href=&quot;#深入理解Collection&quot; class=&quot;headerlink&quot; title=&quot;深入理解Collection&quot;&gt;&lt;/a&gt;深入理解Collection&lt;/h2&gt;&lt;h3 id=&quot;hashMap&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>threadpool</title>
+    <link href="http://zqblog.com/threadpool/"/>
+    <id>http://zqblog.com/threadpool/</id>
+    <published>2020-08-23T09:44:49.000Z</published>
+    <updated>2020-08-26T06:36:08.694Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;线程池&quot;&gt;&lt;a href=&quot;#线程池&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>java2</title>
+    <link href="http://zqblog.com/java2/"/>
+    <id>http://zqblog.com/java2/</id>
+    <published>2020-08-23T06:10:18.000Z</published>
+    <updated>2020-08-25T16:27:26.486Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;java-基础第二部分&quot;&gt;&lt;a href=&quot;#java-基础第二部分&quot; class=&quot;headerlink&quot; title=&quot;java 基础第二部分&quot;&gt;&lt;/a&gt;java 基础第二部分&lt;/h2&gt;&lt;h3 id=&quot;多线程&quot;&gt;&lt;a href=&quot;#多线程&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>pass_by_value</title>
@@ -64,14 +191,14 @@
     <link href="http://zqblog.com/java/"/>
     <id>http://zqblog.com/java/</id>
     <published>2020-08-22T11:53:14.000Z</published>
-    <updated>2020-08-22T18:05:00.949Z</updated>
+    <updated>2020-08-23T06:10:09.449Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;java基础部分&quot;&gt;&lt;a href=&quot;#java基础部分&quot; class=&quot;headerlink&quot; title=&quot;java基础部分&quot;&gt;&lt;/a&gt;java基础部分&lt;/h2&gt;&lt;h3 id=&quot;java安装配置&quot;&gt;&lt;a href=&quot;#java安装配置&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;java基础第一部分&quot;&gt;&lt;a href=&quot;#java基础第一部分&quot; class=&quot;headerlink&quot; title=&quot;java基础第一部分&quot;&gt;&lt;/a&gt;java基础第一部分&lt;/h2&gt;&lt;h3 id=&quot;java安装配置&quot;&gt;&lt;a href=&quot;#java安装配置&quot;</summary>
         
       
     
@@ -330,76 +457,6 @@
     
     
     <category term="数组" scheme="http://zqblog.com/tags/%E6%95%B0%E7%BB%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构</title>
-    <link href="http://zqblog.com/dataStruct/"/>
-    <id>http://zqblog.com/dataStruct/</id>
-    <published>2020-08-21T09:05:16.000Z</published>
-    <updated>2020-08-21T12:20:33.946Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;数据结构&quot;&gt;&lt;a href=&quot;#数据结构&quot; class=&quot;headerlink&quot; title=&quot;数据结构&quot;&gt;&lt;/a&gt;数据结构&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;数据结构最基本的两种形式 &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="数据结构" scheme="http://zqblog.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>计算机基础</title>
-    <link href="http://zqblog.com/base/"/>
-    <id>http://zqblog.com/base/</id>
-    <published>2020-08-21T05:18:21.000Z</published>
-    <updated>2020-08-22T17:04:27.709Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;计算机基础知识&quot;&gt;&lt;a href=&quot;#计算机基础知识&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="计算机基础" scheme="http://zqblog.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>home</title>
-    <link href="http://zqblog.com/home/"/>
-    <id>http://zqblog.com/home/</id>
-    <published>2020-08-21T02:27:35.000Z</published>
-    <updated>2020-08-21T12:01:43.216Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Fight-o-尸-’’☆ミ☆ミ&quot;&gt;&lt;a href=&quot;#Fight-o-尸-’’☆ミ☆ミ&quot; class=&quot;headerlink&quot; title=&quot;Fight!!(ｏ^-^)尸~’’☆ミ☆ミ&quot;&gt;&lt;/a&gt;Fight!!(ｏ^-^)尸~’’☆ミ☆ミ&lt;/h1&gt;&lt;link</summary>
-        
-      
-    
-    
-    
     
   </entry>
   

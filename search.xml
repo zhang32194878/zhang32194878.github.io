@@ -163,9 +163,38 @@
       </tags>
   </entry>
   <entry>
+    <title>graph</title>
+    <url>/graph/</url>
+    <content><![CDATA[<h3 id="图"><a href="#图" class="headerlink" title="图"></a>图</h3><ul>
+<li>图是一种数据结构,可以表示多对多的关系</li>
+</ul>
+<ul>
+<li>线性表和树都只局限于一个直接前驱节点和一个直接后继节点,当我们需要表示多对多的关系式就用到了图<ul>
+<li>顶点 : 相当于节点</li>
+<li>边 : 相当于指针</li>
+<li>路径 -&gt; 如 A-C  可以 a-&gt;c 可以 a-&gt;b-&gt;c</li>
+</ul>
+</li>
+</ul>
+<h3 id="图的分类"><a href="#图的分类" class="headerlink" title="图的分类"></a>图的分类</h3><ul>
+<li>有向图 (边有方向)</li>
+<li>带权图 (边有大小|也叫网)</li>
+</ul>
+<h3 id="图的表示"><a href="#图的表示" class="headerlink" title="图的表示"></a>图的表示</h3><ul>
+<li>二维数组(邻接矩阵)  需要为每个顶点都分配n个边的空间 记录链接情况(未连接也会记录 这样会浪费空间)</li>
+<li>链表+数组(邻接表)  只记录链接的边 所以没有空间损失 </li>
+</ul>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+  </entry>
+  <entry>
+    <title>home</title>
+    <url>/home/</url>
+    <content><![CDATA[<h1 id="Fight-o-尸-’’☆ミ☆ミ"><a href="#Fight-o-尸-’’☆ミ☆ミ" class="headerlink" title="Fight!!(ｏ^-^)尸~’’☆ミ☆ミ"></a>Fight!!(ｏ^-^)尸~’’☆ミ☆ミ</h1><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+  </entry>
+  <entry>
     <title>java</title>
     <url>/java/</url>
-    <content><![CDATA[<h2 id="java基础部分"><a href="#java基础部分" class="headerlink" title="java基础部分"></a>java基础部分</h2><h3 id="java安装配置"><a href="#java安装配置" class="headerlink" title="java安装配置"></a>java安装配置</h3><ul>
+    <content><![CDATA[<h2 id="java基础第一部分"><a href="#java基础第一部分" class="headerlink" title="java基础第一部分"></a>java基础第一部分</h2><h3 id="java安装配置"><a href="#java安装配置" class="headerlink" title="java安装配置"></a>java安装配置</h3><ul>
 <li><p>java系统结构</p>
 <p>  <img src="/java/platform.jpg" alt="java"></p>
 </li>
@@ -307,40 +336,78 @@ System.out.println(x == y);
 </ul>
 </li>
 </ul>
-<h3 id="面向对象总结"><a href="#面向对象总结" class="headerlink" title="面向对象总结"></a>面向对象总结</h3><p><img src="/java/objall.png" alt="objall">   </p>
+<h3 id="面向对象总结"><a href="#面向对象总结" class="headerlink" title="面向对象总结"></a>面向对象总结</h3><p><img src="/java/objall.png" alt="objall"><br><img src="/java/objall2.png" alt="objall2"> </p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><ul>
+<li>在使用计算机语言进行项目开发的过程中，即使程序员把代码写得尽善尽美，在系统的运行过程中仍然会遇到一些问题，因为很多问题不是靠代码能够避免的，比如：客户输入数据的格式，读取文件是否存在，网络是否始终保持通畅等等</li>
+<li>异常：在Java语言中，将程序执行中发生的不正常情况称为“异常”。 (开发过程中的语法错误和逻辑错误不是异常)</li>
+<li>Java程序在执行过程中所发生的异常事件可分为两类<ul>
+<li>Error : Java虚拟机无法解决的严重问题。如：JVM系统内部错误、资源耗尽等严重情况。比如：StackOverflowError和OOM。一般不编写针对性的代码进行处理。</li>
+<li>Exception : 其它因编程错误或偶然的外在因素导致的一般性问题，可以使用针对性的代码进行处理。<ul>
+<li>空指针访问</li>
+<li>网络连接中断</li>
+<li>数组角标越界</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>处理方法<ul>
+<li>一是遇到错误就终止程序的运行      </li>
+<li>另一种方法是由程序员在编写程序时，就考虑到错误的检测、错误消息的提示，以及错误的处理</li>
+</ul>
+</li>
+<li>Exception 可以分为运行时异常 和 编译时异常   <ul>
+<li>运行时异常<ul>
+<li>是指编译器不要求强制处置的异常。一般是指编程时的逻辑错误，是程序员应该积极避免其出现的异常。java.lang.RuntimeException类及它的子类都是运行时异常。</li>
+<li>对于这类异常，可以不作处理，因为这类异常很普遍，若全处理可能会对程序的可读性和运行效率产生影响。</li>
+</ul>
+</li>
+<li>编译时异常<ul>
+<li>是指编译器要求必须处置的异常。即程序在运行时由于外界因素造成的一般性异常。编译器要求Java程序必须捕获或声明所有编译时异常。</li>
+<li>对于这类异常，如果程序不处理，可能会带来意想不到的结果。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>常见的异常        <ul>
+<li>ClassCastException</li>
+<li>ArrayIndexOutOfBoundsException</li>
+<li>NullPointerException</li>
+<li>ArithmeticException</li>
+<li>NumberFormatException</li>
+<li>InputMismatchException</li>
+</ul>
+</li>
+<li>异常的处理<ul>
+<li>在编写程序时，经常要在可能出现错误的地方加上检测的代码，如进行x/y运算时，要检测分母为0，数据为空，输入的不是数据而是字符等。过多的if-else分支会导致程序的代码加长、臃肿，可读性差。因此采用异常处理机制。</li>
+<li>异常可以由虚拟机自动生成,也可以手动抛出 throw new ClassCastException()</li>
+<li>处理方式<ul>
+<li>try-catch-finally</li>
+<li>throw + 异常类型  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>不捕获异常<ul>
+<li>对于RuntimeException 类 即使没有使用try和catch捕获，Java自己也能捕获，并且编译通过</li>
+<li>对于非上述类如IOException ，则必须捕获，否则编译错误 我们必须处理编译时异常，将异常进行捕捉，转化为运行时异常</li>
+</ul>
+</li>
+<li>自定义异常<ul>
+<li>一般地，用户自定义异常类都是RuntimeException的子类。</li>
+<li>自定义异常类通常需要编写几个重载的构造器。</li>
+<li>自定义异常需要提供serialVersionUID</li>
+<li>自定义的异常通过throw抛出。</li>
+<li>自定义异常最重要的是异常类的名字，当异常出现时，可以根据名字判断异常类型  </li>
+</ul>
+</li>
+</ul>
+<h2 id="java基础第二部分"><a href="#java基础第二部分" class="headerlink" title="java基础第二部分"></a>java基础第二部分</h2><ul>
+<li><a href="/java2">(。-ω-)z 点击这里查看)</a></li>
+</ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
       <categories>
         <category>java</category>
       </categories>
-  </entry>
-  <entry>
-    <title>home</title>
-    <url>/home/</url>
-    <content><![CDATA[<h1 id="Fight-o-尸-’’☆ミ☆ミ"><a href="#Fight-o-尸-’’☆ミ☆ミ" class="headerlink" title="Fight!!(ｏ^-^)尸~’’☆ミ☆ミ"></a>Fight!!(ｏ^-^)尸~’’☆ミ☆ミ</h1><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-  </entry>
-  <entry>
-    <title>graph</title>
-    <url>/graph/</url>
-    <content><![CDATA[<h3 id="图"><a href="#图" class="headerlink" title="图"></a>图</h3><ul>
-<li>图是一种数据结构,可以表示多对多的关系</li>
-</ul>
-<ul>
-<li>线性表和树都只局限于一个直接前驱节点和一个直接后继节点,当我们需要表示多对多的关系式就用到了图<ul>
-<li>顶点 : 相当于节点</li>
-<li>边 : 相当于指针</li>
-<li>路径 -&gt; 如 A-C  可以 a-&gt;c 可以 a-&gt;b-&gt;c</li>
-</ul>
-</li>
-</ul>
-<h3 id="图的分类"><a href="#图的分类" class="headerlink" title="图的分类"></a>图的分类</h3><ul>
-<li>有向图 (边有方向)</li>
-<li>带权图 (边有大小|也叫网)</li>
-</ul>
-<h3 id="图的表示"><a href="#图的表示" class="headerlink" title="图的表示"></a>图的表示</h3><ul>
-<li>二维数组(邻接矩阵)  需要为每个顶点都分配n个边的空间 记录链接情况(未连接也会记录 这样会浪费空间)</li>
-<li>链表+数组(邻接表)  只记录链接的边 所以没有空间损失 </li>
-</ul>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
   </entry>
   <entry>
     <title>list</title>
@@ -365,6 +432,94 @@ System.out.println(x == y);
 <li>在双向链表的基础上将第一个节点的pre指向最后一个节点,最后一个节点的next指向第一个节点,就可以得到双向循环链表</li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+  </entry>
+  <entry>
+    <title>juc</title>
+    <url>/juc/</url>
+    <content><![CDATA[<h3 id="多线程详解"><a href="#多线程详解" class="headerlink" title="多线程详解"></a>多线程详解</h3><h4 id="ThreadLocal-类"><a href="#ThreadLocal-类" class="headerlink" title="ThreadLocal 类"></a>ThreadLocal 类</h4><ul>
+<li><p>每个Thread维护着一个ThreadLocalMap的引用</p>
+</li>
+<li><p>ThreadLocalMap是ThreadLocal的内部类，用Entry来进行存储</p>
+</li>
+<li><p>调用ThreadLocal的set()方法时，实际上就是往ThreadLocalMap设置值，key是ThreadLocal对象，值是传递进来的对象</p>
+</li>
+<li><p>调用ThreadLocal的get()方法时，实际上就是往ThreadLocalMap获取值，key是ThreadLocal对象</p>
+</li>
+<li><p>ThreadLocal本身并不存储值，它只是作为一个key来让线程从ThreadLocalMap获取value。正因为这个原理，所以ThreadLocal能够实现“数据隔离”，获取当前线程的局部变量值，不受其他线程影响～</p>
+</li>
+</ul>
+<h3 id="什么是线程安全"><a href="#什么是线程安全" class="headerlink" title="什么是线程安全"></a>什么是线程安全</h3><ul>
+<li>线程安全是一个在多线程高并发场景下的一个问题,其实是内存安全的一个问题</li>
+<li>在堆内存中的数据由于可以被任何线程访问到,在没有限制的情况下存在被意外修改的风险。也就是说你放入的东西可能被其他线程破坏掉</li>
+</ul>
+<p>那么如何解决呢</p>
+<ul>
+<li>将资源私有,只有我自己可以看见我要操作的资源(比如局部变量),这样就不存在线程安全问题,但是这样一来别人就不能操作了</li>
+<li>那我又想自己操作又想让别人操作怎么办呢,那资源就必须要公有了,这时就会产生线程安全<ul>
+<li>要让公共区域堆内存中的数据对于每个线程都是安全的，那就每个线程都拷贝它一份，每个线程只处理自己的这一份拷贝而不去影响别的线程的,这样就又回到了私有资源方法那安全问题就解决了<ul>
+<li>ThreadLocal类就是此种方式的实现</li>
+</ul>
+</li>
+<li>让其他线程只有访问权,没有修改权,这样就吧修改问题直接屏蔽掉了,也就不存在线程安全问题了    </li>
+<li>将公共的一块空间锁住,只允许我自己在里面操作,等我操作完成后,打开锁,其他人再将这里锁住进行操作(互斥锁),这样就不会出现恶意修改情况了</li>
+<li>但是将一块空间锁住是需要花时间的在线程数少的情况下这样做(使用悲观锁)没有什么必要,聪明的人们就想出了另一种方法CAS,<ul>
+<li>(乐观锁)我认为大部分情况没有人更改我的资源</li>
+<li>我每次操作完之后给资源加一个盒子,在我操作的时候只要盒子没有开封,就说明没有人动了我的资源,以这种形式保证了线程安全</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="啥是AQS呢"><a href="#啥是AQS呢" class="headerlink" title="啥是AQS呢"></a>啥是AQS呢</h3><ul>
+<li>AQS是juc包下locks包中两个抽象类的简写        </li>
+<li>juc包中很多可阻塞的类都是基于AQS构建的</li>
+<li>AQS可以说是一个给予实现同步锁、同步器的一个框架，很多实现类都在它的的基础上构建的</li>
+<li>在AQS中实现了对等待队列的默认实现，子类只要重写部分的代码即可实现(大量用到了模板代码)</li>
+<li>内部实现的关键是：先进先出的队列、state状态<ul>
+<li>state 状态的修改是由cas实现的,使用volatile关键字保证可见性</li>
+<li>先进先出的队列是一个双向队列    </li>
+</ul>
+</li>
+</ul>
+<h3 id="同步工具类-辅助类"><a href="#同步工具类-辅助类" class="headerlink" title="同步工具类(辅助类)"></a>同步工具类(辅助类)</h3><ul>
+<li>juc提供了三个打辅助的工具类,用于更好控制线程之间的通讯问题<ul>
+<li>CountDownLatch(计数锁)</li>
+<li>CyclicBarrier(栅栏)</li>
+<li>Semaphore(信号量)</li>
+</ul>
+</li>
+<li>CountDownLatch 看下面代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;锁门的人 在看着门口&quot;</span>);</span><br><span class="line">        CountDownLatch latch = <span class="keyword">new</span> CountDownLatch(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">               <span class="keyword">try</span>&#123;</span><br><span class="line">                   Random random = <span class="keyword">new</span> Random();</span><br><span class="line">                   Thread.sleep(random.nextInt(<span class="number">10</span>)*<span class="number">500</span>);</span><br><span class="line">               &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                   e.printStackTrace();</span><br><span class="line">               &#125;</span><br><span class="line">               System.out.println(<span class="string">&quot;同学&quot;</span> + Thread.currentThread().getName() + <span class="string">&quot;离开&quot;</span>);</span><br><span class="line">               latch.countDown();</span><br><span class="line">            &#125;,String.valueOf(i)).start();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            latch.await();</span><br><span class="line">            System.out.println(<span class="string">&quot;小明同学 锁门离开&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此工具类可以作为计数器使用 指定:CountDownLatch(10),在主线程调用latch.await();等待,直到latch为0才会继续主线程,其他线程可以调用latch.countDown();减小计数</p>
+<ul>
+<li>CyclicBarrier 看下面代码哦</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//七个龙珠集齐之后才可以执行召唤神龙</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CyclicBarrierTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NUMBER = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        CyclicBarrier barrier = <span class="keyword">new</span> CyclicBarrier(<span class="number">7</span>,()-&gt;&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;集齐龙珠召唤神龙&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">7</span>; i++) &#123;</span><br><span class="line">            num++;</span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="keyword">new</span> Random().nextInt(<span class="number">10</span>)*<span class="number">500</span>);</span><br><span class="line">                    System.out.println(<span class="string">&quot;收集龙珠第&quot;</span> + Thread.currentThread().getName() + <span class="string">&quot;颗&quot;</span>);</span><br><span class="line">                    barrier.await();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,String.valueOf(num)).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此工具类的应用和有点和上面相反的意思,分线程到达珊栏处等待,直到数量到达指定值7,后执行回调方法,执行完成后,等待的所有线程继续执行</p>
+<ul>
+<li>Semaphore  看代码哦</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SemaphoreTset</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 假设有50个同时进入商场</span></span><br><span class="line">        <span class="keyword">int</span> nums = <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 商场只能容纳10个人(什么垃圾商场) 其他人等着</span></span><br><span class="line">        Semaphore semaphore = <span class="keyword">new</span> Semaphore(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> t = i;</span><br><span class="line">            <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="comment">// 有&quot;号&quot;的才能进商场买东西</span></span><br><span class="line">                    semaphore.acquire();</span><br><span class="line"></span><br><span class="line">                    System.out.println(<span class="string">&quot;顾客&quot;</span> + t + <span class="string">&quot;在挑选商品，购买...&quot;</span>);</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 假设挑选了xx长时间，购买了</span></span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 归还一个许可，后边的就可以进来购买了</span></span><br><span class="line">                    System.out.println(<span class="string">&quot;顾客&quot;</span> + t + <span class="string">&quot;购买完毕了...&quot;</span>);</span><br><span class="line">                    semaphore.release();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个工具类比较像一个线程池,可以控制一组线程同时执行。</p>
+<h3 id="锁机制-synchronized-∑-ﾟДﾟノ-ノ点击这里哦"><a href="#锁机制-synchronized-∑-ﾟДﾟノ-ノ点击这里哦" class="headerlink" title="锁机制(synchronized)!!!∑(ﾟДﾟノ)ノ点击这里哦"></a><a href="/lock">锁机制(synchronized)!!!∑(ﾟДﾟノ)ノ点击这里哦</a></h3><h3 id="阻塞队列-看线程池之前先看这个哦"><a href="#阻塞队列-看线程池之前先看这个哦" class="headerlink" title="阻塞队列 (看线程池之前先看这个哦)"></a>阻塞队列 (看线程池之前先看这个哦)</h3><ul>
+<li>阻塞队列是juc包下的类,是线程池必要的组成部分<ul>
+<li>ArrayBlockingQueue  由数组构成的有界阻塞队列</li>
+<li>LinkedBlockingQueue 由链表结构构成的有界阻塞队列 大小默认Integer.MAX_VALUE</li>
+<li>LinkedBlockingDeque 链表结构的双向阻塞队列</li>
+<li>SynchronousQueue    单个元素的阻塞队列</li>
+</ul>
+</li>
+<li>阻塞队列中的方法<ul>
+<li>add  和 remove 方法 直接往里放 若满或空会报异常    </li>
+<li>poll 和 offer  是队列方法 向里放元素满会放不进去但是不会抛异常 空就返回null 不会报错</li>
+<li>put() 阻塞 满了会等着  take() 空会接着等</li>
+<li>offer(e,time,unit)设置超时时间超时就不在加入了 poll(time,unit)一样的 过时就不取了</li>
+</ul>
+</li>
+</ul>
+<h3 id="线程池-∑-ﾟДﾟノ-ノ点击这里哦"><a href="#线程池-∑-ﾟДﾟノ-ノ点击这里哦" class="headerlink" title="线程池!!!∑(ﾟДﾟノ)ノ点击这里哦"></a><a href="/threadpool">线程池!!!∑(ﾟДﾟノ)ノ点击这里哦</a></h3><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
   </entry>
   <entry>
     <title>menu</title>
@@ -504,13 +659,6 @@ System.out.println(x == y);
       </tags>
   </entry>
   <entry>
-    <title>suanfa</title>
-    <url>/suanfa/</url>
-    <content><![CDATA[<h3 id><a href="#" class="headerlink" title></a></h3><p>###</p>
-<p>###</p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-  </entry>
-  <entry>
     <title>stack</title>
     <url>/stack/</url>
     <content><![CDATA[<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><ul>
@@ -543,6 +691,13 @@ System.out.println(x == y);
 <li><p>链表创建栈</p>
 </li>
 </ul>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+  </entry>
+  <entry>
+    <title>suanfa</title>
+    <url>/suanfa/</url>
+    <content><![CDATA[<h3 id><a href="#" class="headerlink" title></a></h3><p>###</p>
+<p>###</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
   </entry>
   <entry>
@@ -599,6 +754,981 @@ System.out.println(x == y);
       <tags>
         <tag>树</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>threadpool</title>
+    <url>/threadpool/</url>
+    <content><![CDATA[<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><ul>
+<li>线程池可以看做是线程的集合。在没有任务时线程处于空闲状态，当请求到来：线程池给这个请求分配一个空闲的线程，任务完成后回到线程池中等待下次任务(而不是销毁)。这样就实现了线程的重用。</li>
+</ul>
+<h4 id="为什么要用线程池-我直接new线程不香嘛"><a href="#为什么要用线程池-我直接new线程不香嘛" class="headerlink" title="为什么要用线程池,我直接new线程不香嘛"></a>为什么要用线程池,我直接new线程不香嘛</h4><ul>
+<li>当使用分线程时每一个请求都新开一个线程这样会导致<ul>
+<li>线程大量创建影响内存,程序容易挂</li>
+<li>线程生命周期的开销非常高。每个线程都有自己的生命周期，创建和销毁线程所花费的时间和资源可能比处理客户端的任务花费的时间和资源更多，并且还会有某些空闲线程也会占用资源。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Excutor"><a href="#Excutor" class="headerlink" title="Excutor"></a>Excutor</h4><ul>
+<li><p>jdk提供了Excutor来使用线程池,他提供了一种将任务提交与任务执行分开的这么一个机制<br><img src="/threadpool/executor.png" alt="executor"></p>
+</li>
+<li><p>ExecutorService是他的子接口 其下面有两个分支</p>
+<ul>
+<li>ThreadPoolExecutor</li>
+<li>ForkJoinPool</li>
+</ul>
+</li>
+</ul>
+<h4 id="ThreadPoolExecutor"><a href="#ThreadPoolExecutor" class="headerlink" title="ThreadPoolExecutor"></a>ThreadPoolExecutor</h4><p>juc工具类中提供了三种默认的poolExecutor创建方式 :</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">ExecutorService executor = Executors.newFixedThreadPool(5); //固定数量线程池</span><br><span class="line">ExecutorService singleExecutor = Executors.newSingleThreadExecutor(); // 单例只有一个线程的线程池</span><br><span class="line">ExecutorService cacheExecutor = Executors.newCachedThreadPool(); // 可扩容的线程池</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>上面三种线程池底层都用了下面的这个构造器,可以看到不论是那一种线程池用的都是这个7个参数的构造器</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">public ThreadPoolExecutor(int corePoolSize,</span><br><span class="line">                              int maximumPoolSize,</span><br><span class="line">                              long keepAliveTime,</span><br><span class="line">                              TimeUnit unit,</span><br><span class="line">                              BlockingQueue&lt;Runnable&gt; workQueue) &#123;</span><br><span class="line">    this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,</span><br><span class="line">         Executors.defaultThreadFactory(), defaultHandler);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>先来列举一下构造器的7个参数都是什么</p>
+<ul>
+<li>int corePoolSize,   //常驻线程数</li>
+<li>int maximumPoolSize, //最大线程数</li>
+<li>long keepAliveTime, //存活时间</li>
+<li>TimeUnit unit,  //存活时间单位</li>
+<li>BlockingQueue<Runnable> workQueue, // 任务缓冲队列</Runnable></li>
+<li>ThreadFactory threadFactory,  // 生成工作线程的线程工厂</li>
+<li>RejectedExecutionHandler handler // 拒绝策略 当队列满执行拒绝策略(调用的offer方法不会死等所以需要拒绝策略)</li>
+</ul>
+</li>
+<li><p>回到三个线程上来,FixedThreadPool 看一下他的构造器</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">public static ExecutorService newFixedThreadPool(int nThreads) &#123;</span><br><span class="line">    return new ThreadPoolExecutor(nThreads, nThreads,</span><br><span class="line">                                  0L, TimeUnit.MILLISECONDS,</span><br><span class="line">                                  new LinkedBlockingQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们重点关注第五个参数,这里创建了一个链表的阻塞队列,此队列最大长度Integer.MAX_VALUE,若线程非常多在队列等待的线程超过最大值,就会报oom</p>
+</li>
+<li><p>SingleThreadExecutor 这里写死了线程池中的个数</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">public static ExecutorService newSingleThreadExecutor() &#123;</span><br><span class="line">    return new FinalizableDelegatedExecutorService</span><br><span class="line">        (new ThreadPoolExecutor(1, 1,</span><br><span class="line">                                0L, TimeUnit.MILLISECONDS,</span><br><span class="line">                                new LinkedBlockingQueue&lt;Runnable&gt;()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样第五5参数,会出现上面一样的问题</p>
+</li>
+<li><p>CachedThreadPool</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">public static ExecutorService newCachedThreadPool() &#123;</span><br><span class="line">    return new ThreadPoolExecutor(0, Integer.MAX_VALUE,</span><br><span class="line">                                  60L, TimeUnit.SECONDS,</span><br><span class="line">                                  new SynchronousQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第五个参数,换为了SynchronousQueue单实例的阻塞队列,这样就没有非常多的线程堆积问题<br>第二个参数,这里线程最大个数执行为了Integer.MAX_VALUE,虽然指定了存活时间,但是当请求非常多的时候会导致线程的大量创建导致oom</p>
+</li>
+<li><p>所以使用默认的线程池在一定情况下都容易出现oom的情况,在开发中最好自己根据业务情况创建线程池 </p>
+</li>
+</ul>
+<p>7个参数的构造器最后一个参数为拒绝策略,那么拒绝策略有哪些呢</p>
+<ul>
+<li>四个拒绝策略<ul>
+<li>AbortPolicy : 默认AbortPolicy 满载直接抛异常RejectedExecutionException</li>
+<li>CallerRunsPolicy : 调用者运行机制 不会抛弃任务也不会抛异常 将某任务回退到调用者 降低新任务流量 (某线程调用另一个线程执行 回退给这个线程去调用)</li>
+<li>DiscardPolicy : 就是使用offer()方法 满了就不加了</li>
+<li>DiscardOldestPolicy : 相反 满了将旧的抛弃 放入新的(注意是队列旧的是队尾出队 新的队头入队)</li>
+</ul>
+</li>
+<li>拒绝策略触发条件<ul>
+<li>线程池关闭</li>
+<li>线程池满队列饱和   </li>
+</ul>
+</li>
+</ul>
+<h4 id="ForkJoinPool"><a href="#ForkJoinPool" class="headerlink" title="ForkJoinPool"></a>ForkJoinPool</h4><ul>
+<li>另一种线程池 他用于实现分支合并框架,需要传入一个 ForkJoinTask 对象,他的实现类 RecursiveTask 主要思想是将 任务分支交给不同线程去调用 再合并 这样比一个线程使用 栈 或递归调用要快</li>
+</ul>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+  </entry>
+  <entry>
+    <title>collection</title>
+    <url>/collection/</url>
+    <content><![CDATA[<h2 id="深入理解Collection"><a href="#深入理解Collection" class="headerlink" title="深入理解Collection"></a>深入理解Collection</h2><h3 id="hashMap"><a href="#hashMap" class="headerlink" title="hashMap"></a>hashMap</h3><p><img src="/collection/hashMap.png" alt="hashMap"></p>
+<p><img src="/collection/hashmapYangzi.png" alt="hashMapyangzi"></p>
+<h4 id="为什么8版本将-链表插入换为了尾插法"><a href="#为什么8版本将-链表插入换为了尾插法" class="headerlink" title="为什么8版本将 链表插入换为了尾插法"></a>为什么8版本将 链表插入换为了尾插法</h4><p>参考(<a href="https://www.cnblogs.com/aobing/p/12014271.html">https://www.cnblogs.com/aobing/p/12014271.html</a>)</p>
+<ul>
+<li>java8之前是头插法，就是说新来的值会取代原有的值，原有的值就顺推到链表中去,因为写这个代码的作者认为后来的值被查找的可能性更大一点，提升查找的效率。</li>
+<li>在java8之后，都是所用尾部插入了。</li>
+</ul>
+<p>头部插入和尾部插入都是链表的一种添加方法这两种添加方法本身对链表来说是没有什么影响的,对hashmap有影响的地方是在扩容(resize)过程中<br>当数组元素超过负载因子的时候就会扩容调用resize()方法,扩容后hash规则就会相应的改变,由于要使用头插法那么就有可能出现这种情况<br><img src="/collection/resize1.png" alt="resize1"><br><img src="/collection/resize2.png" alt="resize2"><br>由于头插法可能改变了原来节点的顺序会导致生成环,所以在1.8版本换成了尾插法这样在resize的时候就不会改变此顺序了</p>
+<h4 id="为什么hashMap的初始值为16"><a href="#为什么hashMap的初始值为16" class="headerlink" title="为什么hashMap的初始值为16"></a>为什么hashMap的初始值为16</h4><ul>
+<li>在赋初始值时尽量保证是2的次方幂,这样方便位运算,运算效率高</li>
+<li>为了可以将索引尽量均匀分布 index = HashCode（Key） &amp; （Length- 1）这样由于长度是2的n次幂 (n-1)在二进制下都是1 与运算的到的值其实是hashcode的后几位(当hashcode很大时前面位数也能用到) 这样只要hashcode是均匀的 那么得到的索引也是均匀的 不会受长度的影响</li>
+</ul>
+<h4 id="比较7和8的扩容-resize-机制"><a href="#比较7和8的扩容-resize-机制" class="headerlink" title="比较7和8的扩容(resize)机制"></a>比较7和8的扩容(resize)机制</h4><ul>
+<li>1.8对扩容机制进行了优化<ul>
+<li>经过观测可以发现，我们使用的是2次幂的扩展(指长度扩为原来2倍)，所以，经过rehash之后，元素的位置要么是在原位置，要么是在原位置再移动2次幂的位置。<br><img src="/collection/rehash1.bmp" alt="rehash1"></li>
+<li>因此，我们在扩充HashMap的时候，不需要像JDK1.7的实现那样重新计算hash，只需要看看原来的hash值新增的那个bit是1还是0就好了，是0的话索引没变，是1的话索引变成“原索引+oldCap”，可以看看下图为16扩充为32的resize示意图<br><img src="/collection/rehash2.bmp" alt="rehash2"><br>这样的话既省去了重新计算hash的时间,而且因为左移增加了一位(*2),增加的一位是1还是0相对是随机的,这样重新生成的hashMap的元素相对也是均匀的,而且不会产生倒置的情况</li>
+<li>hash 算法<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">static final int hash(Object key) &#123;</span><br><span class="line"> int h;</span><br><span class="line"> return (key == null) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt;16);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="为什么说-HashMap-线程不安全"><a href="#为什么说-HashMap-线程不安全" class="headerlink" title="为什么说 HashMap 线程不安全"></a>为什么说 HashMap 线程不安全</h4><p>我们可以分析hashMap线程不安全的情况</p>
+<ul>
+<li><p>扩容情况(参考 : <a href="https://blog.csdn.net/loveliness_peri/article/details/81092360">https://blog.csdn.net/loveliness_peri/article/details/81092360</a>)</p>
+</li>
+<li><p>正常情况 resize 执行<br><img src="/collection/nresizebefore.bmp" alt="nomalbefore"><br>最后结果如下<br><img src="/collection/nresizeafter.bmp" alt="nomalafter"></p>
+</li>
+<li><p>异常情况 1 扩容生成环<br>在多线程环境下，假设有两个线程A和B都在进行put操作。线程A在执行到transfer函数中挂起.<br><img src="/collection/resizeguaqi.bmp" alt="guaqi"><br>线程A中的e指向key(0)，next指向key(4)<br><img src="/collection/nresizebefore.bmp" alt="nomalbefore"><br>接着线程B执行正常扩容执行后结果:(上述正常结果图)<br><img src="/collection/nresizeafter.bmp" alt="nomalafter"><br>线程1继续执行，线程一会把线程二的新表当成原始的hash表(指针指向不变)，将原来e指向的key(0)节点当成是线程二中的key(0),放在自己所建table[0]的头节点。注意线程1的next仍然指向key(4)，虽然此时key(0)的next已经是null。<br>接下来1继续执行扩容流程<br>  <img src="/collection/resizeafter1.bmp" alt="resizeafter1"></p>
+<ul>
+<li>执行e.next = newTable[i]，于是 key(0)的 next 指向了线程1的新 Hash 表，因为新 Hash 表为空，所以e.next = null，</li>
+<li>执行newTable[i] = e，所以线程1的新 Hash 表第一个元素指向了线程2新 Hash 表的 key(0)。好了，e 处理完毕。</li>
+<li>执行e = next，将 e 指向 next，所以新的 e 是 key(4)<br><img src="/collection/resizeafter2.bmp" alt="resizeafter2"><br>蓝色是再次生成的新HashMap<br>线程1的e指向了上一次循环的next，也就是key(4)，此时key(4)的next已经是key(0)。将key(4)插入到table[0]的头节点，并且将key(4)的next设置为key(0)。此时仍然没有问题。</li>
+<li>现在的 e 节点是 key(4)，首先执行Entry&lt;K,V&gt; next = e.next,那么 next 就是 key(0)了</li>
+<li>执行e.next = newTable[i]，于是key(0) 的 next 就成了 key(4)</li>
+<li>执行newTable[i] = e，那么线程1的新 Hash 表第一个元素变成了 key(4)</li>
+<li>执行e = next，将 e 指向 next，所以新的 e 是 key(0)<br><img src="/collection/resizeafter3.bmp" alt="resizeafter3"><ul>
+<li>现在的 e 节点是 key(0)，首先执行Entry&lt;K,V&gt; next = e.next,那么 next 就是 null</li>
+<li>执行e.next = newTable[i]，于是key(0) 的 next 就成了 key(4)</li>
+<li>执行newTable[i] = e，那么线程1的新 Hash 表第一个元素变成了 key(0)</li>
+<li>执行e = next，将 e 指向 next，所以新的 e 是 key(4)<br>这样新生成的hashMap 就出现了环</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>异常情况 2 数据丢失</p>
+<ul>
+<li><p>若正常情况下生成的结果是这种,原来不变<br><img src="/collection/nresizeafter2.bmp" alt="nresizeafter2"><br>同样的假设有两个线程A和B都在进行put操作。线程A在执行到transfer函数中挂起<br><img src="/collection/resizeguaqi.bmp" alt="guaqi"><br>A线程再次执行后就会产生此情况<br><img src="/collection/nresizebefore2.bmp" alt="nresizebefore2"><br>当前e是key0,执行以下操作</p>
+</li>
+<li><p>执行e.next = newTable[i]，于是 key(0)的 next 指向了线程1的新 Hash 表，因为新 Hash 表为空，所以e.next = null，</p>
+</li>
+<li><p>执行newTable[i] = e，所以线程1的新 Hash 表第一个元素指向了线程2新 Hash 表的 key(0)。好了，e 处理完毕。</p>
+</li>
+<li><p>执行e = next，将 e 指向 next，所以新的 e 是 key(4)  对照上面那个图 key4的next变成了null<br><img src="/collection/resizeafter4.png" alt="resizeafter1"> </p>
+<p>继续执行</p>
+<ul>
+<li>现在的 e 节点是 key(4)，首先执行Entry&lt;K,V&gt; next = e.next,那么 next 就是 null了</li>
+<li>执行e.next = newTable[i]，于是 key(4)的 next 指向了线程1的 key4的位置<ul>
+<li>(看上图newTable[i]是key4) 也就是自己指向了自己形成了环</li>
+</ul>
+</li>
+<li>执行newTable[i] = e，指针又指向了key4()</li>
+<li>执行e = next，将 e 指向 next，所以新的 e 还是 null 退出循环<br>通过上述结果可以知道key2数据丢失了,而且还形成了环</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>上述问题在java8中已经得到了很好的解决<ul>
+<li>由于使用尾插法而且不用重新计算hash值,这样避免了倒置的情况出现也就避免了环情况的产生</li>
+<li>但是java8的hashMap仍然是线程不安全的</li>
+<li>我们来看一下put的源码</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">final V putVal(int hash, K key, V value, boolean onlyIfAbsent,</span><br><span class="line">                   boolean evict) &#123;</span><br><span class="line">        Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; int n, i;</span><br><span class="line">        if ((tab &#x3D; table) &#x3D;&#x3D; null || (n &#x3D; tab.length) &#x3D;&#x3D; 0)</span><br><span class="line">            n &#x3D; (tab &#x3D; resize()).length;</span><br><span class="line">        if ((p &#x3D; tab[i &#x3D; (n - 1) &amp; hash]) &#x3D;&#x3D; null) &#x2F;&#x2F; 如果没有hash碰撞则直接插入元素</span><br><span class="line">            tab[i] &#x3D; newNode(hash, key, value, null);</span><br><span class="line">        else &#123;</span><br><span class="line">            Node&lt;K,V&gt; e; K k;</span><br><span class="line">            if (p.hash &#x3D;&#x3D; hash &amp;&amp;</span><br><span class="line">                ((k &#x3D; p.key) &#x3D;&#x3D; key || (key !&#x3D; null &amp;&amp; key.equals(k))))</span><br><span class="line">                e &#x3D; p;</span><br><span class="line">            else if (p instanceof TreeNode)</span><br><span class="line">                e &#x3D; ((TreeNode&lt;K,V&gt;)p).putTreeVal(this, tab, hash, key, value);</span><br><span class="line">            else &#123;</span><br><span class="line">                for (int binCount &#x3D; 0; ; ++binCount) &#123;</span><br><span class="line">                    if ((e &#x3D; p.next) &#x3D;&#x3D; null) &#123;</span><br><span class="line">                        p.next &#x3D; newNode(hash, key, value, null);</span><br><span class="line">                        if (binCount &gt;&#x3D; TREEIFY_THRESHOLD - 1) &#x2F;&#x2F; -1 for 1st</span><br><span class="line">                            treeifyBin(tab, hash);</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                    if (e.hash &#x3D;&#x3D; hash &amp;&amp;</span><br><span class="line">                        ((k &#x3D; e.key) &#x3D;&#x3D; key || (key !&#x3D; null &amp;&amp; key.equals(k))))</span><br><span class="line">                        break;</span><br><span class="line">                    p &#x3D; e;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (e !&#x3D; null) &#123; &#x2F;&#x2F; existing mapping for key</span><br><span class="line">                V oldValue &#x3D; e.value;</span><br><span class="line">                if (!onlyIfAbsent || oldValue &#x3D;&#x3D; null)</span><br><span class="line">                    e.value &#x3D; value;</span><br><span class="line">                afterNodeAccess(e);</span><br><span class="line">                return oldValue;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ++modCount;</span><br><span class="line">        if (++size &gt; threshold)</span><br><span class="line">            resize();</span><br><span class="line">        afterNodeInsertion(evict);</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>  问题出在第6行的if判断中若两个线程同时进入if中,A此时挂起,而线程B得到时间片后在该下标处插入了元素，完成了正常的插入，然后线程A获得时间片，由于之前已经进行了hash碰撞的判断，所有此时不会再进行判断，而是直接进行插入，这就导致了线程B插入的数据被线程A覆盖了，从而线程不安全。<br>而且++size不为原子变量也可能出现线程安全问题(两次put只加1的情况)</p>
+<h4 id="HashMap线程不安全-怎么处理HashMap在线程安全的场景呢"><a href="#HashMap线程不安全-怎么处理HashMap在线程安全的场景呢" class="headerlink" title="HashMap线程不安全,怎么处理HashMap在线程安全的场景呢?"></a>HashMap线程不安全,怎么处理HashMap在线程安全的场景呢?</h4><ul>
+<li>使用hashTable 或 Collections.synchronizedMap(Map,Object)(可以传一个对象作为锁,不穿的话以类作为锁)<ul>
+<li>两种相同都是在get,put等方法中加上了synchronized 关键字</li>
+</ul>
+</li>
+<li>使用currentHashMap    </li>
+</ul>
+<h4 id="HashMap和HashTable有什么不一样呢"><a href="#HashMap和HashTable有什么不一样呢" class="headerlink" title="HashMap和HashTable有什么不一样呢?"></a>HashMap和HashTable有什么不一样呢?</h4><p>参考: <a href="https://mp.weixin.qq.com/s/AixdbEiXf3KfE724kg2YIw">https://mp.weixin.qq.com/s/AixdbEiXf3KfE724kg2YIw</a></p>
+<ul>
+<li>HashTable是线程安全的HashMap是线程不安全的</li>
+<li>空值判断不同<ul>
+<li>HashTable 是不允许键或值为 null 的，HashMap 的键值则都可以为 null。</li>
+<li>这是因为HashTable使用的是安全失败机制（fail-safe），这种机制会使你此次读到的数据不一定是最新的数据.如果你使用null值，就会使得其无法判断对应的key是不存在还是为空，因为你无法再调用一次contain(key）来对key是否存在进行判断，ConcurrentHashMap同理。</li>
+</ul>
+</li>
+<li>初始值不同<ul>
+<li>HashTable 初始容量是11 , HashMap初始容量是16    </li>
+</ul>
+</li>
+<li>迭代器不同 <ul>
+<li>HashMap 中的 Iterator 迭代器是 fail-fast 的，而 Hashtable 的 Enumerator 不是 fail-fast 的。  </li>
+</ul>
+</li>
+</ul>
+<h4 id="那么什么是fail-fast和fail-save呢"><a href="#那么什么是fail-fast和fail-save呢" class="headerlink" title="那么什么是fail-fast和fail-save呢"></a>那么什么是fail-fast和fail-save呢</h4><ul>
+<li>fail-fast(快速失败) 机制原理<ul>
+<li>快速失败（fail—fast）是java集合中的一种机制， 在用迭代器遍历一个集合对象时，如果遍历过程中对集合对象的内容进行了修改（增加、删除、修改），则会抛出Concurrent Modification Exception。</li>
+<li>迭代器在遍历时直接访问集合中的内容，并且在遍历过程中使用一个 modCount 变量。           </li>
+<li>集合在被遍历期间如果内容发生变化，就会改变modCount的值。</li>
+<li>每当迭代器使用hashNext()/next()遍历下一个元素之前，都会检测modCount变量是否为expectedmodCount值，是的话就返回遍历；否则抛出异常，终止遍历。</li>
+<li>注意 : 这里异常的抛出条件是检测到 modCount！= expectedmodCount 这个条件。如果集合发生变化时修改modCount值刚好又设置为了expectedmodCount值，则异常不会抛出。<ul>
+<li>所以不能根据此变量来是否被改变来判断是否出现并发异常</li>
+</ul>
+</li>
+<li>util包下的集合类都是快速失败的，不能在多线程下发生并发修改（迭代过程中被修改）算是一种安全机制吧。</li>
+</ul>
+</li>
+<li>fail-save(安全失败) 机制<ul>
+<li>java.util.concurrent包下的容器都是安全失败，可以在多线程下并发使用，并发修改。   </li>
+<li>其实是一种读写分离的操作</li>
+<li>采用安全失败机制的集合容器，在遍历时不是直接在集合内容上访问的，而是先复制原有集合内容，在拷贝的集合上进行遍历。<ul>
+<li>基于拷贝内容的优点是避免了Concurrent Modification Exception，但同样地，迭代器并不能访问到修改后的内容，即：迭代器遍历的是开始遍历那一刻拿到的集合拷贝，在遍历期间原集合发生的修改迭代器是不知道的。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="concurrentHashMap"><a href="#concurrentHashMap" class="headerlink" title="concurrentHashMap"></a>concurrentHashMap</h3><h4 id="为什么ConcurrentHashMap并发度高-参考同上"><a href="#为什么ConcurrentHashMap并发度高-参考同上" class="headerlink" title="为什么ConcurrentHashMap并发度高 (参考同上)"></a>为什么ConcurrentHashMap并发度高 (参考同上)</h4><ul>
+<li>ConcurrentHashMap 在1.7和1.8的结构是不同的<br>先说说1.7吧<br><img src="/collection/concurrent7.bmp" alt="concurrentHashMap1.7"><br>如图所示，是由 Segment 数组、HashEntry 组成，和 HashMap 一样，仍然是数组加链表,HashEntry跟HashMap差不多的，但是不同点是，他使用volatile去修饰了他的数据Value还有下一个节点next。</li>
+<li>ConcurrentHashMap 采用了分段锁技术，其中 Segment 继承于 ReentrantLock。这样将HashEntry分段保证高并发</li>
+<li>每当一个线程占用锁访问一个 Segment 时，不会影响到其他的 Segment。    </li>
+<li>put() 方法会首先在segment段中定位掉具体的HashEntry,然后尝试获取锁,失败后自旋再次获取锁,若自旋次数大于MAX_SCAN_RETRIES,就会阻塞锁获取，保证能获取成功。</li>
+<li>get() 方法比较简单只需要将 Key 通过 Hash 之后定位到具体的 Segment ，再通过一次 Hash 定位到具体的HashEntity上。因为有volatile关键字,可以保证取出来的值是最新的</li>
+</ul>
+<p>1.7的性能问题,和1.7HashMap效率问题是同一个,因为只使用链表遍历效率就会很低<br>1.8 的 ConcurrentHashMap</p>
+<ul>
+<li>1.8的ConcurrentHashMap 也将数组+链表 的形式 更改为了 数组+链表+红黑树</li>
+<li>将HashEntry改为了Node,而且在Node中增加了volatile关键字保证了可见性</li>
+<li>1.8抛弃了segment 分段锁 而采用了cas + synchronized 保证并发安全性</li>
+<li>put() 方法和HashMap判断基本差不多只是在在写入数据时不同     <ul>
+<li>首先定位到要写入的位置若是一个空node,利用CAS写入,失败则自旋,保证成功</li>
+<li>若不为空用synchronized锁写入数据</li>
+</ul>
+</li>
+<li>get() 没有加锁和HashMap查找一样</li>
+</ul>
+<h4 id="CAS又是啥子哦-自旋又是啥子哦"><a href="#CAS又是啥子哦-自旋又是啥子哦" class="headerlink" title="CAS又是啥子哦,自旋又是啥子哦"></a>CAS又是啥子哦,自旋又是啥子哦</h4><ul>
+<li>CAS 比较再交换(有面试官就问你这个中文名然后就不往下问了,就离谱)</li>
+<li>自旋 就是给死循环起了个好听的名字哈哈哈</li>
+<li>CAS 是乐观锁的一种实现方式，是一种轻量级锁，JUC 中很多工具类的实现就是基于 CAS 的。</li>
+<li>CAS 操作的流程如下图所示，线程在读取数据时不进行加锁，在准备写回数据时，比较原值是否修改，若未被其他线程修改则写回，若已被修改，则重新执行读取流程。<br><img src="/collection/cas.bmp" alt="cas"><br>这种乐观锁很常见的,比如在向数据库保存数据时会先取出这个id在数据库的原有数据,再次保存时与原来数据进行比较,若不一样就保存失败</li>
+</ul>
+<p>SQL伪代码大概如下：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span> a <span class="keyword">set</span> <span class="keyword">value</span> = newValue <span class="keyword">where</span> <span class="keyword">value</span> = <span class="comment">#&#123;oldValue&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>上面我们说fail-fast会出现ABA的情况,在cas这里也会出现这个情况,那么cas是如何解决的呢<ul>
+<li>他使用了版本号(就是一种标识)标识肯定是不会出现ABA的这样就避免了ABA的情况发生</li>
+<li>ABA就是被其他线程更改了数据,只不过修改后的数据与原来数据相同</li>
+</ul>
+</li>
+</ul>
+<h4 id="我们知道synchronized性能很低-为啥1-8升级后反而多了很多synchronized呢"><a href="#我们知道synchronized性能很低-为啥1-8升级后反而多了很多synchronized呢" class="headerlink" title="我们知道synchronized性能很低,为啥1.8升级后反而多了很多synchronized呢"></a>我们知道synchronized性能很低,为啥1.8升级后反而多了很多synchronized呢</h4><ul>
+<li>java官方对synchronized进行了升级,提高了性能 </li>
+<li><a href="/lock">具体可以点击这里hi✿(。◕ᴗ◕。)✿</a> </li>
+</ul>
+<h4 id="上文提到ConcurrentHashMap在1-8放弃了Segment-为什么呢"><a href="#上文提到ConcurrentHashMap在1-8放弃了Segment-为什么呢" class="headerlink" title="上文提到ConcurrentHashMap在1.8放弃了Segment,为什么呢?"></a>上文提到ConcurrentHashMap在1.8放弃了Segment,为什么呢?</h4><ul>
+<li>锁的粒度上 <ul>
+<li>首先去掉segment,锁的粒度并没有变粗，甚至变得更细了。每当扩容一次，ConcurrentHashMap的并发度就扩大一倍。加入cas + synchronized 每一个桶都可以并发</li>
+<li>1.7若不加segment就相当于整个数组抢一个锁这样就会很慢,1.8改变了这种锁机制(更换可重入锁为synchronized)segment也就没有必要了</li>
+</ul>
+</li>
+<li>Hash冲突<br>  JDK1.7中，ConcurrentHashMap从过二次hash的方式（Segment -&gt; HashEntry）能够快速的找到查找的元素。在1.8中通过链表加红黑树的形式弥补了put、get时的性能差距。这样显得二次hash就没什么必要了</li>
+<li>为什么选择了synchronized 而不是可重入锁呢<ul>
+<li>减少内存开销,假设使用可重入锁来获得同步支持，那么每个节点都需要通过继承AQS来获得同步支持。但并不是每个节点都需要获得同步支持的，只有链表的头节点（红黑树的根节点）需要同步，这无疑带来了巨大内存浪费。 </li>
+<li>获得JVM的支持,可重入锁毕竟是API这个级别的，后续的性能优化空间很小。synchronized则是JVM直接支持的，JVM能够在运行时作出相应的优化措施：锁粗化、锁消除、锁自旋等等。这就使得synchronized能够随着JDK版本的升级而不改动代码的前提下获得性能上的提升。</li>
+</ul>
+</li>
+</ul>
+<h3 id="ArrayList-LinkedList-哇-这篇文章是不是太长了"><a href="#ArrayList-LinkedList-哇-这篇文章是不是太长了" class="headerlink" title="ArrayList/LinkedList (哇,这篇文章是不是太长了)"></a>ArrayList/LinkedList (哇,这篇文章是不是太长了)</h3><h4 id="简单介绍一下ArrayList吧"><a href="#简单介绍一下ArrayList吧" class="headerlink" title="简单介绍一下ArrayList吧"></a>简单介绍一下ArrayList吧</h4><p>-ArrayList底层是用数组实现的存储。默认长度10,1.5倍扩容 ps : 这个0.5是右移÷2的,效率高(newLen = oldLen + (oldLen &gt;&gt; 1))<br>-特点：查询效率高，增删效率低，线程不安全,使用率很高(博主天天用这个哈哈哈)<br>    - 正常使用的场景中，都是用来查询，不会涉及太频繁的增删，如果涉及频繁的增删，可以使用LinkedList，如果你需要线程安全就使用Vector</p>
+<h4 id="ArrayList（int-initialCapacity）会不会初始化数组大小？"><a href="#ArrayList（int-initialCapacity）会不会初始化数组大小？" class="headerlink" title="ArrayList（int initialCapacity）会不会初始化数组大小？"></a>ArrayList（int initialCapacity）会不会初始化数组大小？</h4><ul>
+<li>不会,在实际编程中会遇到这个问题,上面那个方法只是new出了数组并没有指定他的长度,这时若get或set就会报下标越界异常</li>
+</ul>
+<h4 id="为啥子ArrayList增-删效率很低"><a href="#为啥子ArrayList增-删效率很低" class="headerlink" title="为啥子ArrayList增/删效率很低"></a>为啥子ArrayList增/删效率很低</h4><ul>
+<li>这其实是数组的问题,若删除最后一个元素直接置空即可很快,但是若是删除第一个元素需要将后面的所有元素全部向前挪来覆盖第一个元素,这样效率就非常低了</li>
+<li>同样的增加也是如此,若增加最后一个直接增加即可,若是在最前面增加需要将所有元素向后移来空出位置,就会效率很低</li>
+</ul>
+<h4 id="ArrayList不适合做队列"><a href="#ArrayList不适合做队列" class="headerlink" title="ArrayList不适合做队列"></a>ArrayList不适合做队列</h4><ul>
+<li>这个问题其实就是上面的问题</li>
+<li>因为队列先入先出,不管是头添加尾删除,还是头删除尾添加,都会出现上面问题中的一种情况,效率很低</li>
+<li>但是循环数组是可以作为队列的(循环数组是定长的,只动头尾指针这样就不会有上面问题出现)</li>
+</ul>
+<h4 id="ArrayList和LinkedList的比较"><a href="#ArrayList和LinkedList的比较" class="headerlink" title="ArrayList和LinkedList的比较"></a>ArrayList和LinkedList的比较</h4><ul>
+<li>论遍历ArrayList要比LinkedList快得多，ArrayList遍历最大的优势在于内存的连续性，CPU的内部缓存结构会缓存连续的内存片段，可以大幅降低读取内存的性能开销。</li>
+</ul>
+<h4 id="ArrayList-线程不安全-那么在高并发情况下如何应用List集合呢"><a href="#ArrayList-线程不安全-那么在高并发情况下如何应用List集合呢" class="headerlink" title="ArrayList 线程不安全,那么在高并发情况下如何应用List集合呢"></a>ArrayList 线程不安全,那么在高并发情况下如何应用List集合呢</h4><ul>
+<li>可以使用Vector或Collections.synchronizedList(new ArrayList&lt;&gt;())进行包装,都是添加了synchronized</li>
+<li>使用CopyOnWriteArrayList 保证线程安全<ul>
+<li>使用synchronized关键字会导致大量的锁竞争拖累系统性能</li>
+<li>在读多写少的高并发环境中，使用 CopyOnWriteArrayList 可以提高系统的性能，但是，在写多读少的场合，CopyOnWriteArrayList  的性能可能不如 Vector。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Vector可能会出现问题-为什么选择CopyOnWriteArrayList"><a href="#Vector可能会出现问题-为什么选择CopyOnWriteArrayList" class="headerlink" title="Vector可能会出现问题,为什么选择CopyOnWriteArrayList"></a>Vector可能会出现问题,为什么选择CopyOnWriteArrayList</h4><ul>
+<li>最简单的Vector采用加锁的方式保证线程安全这样会拖慢效率</li>
+<li>getList() 和 deleteLast() 方法并不是原子性的,虽然内部的size(),get()等方法是原子性的,但是方法里面的size()和get()以及remove()是可以交替执行的。这样就容易导致下标越界,若要解决这个问题我们可以加锁,但是成了上面的问题,效率低</li>
+</ul>
+<h4 id="那么使用CopyOnWriteArrayList是如何保证线程安全的呢-他的优缺点又是什么呢"><a href="#那么使用CopyOnWriteArrayList是如何保证线程安全的呢-他的优缺点又是什么呢" class="headerlink" title="那么使用CopyOnWriteArrayList是如何保证线程安全的呢?他的优缺点又是什么呢"></a>那么使用CopyOnWriteArrayList是如何保证线程安全的呢?他的优缺点又是什么呢</h4><ul>
+<li>这种集合是一种 Copy-On-Write 的实现(读写分离的一种形式) </li>
+<li>他将写入的数据增加一个副本,写入完成后将集合指针指向写好的副本,这样读写就分离了</li>
+<li>写入数据是加锁的,读数据是不加锁的</li>
+<li>缺点 : 复制副本会增大内存消耗,CopyOnWrite容器只能保证数据的最终一致性，不能保证数据的实时一致性</li>
+</ul>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+  </entry>
+  <entry>
+    <title>java2</title>
+    <url>/java2/</url>
+    <content><![CDATA[<h2 id="java-基础第二部分"><a href="#java-基础第二部分" class="headerlink" title="java 基础第二部分"></a>java 基础第二部分</h2><h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><h4 id="程序-进程-线程"><a href="#程序-进程-线程" class="headerlink" title="程序|进程|线程"></a>程序|进程|线程</h4><ul>
+<li><p>程序(program) 是为完成特定任务、用某种语言编写的一组指令的集合。即指一段静态的代码，静态对象</p>
+</li>
+<li><p>进程(process) 是程序的一次执行过程，或是正在运行的一个程序。是一个动态的过程：有它自身的产生、存在和消亡的过程。——生命周期</p>
+</li>
+<li><p>线程(thread)，进程可进一步细化为线程，是一个程序内部的一条执行路径</p>
+<h4 id="何时需要多线程"><a href="#何时需要多线程" class="headerlink" title="何时需要多线程"></a>何时需要多线程</h4></li>
+<li><p>程序需要同时执行两个或多个任务。</p>
+</li>
+<li><p>程序需要实现一些需要等待的任务时，如用户输入、文件读写操作、网络操作、搜索等。</p>
+</li>
+<li><p>需要一些后台运行的程序时</p>
+<h4 id="java中的线程创建及使用"><a href="#java中的线程创建及使用" class="headerlink" title="java中的线程创建及使用"></a>java中的线程创建及使用</h4></li>
+<li><p>Thread</p>
+<ul>
+<li>每个线程都是通过某个特定Thread对象的run()方法来完成操作的，经常把run()方法的主体称为线程体</li>
+<li>通过该Thread对象的start()方法来启动这个线程，而非直接调用run()</li>
+</ul>
+</li>
+<li><p>线程创建方式</p>
+<ul>
+<li>继承 Thread<ul>
+<li>定义子类继承Thread类。</li>
+<li>子类中重写Thread类中的run方法。</li>
+<li>创建Thread子类对象，即创建了线程对象。</li>
+<li>调用线程对象start方法：启动线程，调用run方法。</li>
+</ul>
+</li>
+<li>实现 Runnable 接口    <ul>
+<li>定义子类，实现Runnable接口。</li>
+<li>子类中重写Runnable接口中的run方法。</li>
+<li>通过Thread类含参构造器创建线程对象。</li>
+<li>将Runnable接口的子类对象作为实际参数传递给Thread类的构造器中。</li>
+<li>调用Thread类的start方法：开启线程，调用Runnable子类接口的run方法</li>
+</ul>
+</li>
+<li>实现Runnable接口方式将线程的创建与线程体分开了,非常适合多个相同线程来处理同一份资源。</li>
+<li>实现Callable接口<ul>
+<li>相比run()方法，可以有返回值</li>
+<li>方法可以抛出异常</li>
+<li>支持泛型的返回值</li>
+<li>需要借助FutureTask类，比如获取返回结果</li>
+<li>Future接口可以接受callable的返回值,需要将future放入Thread中使用</li>
+</ul>
+</li>
+<li><a href="/threadpool">使用线程池 ☆(ゝω･)v 详解</a><ul>
+<li>提高响应速度（减少了创建新线程的时间）</li>
+<li>降低资源消耗（重复利用线程池中线程，不需要每次都创建）</li>
+<li>便于线程管理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Thread类方法</p>
+<ul>
+<li>void start(): 启动线程，并执行对象的run()方法</li>
+<li>run(): 线程在被调度时执行的操作</li>
+<li>String getName(): 返回线程的名称</li>
+<li>setName(String name):设置该线程名称</li>
+<li>Thread currentThread(): 返回当前线程。在Thread子类中就是this，通常用于主线程和Runnable实现类</li>
+<li>static void yield()：线程让步<ul>
+<li>暂停当前正在执行的线程，把执行机会让给优先级相同或更高的线程</li>
+<li>若队列中没有同优先级的线程，忽略此方法</li>
+</ul>
+</li>
+<li>join() ：当某个程序执行流中调用其他线程的 join() 方法时，调用线程将被阻塞，直到 join() 方法加入的 join 线程执行完为止<ul>
+<li>低优先级的线程也可以获得执行</li>
+</ul>
+</li>
+<li>static void sleep(long millis)：(指定时间:毫秒) <ul>
+<li>令当前活动线程在指定时间段内放弃对CPU控制,使其他线程有机会被执行,时间到后重排队。</li>
+<li>抛出InterruptedException异常</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="线程调度"><a href="#线程调度" class="headerlink" title="线程调度"></a>线程调度</h4><ul>
+<li>同优先级线程组成先进先出队列（先到先服务）, 排队等待分配时间片</li>
+<li>对高优先级，优先抢占cpu    </li>
+<li>低优先级只是获得调度的概率低，并非一定是在高优先级线程之后才被调用</li>
+</ul>
+<h4 id="线程生命周期"><a href="#线程生命周期" class="headerlink" title="线程生命周期"></a>线程生命周期</h4><ul>
+<li>新建： 当一个Thread类或其子类的对象被声明并创建时，新生的线程对象处于新建状态</li>
+<li>就绪：处于新建状态的线程被start()后，将进入线程队列等待CPU时间片，此时它已具备了运行的条件，只是没分配到CPU资源</li>
+<li>运行：当就绪的线程被调度并获得CPU资源时,便进入运行状态， run()方法定义了线程的操作和功能 , 阻塞后重新进入就绪状态等待分配时间片</li>
+<li>阻塞：在某种特殊情况下，被人为挂起或执行输入输出操作时，让出 CPU 并临时中止自己的执行，进入阻塞状态</li>
+<li>死亡：线程完成了它的全部工作或线程被提前强制性地中止或出现异常导致结束<br><img src="/java2/thread.png" alt="thread"></li>
+</ul>
+<h4 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h4><ul>
+<li>解决线程同步问题可以使用同步代码块,或同步方法    </li>
+<li>锁机制 使用 Lock对象实现锁<ul>
+<li>ReentrantLock 类实现了 Lock ，它拥有与 synchronized 相同的并发性和内存语义，在实现线程安全的控制中，比较常用的是ReentrantLock，可以显式加锁、释放锁。</li>
+</ul>
+</li>
+</ul>
+<h4 id="线程通信"><a href="#线程通信" class="headerlink" title="线程通信"></a>线程通信</h4><ul>
+<li>wait() 与 notify() 和 notifyAll()<ul>
+<li>wait()：令当前线程挂起并放弃CPU、同步资源并等待，使别的线程可访问并修改共享资源，而当前线程排队等候其他线程调用notify()或notifyAll()方法唤醒，唤醒后等待重新获得对监视器的所有权后才能继续执行。</li>
+<li>notify()：唤醒正在排队等待同步资源的线程中优先级最高者结束等待</li>
+<li>notifyAll ()：唤醒正在排队等待资源的所有线程结束等待</li>
+</ul>
+</li>
+</ul>
+<h4 id="多线程深入理解-✪ω✪-详解"><a href="#多线程深入理解-✪ω✪-详解" class="headerlink" title="多线程深入理解 (✪ω✪) 详解"></a><a href="/juc">多线程深入理解 (✪ω✪) 详解</a></h4><h3 id="常用类"><a href="#常用类" class="headerlink" title="常用类"></a>常用类</h3><h4 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h4><ul>
+<li>String是一个final类，代表不可变的字符序列。 </li>
+<li>字符串是常量，用双引号引起来表示。它们的值在创建之后不能更改。 </li>
+<li>String对象的字符内容是存储在一个字符数组value[]中的,新版本java中字符串的存储改为了byte[]数组存储</li>
+<li>字符串常量存储在字符串常量池，目的是共享,new String() 才会新开辟空间</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String s1 &#x3D; &quot;javaEE&quot;;</span><br><span class="line">String s2 &#x3D; &quot;javaEE&quot;;</span><br><span class="line">String s3 &#x3D; new String(&quot;javaEE&quot;);</span><br><span class="line">String s4 &#x3D; new String(&quot;javaEE&quot;);</span><br><span class="line">System.out.println(s1 &#x3D;&#x3D; s2);&#x2F;&#x2F;true</span><br><span class="line">System.out.println(s1 &#x3D;&#x3D; s3);&#x2F;&#x2F;false</span><br><span class="line">System.out.println(s1 &#x3D;&#x3D; s4);&#x2F;&#x2F;false</span><br><span class="line">System.out.println(s3 &#x3D;&#x3D; s4);&#x2F;&#x2F;false</span><br><span class="line">Person p1 &#x3D; new Person(&quot;Tom&quot;,12);</span><br><span class="line">Person p2 &#x3D; new Person(&quot;Tom&quot;,12);</span><br><span class="line">System.out.println(p1.name &#x3D;&#x3D; p2.name);&#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+<ul>
+<li>String 类<ul>
+<li>常量与常量的拼接结果在常量池。且常量池中不会存在相同内容的常量</li>
+<li>字符串拼接若有变量则放在堆中<br><img src="/java2/string.png" alt="string">    </li>
+</ul>
+</li>
+</ul>
+<p>若大量使用 如 : String s1 = “a”;s1 = s1 + “b”;会导致大量副本字符串对象存留在内存中，降低效率。如果这样的操作放到循环中，会极大影响程序的性能<br>为了解决此问题 引入了 StringBuffer类 和 StringBuilder类</p>
+<p>-StringBuffer(线程安全,同步方法)<br>    -  java.lang.StringBuffer代表可变的字符序列，JDK1.0中声明，可以对字符串内容进行增删，此时不会产生新的对象。<br>    -  StringBuffer 默认创建一个16长度的数组</p>
+<ul>
+<li>StringBuilder(线程不安全)<ul>
+<li>同上    </li>
+</ul>
+</li>
+</ul>
+<h4 id="Comparable-Comparator"><a href="#Comparable-Comparator" class="headerlink" title="Comparable/Comparator"></a>Comparable/Comparator</h4><ul>
+<li>比较器<ul>
+<li>自然排序：java.lang.Comparable<ul>
+<li>Comparable接口强行对实现它的每个类的对象进行整体排序。这种排序被称为类的自然排序。 </li>
+<li>实现 Comparable 的类必须实现 compareTo(Object obj) 方法，两个对象即通过 compareTo(Object obj) 方法的返回值来比较大小</li>
+<li>自己本类自带比较规则</li>
+</ul>
+</li>
+<li>方式二：定制排序：java.util.Comparator<ul>
+<li>专门创建一个类实现Comparator接口作为某种对象的比较器</li>
+<li>需要重写compare(Object o1,Object o2)方法，比较o1和o2的大小：</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Collections-工具类"><a href="#Collections-工具类" class="headerlink" title="Collections 工具类"></a>Collections 工具类</h4><ul>
+<li>Collections 是一个操作 Set、List 和 Map 等集合的工具类        </li>
+<li>排序操作：（均为static方法）<ul>
+<li>reverse(List)：反转 List 中元素的顺序</li>
+<li>shuffle(List)：对 List 集合元素进行随机排序</li>
+<li>sort(List)：根据元素的自然顺序对指定 List 集合元素按升序排序</li>
+<li>sort(List，Comparator)：根据指定的 Comparator 产生的顺序对 List 集合元素进行排序</li>
+<li>swap(List，int， int)：将指定 list 集合中的 i 处元素和 j 处元素进行交换</li>
+</ul>
+</li>
+<li>Collections 类中提供了多个 synchronizedXxx() 方法，该方法可使将指定集合包装成线程同步的集合    </li>
+</ul>
+<h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h3><ul>
+<li>Annotation 其实就是代码里的特殊标记, 这些标记可以在编译, 类加载, 运行时被读取, 并执行相应的处理。通过使用 Annotation, 程序员可以在不改变原有逻辑的情况下, 在源文件中嵌入一些补充信息。代码分析工具、开发工具和部署工具可以通过这些补充信息进行验证或者进行部署。</li>
+<li>在JavaEE/Android中注解占据了更重要的角色，例如用来配置应用程序的任何切面，代替JavaEE旧版中所遗留的繁冗代码和XML配置等    </li>
+<li>JDK内置的基本注解<ul>
+<li>@Override: 限定重写父类方法, 该注解只能用于方法</li>
+<li>@Deprecated: 用于表示所修饰的元素(类, 方法等)已过时。通常是因为所修饰的结构危险或存在更好的选择</li>
+<li>@SuppressWarnings: 抑制编译器警告</li>
+</ul>
+</li>
+<li>常见的注解<ul>
+<li>Servlet3.0提供了注解(annotation),使得不再需要在web.xml文件中进行Servlet的部署   </li>
+<li>@Transactional (阿里规约 : 此注解使用请手动回滚或指定回滚方法)</li>
+<li>程序可以调用 AnnotatedElement 来获得注解进行操作  </li>
+</ul>
+</li>
+</ul>
+<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><h4 id="Java-集合可分为-Collection-和-Map-两种体系"><a href="#Java-集合可分为-Collection-和-Map-两种体系" class="headerlink" title="Java 集合可分为 Collection 和 Map 两种体系"></a>Java 集合可分为 Collection 和 Map 两种体系</h4><ul>
+<li>Collection接口：单列数据，定义了存取一组对象的方法的集合<ul>
+<li>List：元素有序、可重复的集合</li>
+<li>Set：元素无序、不可重复的集合</li>
+</ul>
+</li>
+<li>Map接口：双列数据，保存具有映射关系“key-value对”的集合</li>
+</ul>
+<h4 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h4><ul>
+<li>鉴于Java中数组用来存储数据的局限性，我们通常使用List替代数组</li>
+<li>List集合类中元素有序、且可重复，集合中的每个元素都有其对应的顺序索引。</li>
+<li>List容器中的元素都对应一个整数型的序号记载其在容器中的位置，可以根据序号存取容器中的元素。</li>
+<li>JDK API中List接口的实现类常用的有：ArrayList、LinkedList和Vector。</li>
+</ul>
+<h5 id="ArrayList-类"><a href="#ArrayList-类" class="headerlink" title="ArrayList 类"></a>ArrayList 类</h5><ul>
+<li>ArrayList 是 List 接口的典型实现类、主要实现类</li>
+<li>本质上，ArrayList是对象引用的一个”变长”数组</li>
+<li>ArrayList的JDK1.8之前与之后的实现区别<ul>
+<li>JDK1.7：ArrayList像饿汉式，直接创建一个初始容量为10的数组,1.5倍扩容</li>
+<li>JDK1.8：ArrayList像懒汉式，一开始创建一个长度为0的数组，当添加第一个元素的时候才会初始化容量</li>
+</ul>
+</li>
+</ul>
+<h5 id="LinkedList-类"><a href="#LinkedList-类" class="headerlink" title="LinkedList 类"></a>LinkedList 类</h5><ul>
+<li>对于频繁的插入或删除元素的操作，建议使用LinkedList类，效率较高</li>
+<li>LinkedList：双向链表，内部没有声明数组，而是定义了Node类型的first和last，</li>
+</ul>
+<h5 id="Vector-类"><a href="#Vector-类" class="headerlink" title="Vector 类"></a>Vector 类</h5><ul>
+<li>Vector 是一个古老的集合，JDK1.0就有了。大多数操作与ArrayList相同，区别之处在于Vector是线程安全的(加了一个Synchronize)</li>
+<li>初始长度10,2倍扩容</li>
+</ul>
+<h4 id="Set-接口"><a href="#Set-接口" class="headerlink" title="Set 接口"></a>Set 接口</h4><ul>
+<li>Set 集合不允许包含相同的元素，如果试把两个相同的元素加入同一个Set 集合中，则添加操作失败。</li>
+</ul>
+<h5 id="HashSet-类"><a href="#HashSet-类" class="headerlink" title="HashSet 类"></a>HashSet 类</h5><ul>
+<li>HashSet 是 Set 接口的典型实现，大多数时候使用 Set 集合时都使用这个实现类。</li>
+<li>HashSet 具有以下特点：<ul>
+<li>不能保证元素的排列顺序</li>
+<li>HashSet 不是线程安全的</li>
+<li>集合元素可以是 null</li>
+</ul>
+</li>
+<li>HashSet 增加元素过程<ul>
+<li>当向 HashSet 集合中存入一个元素时，HashSet 会调用该对象的 hashCode() 方法来得到该对象的 hashCode 值，然后根据 hashCode 值，通过某种散列函数决定该对象在 HashSet 底层数组中的存储位置。（这个散列函数会与底层数组的长度相计算得到在数组中的下标，并且这种散列函数计算还尽可能保证能均匀存储元素，越是散列分布，该散列函数设计的越好）</li>
+<li>如果两个元素的hashCode()值相等，会再继续调用equals方法，如果equals方法结果为true，添加失败；如果为false，那么会保存该元素，但是该数组的位置已经有元素了，那么会通过链表的方式继续链接。 </li>
+<li>如果两个元素的 equals() 方法返回 true，但它们的 hashCode() 返回值不相等，hashSet 将会把它们存储在不同的位置，但依然可以添加成功。  </li>
+<li>底层也是数组，初始容量为16，当如果使用率超过0.75，（16*0.75=12）就会扩大容量为原来的2倍。（16扩容为32，依次为64,128….等）<h4 id="Map-接口"><a href="#Map-接口" class="headerlink" title="Map 接口"></a>Map 接口</h4></li>
+</ul>
+</li>
+<li>Map与Collection并列存在。用于保存具有映射关系的数据:key-value</li>
+<li>Map 中的 key 用Set来存放，不允许重复，即同一个 Map 对象所对应的类，须重写hashCode()和equals()方法</li>
+<li>HashMap 的底层实现<ul>
+<li>JDK 7及以前版本：HashMap是数组+链表结构(即为链地址法)</li>
+<li>JDK 8版本发布以后：HashMap是数组+链表+红黑树实现。<br><img src="/java2/hashMap.png" alt="hashmap"></li>
+</ul>
+</li>
+<li>重要常量<ul>
+<li>DEFAULT_INITIAL_CAPACITY : HashMap的默认容量，16</li>
+<li>MAXIMUM_CAPACITY ： HashMap的最大支持容量，2^30</li>
+<li>DEFAULT_LOAD_FACTOR：HashMap的默认加载因子</li>
+<li>TREEIFY_THRESHOLD：Bucket中链表长度大于该默认值，转化为红黑树 (能触发转化的两个条件是：一个是链表的长度达到8个，一个是数组的长度达到64个)</li>
+<li>UNTREEIFY_THRESHOLD：Bucket中红黑树存储的Node小于该默认值，转化为链表</li>
+<li>MIN_TREEIFY_CAPACITY：桶中的Node被树化时最小的hash表容量。（当桶中Node的数量大到需要变红黑树时，若hash表容量小于MIN_TREEIFY_CAPACITY时，此时应执行</li>
+<li>resize扩容操作这个MIN_TREEIFY_CAPACITY的值至少是TREEIFY_THRESHOLD的4倍。） </li>
+<li>当HashMap中的其中一个链的对象个数如果达到了8个，此时如果capacity没有达到64，那么HashMap会先扩容解决，如果已经达到了64,那么这个链会变成树，结点类型由Node变成TreeNode类型。当然，如果当映射关系被移除后，下次resize方法时判断树的结点个数低于6个，也会把树再转为链表。   <ul>
+<li><a href="/rbTree">红黑树</a> </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="queue-接口"><a href="#queue-接口" class="headerlink" title="queue 接口"></a>queue 接口</h4><ul>
+<li>此接口为队列接口用于创建队列</li>
+</ul>
+<h4 id="集合深入理解-✪ω✪-详解-面试集合看这一篇就够了"><a href="#集合深入理解-✪ω✪-详解-面试集合看这一篇就够了" class="headerlink" title="集合深入理解 (✪ω✪) 详解 !!面试集合看这一篇就够了!!"></a><a href="/collection">集合深入理解 (✪ω✪) 详解 !!面试集合看这一篇就够了!!</a></h4><h4 id="iterator"><a href="#iterator" class="headerlink" title="iterator"></a>iterator</h4><ul>
+<li>Iterator对象称为迭代器(设计模式的一种)，主要用于遍历 Collection 集合中的元素。</li>
+<li>Collection接口继承了java.lang.Iterable接口，该接口有一个iterator()方法，那么所有实现了Collection接口的集合类都有一个iterator()方法，用以返回一个实现了Iterator接口的对象。<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Iterator iter = coll.iterator();//回到起点</span><br><span class="line">while(iter.hasNext())&#123;</span><br><span class="line">    Object obj = iter.next();</span><br><span class="line">    if(obj.equals(&quot;Tom&quot;))&#123;</span><br><span class="line">    iter.remove();</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>增强for循环也可以对集合进行遍历</li>
+<li>foreach方法可以使用lambda表达式进行方法引用遍历</li>
+</ul>
+<h3 id="io流"><a href="#io流" class="headerlink" title="io流"></a>io流</h3><h4 id="File-类"><a href="#File-类" class="headerlink" title="File 类"></a>File 类</h4><ul>
+<li>java.io.File类：文件和文件目录路径的抽象表示形式，与平台无关</li>
+<li>构造器<ul>
+<li>public File(String pathname) 以pathname为路径创建File对象，可以是绝对路径或者相对路径，如果pathname是相对路径，则默认的当前路径在系统属性user.dir中存储。<ul>
+<li>绝对路径：是一个固定的路径,从盘符开始</li>
+<li>相对路径：是相对于某个位置开始</li>
+</ul>
+</li>
+<li>public File(String parent,String child)<br>  -以parent为父路径，child为子路径创建File对象。 </li>
+<li>public File(File parent,String child)<ul>
+<li>根据一个父File对象和子文件路径创建File对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>路径分隔符和系统有关：<ul>
+<li>windows和DOS系统默认使用“\”来表示 (要转义为\)</li>
+<li>UNIX和URL使用“/”来表示   </li>
+</ul>
+</li>
+<li>重要方法mkdir()和mkdirs()   <ul>
+<li>public boolean mkdir() ：创建文件目录。如果此文件目录存在，就不创建了。如果此文件目录的上层目录不存在，也不创建。 </li>
+<li>public boolean mkdirs() ：创建文件目录。如果上层文件目录不存在，一并创建</li>
+</ul>
+</li>
+</ul>
+<h4 id="流的分类"><a href="#流的分类" class="headerlink" title="流的分类"></a>流的分类</h4><ul>
+<li>按操作数据单位不同分为：字节流(8 bit)，字符流(16 bit)</li>
+<li>按数据流的流向不同分为：输入流，输出流</li>
+<li>按流的角色的不同分为：节点流，处理流    </li>
+</ul>
+<p>(抽象基类)      字节流         字符流<br>  输入流      InputStream      Reader<br>  输出流      OutputStream     Writer</p>
+<p><img src="/java2/io.png" alt="io"><br>io流的类很多不再一一列举了看个图吧(一个一个写代码太长了,好吧懒得写了,图片来源于3y大大)<br><img src="/java2/iostream.png" alt="iostream"></p>
+<h4 id="对象序列化"><a href="#对象序列化" class="headerlink" title="对象序列化"></a>对象序列化</h4><ul>
+<li>对象序列化机制允许把内存中的Java对象转换成平台无关的二进制流，从而允许把这种二进制流持久地保存在磁盘上，或通过网络将这种二进制流传输到另一个网络节点。</li>
+<li>序列化的好处在于可将任何实现了Serializable接口的对象转化为字节数据，使其在保存和传输时可被还原</li>
+<li>凡是实现Serializable接口的类都有一个表示序列化版本标识符的静态变量：<ul>
+<li>serialVersionUID用来表明类的不同版本间的兼容性。简言之，其目的是以序列化对象进行版本控制，有关各版本反序列化时是否兼容。</li>
+<li>如果类没有显示定义这个静态常量，它的值是Java运行时环境根据类的内部细节自动生成的。若类的实例变量做了修改，serialVersionUID 可能发生变化。故建议，显式声明</li>
+</ul>
+</li>
+</ul>
+<h4 id="深拷贝和浅拷贝-和nio里的0拷贝是两码事"><a href="#深拷贝和浅拷贝-和nio里的0拷贝是两码事" class="headerlink" title="深拷贝和浅拷贝(和nio里的0拷贝是两码事)"></a>深拷贝和浅拷贝(和nio里的0拷贝是两码事)</h4><ul>
+<li>浅拷贝 <ul>
+<li>对于数据类型是基本数据类型的成员变量，浅拷贝会直接进行值传递，   </li>
+<li>对于引用类型的变量,传递的是索引(也就是说对象是不会复制的)</li>
+</ul>
+</li>
+<li>深拷贝<ul>
+<li>和原来那个没有一毛钱关系</li>
+</ul>
+</li>
+<li>浅拷贝方法 :<ul>
+<li>构造器赋值</li>
+<li>重写clone()方法<ul>
+<li>需要实现Cloneable接口</li>
+<li>只重写要复制的类的clone()方法即可</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>深拷贝方法 :        <ul>
+<li>重写clone()方法<ul>
+<li>将要复制类中的引用类型变量全部重写clone()方法(这样就只剩基本数据类型了这样就是深拷贝了)</li>
+</ul>
+</li>
+<li>通过序列化与反序列化来copy类        </li>
+</ul>
+</li>
+</ul>
+<h4 id="Nio-new-IO-2-或叫-no-block-io-也可"><a href="#Nio-new-IO-2-或叫-no-block-io-也可" class="headerlink" title="Nio (new IO 2 或叫 no-block io 也可)"></a>Nio (new IO 2 或叫 no-block io 也可)</h4><ul>
+<li>Path代替File类<ul>
+<li>早期的Java只提供了一个File类来访问文件系统，但File类的功能比较有限，所提供的方法性能也不高。而且，大多数方法在出错时仅返回失败，并不会提供异常信息    </li>
+<li>可以通过Path path = Paths.get(“index.html”);创建Path</li>
+<li>也可以通过 Path path = Path.of(“index.html”); ps高版本</li>
+</ul>
+</li>
+<li>NIO 为同步非阻塞io<ul>
+<li>选择器 : 选择客户端进行io</li>
+<li>通道 : 将io放入通道传输</li>
+<li>缓冲区 : 可以和通道之间相互读写 客户端读写缓冲区 </li>
+</ul>
+</li>
+<li>三个之间的关系<ul>
+<li>每一个channel都对应一个buffer</li>
+<li>selector 会对应一个线程</li>
+<li>一个线程对应多个channel channel注册到selector</li>
+<li>程序切换到那个channel由事件决定的</li>
+<li>selector会根据不同的时间进行切换</li>
+<li>buffer就是一个内存块 底层是有一个数组的</li>
+<li>数据的读写是通过buffer来读写的 对于bio要么是输入流要么输出流不能双向 buffer可以 </li>
+</ul>
+</li>
+<li>I/0 模型 : 就是用什么样的通道进行数据的发送和接收<ul>
+<li>java 支持 三种网络编程模型I/O模式 : BIO.NIO.AIO</li>
+<li>BIO : 同步并阻塞(原生io) 服务器实现模式为一个链接一个线程 即客户端有链接请求时就需要启动一个线程,若这个链接什么都不做会造成不必要的开销</li>
+<li>NIO : 同步非阻塞 一个线程处理多个请求,客户端发送的链接请求都会注册到多路复用器上,多路复用器轮询到io请求就会处理</li>
+<li>AIO : 异步非阻塞(NIO2.0) 引入异步通道概念,采用Proactor模式 简化程序编写 有效请求才启动线程,特点是先由操作系统完成后才通知服务端启动线程处理,适用于连接数多且连接占用时间长的应用   </li>
+</ul>
+</li>
+</ul>
+<h4 id="nio详解๑O௰O๑"><a href="#nio详解๑O௰O๑" class="headerlink" title="nio详解๑Ő௰Ő๑)"></a><a href="/nio">nio详解๑Ő௰Ő๑)</a></h4><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+  </entry>
+  <entry>
+    <title>lock</title>
+    <url>/lock/</url>
+    <content><![CDATA[<h3 id="java锁机制"><a href="#java锁机制" class="headerlink" title="java锁机制"></a>java锁机制</h3><p>主要有两种</p>
+<ul>
+<li>Synchronized</li>
+<li>Lock</li>
+</ul>
+<h4 id="Synchronized"><a href="#Synchronized" class="headerlink" title="Synchronized"></a>Synchronized</h4><ul>
+<li>synchronized是Java的一个关键字，它能够将代码块(方法)锁起来<ul>
+<li>synchronized保证了线程的原子性。(被保护的代码块是一次被执行的，没有任何线程会同时访问)</li>
+<li>synchronized还保证了可见性。(当执行完synchronized之后，修改后的变量对其他的线程是可见的)</li>
+</ul>
+</li>
+<li>Java中的synchronized，通过使用内置锁，来实现对变量的同步操作，进而实现了对变量操作的原子性和其他线程对变量的可见性，从而确保了并发情况下的线程安全。     </li>
+</ul>
+<h5 id="synchronized的优化"><a href="#synchronized的优化" class="headerlink" title="synchronized的优化"></a>synchronized的优化</h5><p>部分转载 <a href="https://blog.csdn.net/chenssy/article/details/54883355">https://blog.csdn.net/chenssy/article/details/54883355</a></p>
+<ul>
+<li><p>jdk1.6对锁的实现引入了大量的优化，如自旋锁、适应性自旋锁、锁消除、锁粗化、偏向锁、轻量级锁等技术来减少锁操作的开销。</p>
+</li>
+<li><p>锁主要存在四中状态，依次是：</p>
+<ul>
+<li>无锁状态、偏向锁状态、轻量级锁状态、重量级锁状态，他们会随着竞争的激烈而逐渐升级。注意锁可以升级不可降级，这种策略是为了提高获得锁和释放锁的效率。</li>
+</ul>
+</li>
+<li><p>自旋锁</p>
+<ul>
+<li>线程的阻塞和唤醒需要CPU从用户态转为核心态，频繁的阻塞和唤醒对CPU来说是一件负担很重的工作，势必会给系统的并发性能带来很大的压力。同时我们发现在许多应用上面，对象锁的锁状态只会持续很短一段时间，为了这一段很短的时间频繁地阻塞和唤醒线程是非常不值得的。所以引入自旋锁。所谓自旋锁，就是让该线程等待一段时间，不会被立即挂起，看持有锁的线程是否会很快释放锁。怎么等待呢？执行一段无意义的循环即可（自旋）。自旋等待不能替代阻塞，先不说对处理器数量的要求（多核，貌似现在没有单核的处理器了），虽然它可以避免线程切换带来的开销，但是它占用了处理器的时间。如果持有锁的线程很快就释放了锁，那么自旋的效率就非常好，反之，自旋的线程就会白白消耗掉处理的资源，它不会做任何有意义的工作，典型的占着茅坑不拉屎，这样反而会带来性能上的浪费。所以说，自旋等待的时间（自旋的次数）必须要有一个限度，如果自旋超过了定义的时间仍然没有获取到锁，则应该被挂起。自旋锁在JDK 1.4.2中引入，默认关闭，但是可以使用-XX:+UseSpinning开开启，在JDK1.6中默认开启。同时自旋的默认次数为10次，可以通过参数-XX:PreBlockSpin来调整；如果通过参数-XX:preBlockSpin来调整自旋锁的自旋次数，会带来诸多不便。假如我将参数调整为10，但是系统很多线程都是等你刚刚退出的时候就释放了锁（假如你多自旋一两次就可以获取锁），你是不是很尴尬。于是JDK1.6引入自适应的自旋锁，让虚拟机会变得越来越聪明。</li>
+</ul>
+</li>
+<li><p>适应自旋锁</p>
+<ul>
+<li>JDK 1.6引入了更加聪明的自旋锁，即自适应自旋锁。所谓自适应就意味着自旋的次数不再是固定的，它是由前一次在同一个锁上的自旋时间及锁的拥有者的状态来决定。它怎么做呢？线程如果自旋成功了，那么下次自旋的次数会更加多，因为虚拟机认为既然上次成功了，那么此次自旋也很有可能会再次成功，那么它就会允许自旋等待持续的次数更多。反之，如果对于某个锁，很少有自旋能够成功的，那么在以后要或者这个锁的时候自旋的次数会减少甚至省略掉自旋过程，以免浪费处理器资源。有了自适应自旋锁，随着程序运行和性能监控信息的不断完善，虚拟机对程序锁的状况预测会越来越准确，虚拟机会变得越来越聪明。</li>
+</ul>
+</li>
+<li><p>锁消除</p>
+<ul>
+<li>为了保证数据的完整性，我们在进行操作时需要对这部分操作进行同步控制，但是在有些情况下，JVM检测到不可能存在共享数据竞争，这是JVM会对这些同步锁进行锁消除。锁消除的依据是逃逸分析的数据支持。如果不存在竞争，为什么还需要加锁呢？所以锁消除可以节省毫无意义的请求锁的时间。变量是否逃逸，对于虚拟机来说需要使用数据流分析来确定，但是对于我们程序员来说这还不清楚么？我们会在明明知道不存在数据竞争的代码块前加上同步吗？但是有时候程序并不是我们所想的那样？我们虽然没有显示使用锁，但是我们在使用一些JDK的内置API时，如StringBuffer、Vector、HashTable等，这个时候会存在隐形的加锁操作。比如StringBuffer的append()方法，Vector的add()方法：</li>
+</ul>
+</li>
+<li><p>锁粗化</p>
+<ul>
+<li>我们知道在使用同步锁的时候，需要让同步块的作用范围尽可能小—仅在共享数据的实际作用域中才进行同步，这样做的目的是为了使需要同步的操作数量尽可能缩小，如果存在锁竞争，那么等待锁的线程也能尽快拿到锁。在大多数的情况下，上述观点是正确的，LZ也一直坚持着这个观点。但是如果一系列的连续加锁解锁操作，可能会导致不必要的性能损耗，所以引入锁粗话的概念。锁粗话概念比较好理解，就是将多个连续的加锁、解锁操作连接在一起，扩展成一个范围更大的锁。如上面实例：vector每次add的时候都需要加锁操作，JVM检测到对同一个对象（vector）连续加锁、解锁操作，会合并一个更大范围的加锁、解锁操作，即加锁解锁操作会移到for循环之外。    </li>
+</ul>
+</li>
+<li><p>轻量级锁</p>
+<ul>
+<li>引入轻量级锁的主要目的是在多没有多线程竞争的前提下，减少传统的重量级锁使用操作系统互斥量产生的性能消耗。当关闭偏向锁功能或者多个线程竞争偏向锁导致偏向锁升级为轻量级锁，则会尝试获取轻量级锁，其步骤如下：</li>
+<li>获取锁<ol>
+<li>判断当前对象是否处于无锁状态（hashcode、0、01），若是，则JVM首先将在当前线程的栈帧中建立一个名为锁记录（Lock Record）的空间，用于存储锁对象目前的Mark Word的拷贝（官方把这份拷贝加了一个Displaced前缀，即Displaced Mark Word）；否则执行步骤（3）；</li>
+<li>JVM利用CAS操作尝试将对象的Mark Word更新为指向Lock Record的指正，如果成功表示竞争到锁，则将锁标志位变成00（表示此对象处于轻量级锁状态），执行同步操作；如果失败则执行步骤（3）；</li>
+<li>判断当前对象的Mark Word是否指向当前线程的栈帧，如果是则表示当前线程已经持有当前对象的锁，则直接执行同步代码块；否则只能说明该锁对象已经被其他线程抢占了，这时轻量级锁需要膨胀为重量级锁，锁标志位变成10，后面等待的线程将会进入阻塞状态；</li>
+</ol>
+</li>
+<li>释放锁 : 轻量级锁的释放也是通过CAS操作来进行的，主要步骤如下：<ol>
+<li>取出在获取轻量级锁保存在Displaced Mark Word中的数据；</li>
+<li>用CAS操作将取出的数据替换当前对象的Mark Word中，如果成功，则说明释放锁成功，否则执行（3）；</li>
+<li>如果CAS操作替换失败，说明有其他线程尝试获取该锁，则需要在释放锁的同时需要唤醒被挂起的线程。</li>
+</ol>
+</li>
+<li>对于轻量级锁，其性能提升的依据是“对于绝大部分的锁，在整个生命周期内都是不会存在竞争的”，如果打破这个依据则除了互斥的开销外，还有额外的CAS操作，因此在有多线程竞争的情况下，轻量级锁比重量级锁更慢；</li>
+</ul>
+</li>
+<li><p>偏向锁</p>
+<ul>
+<li><p>引入偏向锁主要目的是：为了在无多线程竞争的情况下尽量减少不必要的轻量级锁执行路径。上面提到了轻量级锁的加锁解锁操作是需要依赖多次CAS原子指令的。那么偏向锁是如何来减少不必要的CAS操作呢？我们可以查看Mark work的结构就明白了。只需要检查是否为偏向锁、锁标识为以及ThreadID即可，处理流程如下：</p>
+</li>
+<li><p>获取锁</p>
+<ol>
+<li>检测Mark Word是否为可偏向状态，即是否为偏向锁1，锁标识位为01；</li>
+<li>若为可偏向状态，则测试线程ID是否为当前线程ID，如果是，则执行步骤（5），否则执行步骤（3）；</li>
+<li>如果线程ID不为当前线程ID，则通过CAS操作竞争锁，竞争成功，则将Mark Word的线程ID替换为当前线程ID，否则执行线程（4）；</li>
+<li>通过CAS竞争锁失败，证明当前存在多线程竞争情况，当到达全局安全点，获得偏向锁的线程被挂起，偏向锁升级为轻量级锁，然后被阻塞在安全点的线程继续往下执行同步代码块；</li>
+<li>执行同步代码块</li>
+</ol>
+</li>
+<li><p>释放锁</p>
+</li>
+<li><p>偏向锁的释放采用了一种只有竞争才会释放锁的机制，线程是不会主动去释放偏向锁，需要等待其他线程来竞争。偏向锁的撤销需要等待全局安全点（这个时间点是上没有正在执行的代码）。其步骤如下：</p>
+<ol>
+<li>暂停拥有偏向锁的线程，判断锁对象石是否还处于被锁定状态；</li>
+<li>撤销偏向锁，恢复到无锁状态（01）或者轻量级锁的状态；</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>重量级锁</p>
+<ul>
+<li>重量级锁通过对象内部的监视器（monitor）实现，其中monitor的本质是依赖于底层操作系统的Mutex Lock实现，操作系统实现线程之间的切换需要从用户态到内核态的切换，切换成本非常高。    </li>
+</ul>
+</li>
+</ul>
+<h5 id="上面介绍了几种锁机制那么synchronized具体是怎么一步步升级到重量锁的呢"><a href="#上面介绍了几种锁机制那么synchronized具体是怎么一步步升级到重量锁的呢" class="headerlink" title="上面介绍了几种锁机制那么synchronized具体是怎么一步步升级到重量锁的呢"></a>上面介绍了几种锁机制那么synchronized具体是怎么一步步升级到重量锁的呢</h5><ul>
+<li>首先了解一下对象在存储结构中有三个部分,分别是 : 对象头,实例数据,填充数据.关于锁的信息是存在对象头中的markword中的</li>
+<li>接着我们开始锁升级的流程 –&gt; <ul>
+<li>当到达临界点后检查是否为偏向锁 (通过锁标志为来判断为何种类型的锁 01表示偏向锁)<ol>
+<li>是偏向锁,对比markword中保存ID是否相同<ol>
+<li>相同进入代码块</li>
+<li>不相同通过cas竞争锁(或第一次没有存Id也走这里)<ol>
+<li>竞争成功 进入代码块将markword中的id替换为当前线程(偏向本线程) –&gt; 在这里若是一直为一个线程进入jvm会判断将锁撤销来提高运行效率</li>
+<li>竞争失败 升级为轻量锁(升级为轻量锁会先将偏向锁撤销再升级为轻量锁)</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>为轻量锁,标志位00 (如果某些同步代码块大多数情况下都是有两个及以上的线程竞争的话，那么偏向锁就会是一种累赘，对于这种情况，我们可以一开始就把偏向锁这个默认功能给关闭) <ol>
+<li>通过cas竞争锁(第一次或升级来的都会走这里,将标志为置为00)<ol>
+<li>竞争成功 进入代码块</li>
+<li>竞争失败<ol>
+<li>自旋等待获得锁 <ol>
+<li>获得成功进入代码块</li>
+<li>获得失败,继续自旋(这里会根据轻量锁类型决定自旋次数)</li>
+</ol>
+</li>
+<li>超过最大自旋次数 线程阻塞升级为重量锁</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>重量锁,标志位10</li>
+</ul>
+</li>
+</ul>
+<h5 id="那么该如何选择锁呢"><a href="#那么该如何选择锁呢" class="headerlink" title="那么该如何选择锁呢?"></a>那么该如何选择锁呢?</h5><ol>
+<li>当线程竞争非常小或者没有的情况下可以使用偏向锁来减少cas</li>
+<li>当大部分情况下都有线程竞争,但是竞争不激烈的情况下使用轻量锁来避免线程阻塞开销</li>
+<li>当线程竞争有时激烈有时不激烈的情况可以轻量锁和重量锁配合使用</li>
+<li>当线程大量竞争,直接使用重量锁</li>
+</ol>
+<h5 id="为什么重量锁开销大呢"><a href="#为什么重量锁开销大呢" class="headerlink" title="为什么重量锁开销大呢?"></a>为什么重量锁开销大呢?</h5><ul>
+<li>主要是，当系统检查到锁是重量级锁之后，会把等待想要获得锁的线程进行阻塞，被阻塞的线程不会消耗cup。但是阻塞或者唤醒一个线程时，都需要操作系统来帮忙，这就需要从用户态转换到内核态，而转换状态是需要消耗很多时间的，有可能比用户执行代码的时间还要长。</li>
+<li>这种切换在io中也很常见,nio由于减少了一次切换提高了io效率</li>
+</ul>
+<h5 id="修饰synchronized的地方"><a href="#修饰synchronized的地方" class="headerlink" title="修饰synchronized的地方"></a>修饰synchronized的地方</h5><ul>
+<li>修饰普通方法</li>
+<li>修饰代码块</li>
+<li>修饰静态方法</li>
+</ul>
+<h5 id="多线程synchronized的作用域"><a href="#多线程synchronized的作用域" class="headerlink" title="多线程synchronized的作用域"></a>多线程synchronized的作用域</h5><p>我们先创建三个测试类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestNomalSynchronize</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;test1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;test2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestStaticSynchronize</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;test1&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;test2&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestStaticSynchronize1</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;test1&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;test2&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;test3&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们对于同一个类的两个同步方法(静态方法或普通方法) 进行测试,两个同步方法是否可以同步</p>
+<ul>
+<li><p>一个类的两个普通方法是可以同步锁住的(TestNomalSynchronize)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Synchrionize</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">       TestNomalSynchronize testNomalSynchronize = <span class="keyword">new</span> TestNomalSynchronize();</span><br><span class="line"></span><br><span class="line">       <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               testNomalSynchronize.test1();</span><br><span class="line">           &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;).start();</span><br><span class="line"></span><br><span class="line">       Thread.sleep(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               testNomalSynchronize.test2();</span><br><span class="line">           &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;).start();</span><br><span class="line">   &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>结果 : 两个结果一起打印说明两个普通方法之间同步了</p>
+</li>
+<li><p>不同类的两个普通方法不能同步</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Synchrionize</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="comment">//测试不同对象 不会锁到一起</span></span><br><span class="line">        TestNomalSynchronize testNomalSynchronize = <span class="keyword">new</span> TestNomalSynchronize();</span><br><span class="line">        TestNomalSynchronize testNomalSynchronize1 = <span class="keyword">new</span> TestNomalSynchronize();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                testNomalSynchronize.test1();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line"></span><br><span class="line">        Thread.sleep(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                testNomalSynchronize1.test2();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果 : 先打印的test2后打印的test1说明两个对象之间的两个方法并没有同步    </p>
+</li>
+<li><p>同一个类静态方法和普通方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">synchron</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="comment">//一个对象有静态有非静态同步方法没有锁住整个类</span></span><br><span class="line">        <span class="comment">//静态方法在静态池中 普通同步/普通方法在对象中所以不能同步整个类</span></span><br><span class="line">        TestStaticSynchronize staticSynchronize1 = <span class="keyword">new</span> TestStaticSynchronize();</span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TestStaticSynchronize.test1();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br><span class="line"></span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    staticSynchronize1.test2();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果 : 先输出test2 后输出test1 说明静态方法与普通方法之间不能同步锁住(静态方法在静态池中 普通同步/普通方法在对象中所以不能同步整个类)</p>
+</li>
+<li><p>一个类的两个静态方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">chy</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="comment">//同类的静态方法能同步锁</span></span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TestStaticSynchronize1.test3();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br><span class="line"></span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TestStaticSynchronize1.test1();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果 : 同时输出test3和test1说明同一个类的两个静态方法可以锁住</p>
+</li>
+<li><p>总结 : 若一个类有两个同步方法 (方法可能是普通方法或静态方法)</p>
+<ul>
+<li>这个类的两个普通方法会同步执行</li>
+<li>这个类的两个静态方法会同步执行</li>
+<li>这个类有一个普通方法一个静态方法,那么不会同步执行</li>
+<li>两个对象之间不会同步执行</li>
+</ul>
+</li>
+</ul>
+<h5 id="锁的释放机制"><a href="#锁的释放机制" class="headerlink" title="锁的释放机制"></a>锁的释放机制</h5><ul>
+<li>当方法(代码块)执行完毕后会自动释放锁，不需要做任何的操作。</li>
+<li>当一个线程执行的代码出现异常时，其所持有的锁会自动释放。<ul>
+<li>不会由于异常导致出现死锁现象</li>
+</ul>
+</li>
+</ul>
+<h4 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h4><ul>
+<li>Lock 是juc包下的locks包中的一个接口    </li>
+<li>Lock方式来获取锁支持中断、超时不获取、是非阻塞的</li>
+<li>提高了语义化，哪里加锁，哪里解锁都得写出来</li>
+<li>Lock显式锁可以给我们带来很好的灵活性，但同时我们必须手动释放锁</li>
+<li>支持Condition条件对象</li>
+<li>允许多个读线程同时访问共享资源</li>
+</ul>
+<h5 id="ReentrantLock-共享锁"><a href="#ReentrantLock-共享锁" class="headerlink" title="ReentrantLock (共享锁)"></a>ReentrantLock (共享锁)</h5><ul>
+<li>多个方法之间共享一个锁</li>
+<li>需要手动释放</li>
+</ul>
+<h5 id="ReentrantReadWriteLock-读写锁"><a href="#ReentrantReadWriteLock-读写锁" class="headerlink" title="ReentrantReadWriteLock(读写锁)"></a>ReentrantReadWriteLock(读写锁)</h5><p>我们先创建一个测试类,里面模拟了一个读操作和一个写操作</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//读写锁</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReadWriteLockDemo</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> ReentrantReadWriteLock lock = <span class="keyword">new</span> ReentrantReadWriteLock();</span><br><span class="line">    <span class="keyword">private</span> Object object = <span class="keyword">new</span> Date();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">        lock.readLock().lock();</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">&quot;读操作&quot;</span>);</span><br><span class="line">            System.out.println(<span class="keyword">this</span>.object);</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.readLock().unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(Object o)</span></span>&#123;</span><br><span class="line">        lock.writeLock().lock();</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">&quot;写操作&quot;</span>);</span><br><span class="line">            <span class="keyword">this</span>.object = o;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.writeLock().unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写出测试方法进行测试</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUCUtil</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ReadWriteLockDemo readWriteLockDemo = <span class="keyword">new</span> ReadWriteLockDemo();</span><br><span class="line">        <span class="comment">//在读的时候会卡住说明读写是同步的</span></span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">                readWriteLockDemo.read();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,<span class="string">&quot;小明&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//写的时候会卡住 说明阻塞了线程</span></span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">            readWriteLockDemo.write(<span class="keyword">new</span> String(<span class="string">&quot;123&quot;</span>));</span><br><span class="line">        &#125;,<span class="string">&quot;小李&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//卡住说明 写写 是同步的</span></span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">            readWriteLockDemo.write(<span class="keyword">new</span> String(<span class="string">&quot;456&quot;</span>));</span><br><span class="line">        &#125;,<span class="string">&quot;小刚&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//读读的时候不会卡住 说明读读是异步的</span></span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">                readWriteLockDemo.read();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,<span class="string">&quot;王二狗&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结 : 对读写锁的测试可以发现</p>
+<ul>
+<li>juc的读写锁是同步的 读读是异步 (涉及到写的操作就是同步的)</li>
+<li>补充 :<ul>
+<li>ReentrantReadWriteLock是一个读写锁，如果读的线程比写的线程要多很多的话，那可以考虑使用它。它使用state的变量高16位是读锁，低16位是写锁</li>
+<li>写锁可以降级为读锁，读锁不能升级为写锁</li>
+<li>ReentrantReadWriteLock可以作为公平锁,也可以作为非公平锁,他们之间的差距是若前面还有线程公平锁会让前面的线程先执行</li>
+</ul>
+</li>
+</ul>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+  </entry>
+  <entry>
+    <title>nio</title>
+    <url>/nio/</url>
+    <content><![CDATA[<h3 id="nio"><a href="#nio" class="headerlink" title="nio"></a>nio</h3><ul>
+<li>nio 有两个版本,在1.4推出了nio,1.7又对io进行了升级推出了nio2 这里统称nio</li>
+<li>I/O 模型 : 就是用什么样的通道进行数据的发送和接收<ul>
+<li>java 支持 三种网络编程模型I/O模式 : BIO.NIO.AIO</li>
+<li>BIO : 同步并阻塞(原生io) 服务器实现模式为一个链接一个线程 即客户端有链接请求时就需要启动一个线程,若这个链接什么都不做会造成不必要的开销</li>
+<li>NIO : 同步非阻塞 一个线程处理多个请求,客户端发送的链接请求都会注册到多路复用器上,多路复用器轮询到io请求就会处理</li>
+<li>AIO : 异步非阻塞(NIO2.0) 引入异步通道概念,采用Proactor模式 简化程序编写 有效请求才启动线程,特点是先由操作系统完成后才通知服务端启动线程处理,适用于连接数多且连接占用时间长的应用   </li>
+</ul>
+</li>
+<li>I/O 使用场景 : <ul>
+<li>文件 io</li>
+<li>网络 io</li>
+</ul>
+</li>
+</ul>
+<h4 id="NIO和IO区别"><a href="#NIO和IO区别" class="headerlink" title="NIO和IO区别"></a>NIO和IO区别</h4><ul>
+<li>NIO和IO 最大的区别就是nio是非阻塞的,非阻塞在网络io中很重要</li>
+<li>io是面向流编程的,nio是面向缓冲区的(流看不到被管道封装掉了)</li>
+</ul>
+<h4 id="nio三个核心-我怎么又写一遍"><a href="#nio三个核心-我怎么又写一遍" class="headerlink" title="nio三个核心(我怎么又写一遍)"></a>nio三个核心(我怎么又写一遍)</h4><ul>
+<li><p>buffer 缓冲区 : 可以和通道之间相互读写 客户端读写缓冲区  将数据放入buffer或从buffer中取出 </p>
+</li>
+<li><p>selector 选择器 : 选择客户端进行io,来监听那个通道活跃,接入通道</p>
+</li>
+<li><p>channel 通道 : 将io放入通道传输 双向可读写,可以从buffer中读写数据<br>他们之间的关系类似这样式的(没找着图)<br>  buffer &lt;–&gt; 选择器 —-管道—— 选择器 &lt;—&gt; buffer<br>下面分别介绍一下三者</p>
+</li>
+<li><p>buffer :   </p>
+<ul>
+<li>缓冲区是靠数组来实现的  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//buffer使用</span></span><br><span class="line">        <span class="comment">//创建可以存放5个int的缓冲</span></span><br><span class="line">        <span class="comment">//属性赋值</span></span><br><span class="line">        <span class="comment">//capacity = 5;</span></span><br><span class="line">        <span class="comment">//position = 0</span></span><br><span class="line">        <span class="comment">//mark = -1</span></span><br><span class="line">        <span class="comment">//limit = 5</span></span><br><span class="line">        IntBuffer allocate = IntBuffer.allocate(<span class="number">5</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; allocate.capacity(); i++) &#123;</span><br><span class="line">            allocate.put(i*<span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//从buffer取数据</span></span><br><span class="line">        <span class="comment">//filp读写切换 切为读</span></span><br><span class="line"><span class="comment">//        allocate.get();//不切换回报异常 BufferUnderflowException</span></span><br><span class="line">        <span class="comment">//将limit置为当前写入的位置 然后重置position从头读数据</span></span><br><span class="line">        <span class="comment">//filp()&#123;</span></span><br><span class="line"><span class="comment">//          limit = position;</span></span><br><span class="line"><span class="comment">//          position = 0;</span></span><br><span class="line"><span class="comment">//          mark = -1;</span></span><br><span class="line"><span class="comment">//          return this;</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//        allocate.flip();</span></span><br><span class="line"><span class="comment">//        allocate.limit(3); 限制到3</span></span><br><span class="line"><span class="comment">//        allocate.position(3);//从第三个开始</span></span><br><span class="line"><span class="comment">//        System.out.println(allocate.isReadOnly());</span></span><br><span class="line"><span class="comment">//        int[] array = allocate.array();</span></span><br><span class="line"><span class="comment">//        System.out.println(Arrays.toString(array));</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(allocate.hasRemaining())&#123;</span><br><span class="line">            <span class="comment">//get自动指向下一个</span></span><br><span class="line">            System.out.println(allocate.get());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+总结一下 : buffer维护了一个数组,通过几个参数来进行读写判断(当说不清的时候就放个代码哈哈哈)</li>
+</ul>
+</li>
+<li><p>buffer</p>
+<ul>
+<li>capacity = 5; 总容量(数组总长度)</li>
+<li>position = 0  当前指针位置</li>
+<li>mark = -1     用于记录当前position的前一个位置或者默认是-1</li>
+<li>limit = 5     当前缓冲区的真正大小</li>
+<li>读写是没有删除数据的,直接将数据覆盖掉了    </li>
+</ul>
+</li>
+<li><p>channel : </p>
+</li>
+<li><p>selector : </p>
+<ul>
+<li>ServerSocketChannel channel = ServerSocketChannel.open();//监听新的客户端连接</li>
+<li>//获得选择器 开始监听 Selector selector = Selector.open();</li>
+<li>//绑定端口号 channel.socket().bind(new InetSocketAddress(6666));</li>
+<li>//设置为非阻塞 channel.configureBlocking(false);</li>
+<li>//注册通道 channel.register(selector, SelectionKey.OP_ACCEPT);<br>这样基本就完成了selector监听</li>
+</ul>
+</li>
+</ul>
+<h4 id="什么是0拷贝"><a href="#什么是0拷贝" class="headerlink" title="什么是0拷贝"></a>什么是0拷贝</h4><p>在此之前说一下一个文件从硬盘加载到内存的流程<br><img src="/nio/0copy.png" alt="0copy"></p>
+<ul>
+<li>cpu copy 很消耗资源而且还需要在用户态和内核态之间切换,对io优化主要是减少cpu copy 的次数</li>
+</ul>
+<p><img src="/nio/0copy1.png" alt="0copy"></p>
+<ul>
+<li><p>优化1 ,通过直接把readbuffer接到socketbuffer(只是复制嘛,又不改数据没必要切到用户态),java 的transferTo()就能达到此效果</p>
+</li>
+<li><p>优化2,上面减少了一次cpu拷贝,但还有一次CPU拷贝,在Linux2.4 内核做了优化，取而代之的是只包含关于数据的位置和长度的信息的描述符被追加到了socket buffer 缓冲区中。DMA引擎直接把数据从内核缓冲区传输到协议引擎（protocol engine），从而消除了最后一次CPU copy。经过上述过程，数据只经过了2次copy就从磁盘传送出去了。这个才是真正的Zero-Copy</p>
+</li>
+<li><p>总结上文 : 零拷贝(没有cpu copy 信息不重复)</p>
+<ul>
+<li>传统io拷贝<ul>
+<li>进行3次切换4次拷贝  先使用dma copy从硬盘中存到内核buffer 再从内核buffer使用cpu copy 到 user buffer 修改数据 在通过cpu copy放回socket buffer 再使用dma copy 放回协议栈</li>
+</ul>
+</li>
+<li>sendFile 2.1<ul>
+<li>用户不经过用户态,直接从内核buffer到socketbuffer 减少了一次上下文切换</li>
+<li>这样避免了用户态和内核态之间的切换</li>
+</ul>
+</li>
+<li>sendFile 2.4 (真·零拷贝)<ul>
+<li>内核buffer 直接dma copy到协议栈 (还是有少量的描述信息由 cpu copy 传入到 socket buffer)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="对比一下-0拷贝的速度吧"><a href="#对比一下-0拷贝的速度吧" class="headerlink" title="对比一下 0拷贝的速度吧"></a>对比一下 0拷贝的速度吧</h4><ul>
+<li><p>io</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZeroIOClient</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Socket socket = <span class="keyword">new</span> Socket(<span class="string">&quot;localhost&quot;</span>,<span class="number">7777</span>);</span><br><span class="line"></span><br><span class="line">        String fileName = <span class="string">&quot;nio/1.zip&quot;</span>;</span><br><span class="line">        InputStream inputStream = <span class="keyword">new</span> FileInputStream(fileName);</span><br><span class="line"></span><br><span class="line">        DataOutputStream dataOutputStream = <span class="keyword">new</span> DataOutputStream(socket.getOutputStream());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">4096</span>];</span><br><span class="line">        <span class="keyword">long</span> readCount;</span><br><span class="line">        <span class="keyword">long</span> total = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>((readCount = inputStream.read(bytes)) != -<span class="number">1</span>)&#123;</span><br><span class="line">            total += readCount;</span><br><span class="line">            dataOutputStream.write(bytes);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;发送字节数&quot;</span> + total</span><br><span class="line">                + <span class="string">&quot;耗时&quot;</span> + (System.currentTimeMillis() - start));</span><br><span class="line">        dataOutputStream.close();</span><br><span class="line">        socket.close();</span><br><span class="line">        inputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZeroIOServer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">7777</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            Socket accept = serverSocket.accept();</span><br><span class="line">            DataInputStream dataInputStream = <span class="keyword">new</span> DataInputStream(accept.getInputStream());</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">4096</span>];</span><br><span class="line">                <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                    <span class="keyword">int</span> read = dataInputStream.read(bytes,<span class="number">0</span>,bytes.length);</span><br><span class="line">                    <span class="keyword">if</span>(-<span class="number">1</span> == read)&#123;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>nio</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZeroNIOClient</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        SocketChannel socketChannel = SocketChannel.open();</span><br><span class="line">        socketChannel.connect(<span class="keyword">new</span> InetSocketAddress(InetAddress.getLocalHost(),<span class="number">7777</span>));</span><br><span class="line"></span><br><span class="line">        String fileName = <span class="string">&quot;nio/1.zip&quot;</span>;</span><br><span class="line"></span><br><span class="line">        FileChannel channel = <span class="keyword">new</span> FileInputStream(fileName).getChannel();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//linux 可以直接transferTo 发送</span></span><br><span class="line">        <span class="comment">//window 只能发送8m 需要分段传输 注意起点</span></span><br><span class="line">        <span class="comment">//底层使用0拷贝</span></span><br><span class="line">        <span class="keyword">long</span> l = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> count = channel.transferTo(<span class="number">0</span>, channel.size(), socketChannel);</span><br><span class="line">        System.out.println(<span class="string">&quot;发送字节数&quot;</span> + count</span><br><span class="line">                + <span class="string">&quot;耗时&quot;</span> + (System.currentTimeMillis() - l));</span><br><span class="line"></span><br><span class="line">        channel.close();</span><br><span class="line">        socketChannel.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ZeroNIOServer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();</span><br><span class="line">        serverSocketChannel.socket().bind(<span class="keyword">new</span> InetSocketAddress(<span class="number">7777</span>));</span><br><span class="line"></span><br><span class="line">        ByteBuffer allocate = ByteBuffer.allocate(<span class="number">4096</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            SocketChannel accept = serverSocketChannel.accept();</span><br><span class="line">            <span class="keyword">int</span> read = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(-<span class="number">1</span> != read)&#123;</span><br><span class="line">                <span class="keyword">try</span>&#123;</span><br><span class="line">                    accept.read(allocate);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                allocate.rewind();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>结果 : 传统io 发送字节数295134耗时19 , nio  发送字节数295134耗时2</p>
+<h4 id="说了这么多整个简易聊天室玩玩吧"><a href="#说了这么多整个简易聊天室玩玩吧" class="headerlink" title="说了这么多整个简易聊天室玩玩吧"></a>说了这么多整个简易聊天室玩玩吧</h4><ul>
+<li><p>client   </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GroupChatClient</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String HOST = <span class="string">&quot;127.0.0.1&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> POST = <span class="number">6666</span>;</span><br><span class="line">    <span class="keyword">private</span> Selector selector;</span><br><span class="line">    <span class="keyword">private</span> SocketChannel socketChannel;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GroupChatClient</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            selector = Selector.open();</span><br><span class="line">            socketChannel = SocketChannel.open();</span><br><span class="line">            socketChannel.socket().connect(<span class="keyword">new</span> InetSocketAddress(HOST,POST));</span><br><span class="line">            socketChannel.configureBlocking(<span class="keyword">false</span>);</span><br><span class="line">            socketChannel.register(selector, SelectionKey.OP_READ,ByteBuffer.allocate(<span class="number">1024</span>));</span><br><span class="line">        &#125;<span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendInfo</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">        ByteBuffer wrap = ByteBuffer.wrap(msg.getBytes());</span><br><span class="line">            socketChannel.write(wrap);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getInfo</span><span class="params">(SelectionKey key)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        SocketChannel channel = (SocketChannel) key.channel();</span><br><span class="line">        channel.configureBlocking(<span class="keyword">false</span>);</span><br><span class="line">        ByteBuffer attachment = (ByteBuffer) key.attachment();</span><br><span class="line">        channel.read(attachment);</span><br><span class="line">        System.out.println(<span class="string">&quot;收到来自&quot;</span> + channel.getLocalAddress() + <span class="string">&quot;的消息: &quot;</span></span><br><span class="line">                + <span class="keyword">new</span> String(attachment.array()));</span><br><span class="line">        attachment.clear();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">listen</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                <span class="keyword">int</span> select = selector.select();</span><br><span class="line">                <span class="keyword">if</span>(select &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                    Set&lt;SelectionKey&gt; selectionKeys = selector.selectedKeys();</span><br><span class="line">                    Iterator&lt;SelectionKey&gt; iterator = selectionKeys.iterator();</span><br><span class="line">                    <span class="keyword">while</span>(iterator.hasNext())&#123;</span><br><span class="line">                        SelectionKey key = iterator.next();</span><br><span class="line">                        <span class="keyword">if</span>(key.isReadable())&#123;</span><br><span class="line">                            getInfo(key);</span><br><span class="line">                        &#125;</span><br><span class="line">                        iterator.remove();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        GroupChatClient groupChatClient = <span class="keyword">new</span> GroupChatClient();</span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">            groupChatClient.listen();</span><br><span class="line">        &#125;).start();</span><br><span class="line"></span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">while</span>(scanner.hasNextLine())&#123;</span><br><span class="line">            String s = scanner.nextLine();</span><br><span class="line">            groupChatClient.sendInfo(s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>server </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GroupChatServer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Selector selector;</span><br><span class="line">    <span class="keyword">private</span> ServerSocketChannel serverSocketChannel;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> PORT = <span class="number">6666</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GroupChatServer</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            selector = Selector.open();</span><br><span class="line">            serverSocketChannel = ServerSocketChannel.open();</span><br><span class="line">            serverSocketChannel.socket().bind(<span class="keyword">new</span> InetSocketAddress(PORT));</span><br><span class="line">            serverSocketChannel.configureBlocking(<span class="keyword">false</span>);</span><br><span class="line">            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">listen</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">                <span class="keyword">int</span> select = selector.select();</span><br><span class="line">                <span class="keyword">if</span>(select &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                    Set&lt;SelectionKey&gt; selectionKeys = selector.selectedKeys();</span><br><span class="line">                    Iterator&lt;SelectionKey&gt; iterator = selectionKeys.iterator();</span><br><span class="line">                    <span class="keyword">while</span>(iterator.hasNext())&#123;</span><br><span class="line">                        SelectionKey key = iterator.next();</span><br><span class="line">                        <span class="keyword">if</span>(key.isAcceptable())&#123;</span><br><span class="line">                            SocketChannel accept = serverSocketChannel.accept();</span><br><span class="line">                            accept.configureBlocking(<span class="keyword">false</span>);</span><br><span class="line">                            accept.register(selector,SelectionKey.OP_READ, ByteBuffer.allocate(<span class="number">1024</span>));</span><br><span class="line">                            System.out.println(accept.getRemoteAddress() +  <span class="string">&quot;上线了&quot;</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">if</span>(key.isReadable())&#123;</span><br><span class="line">                            readMsg(key);</span><br><span class="line">                        &#125;</span><br><span class="line">                        iterator.remove();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">readMsg</span><span class="params">(SelectionKey key)</span> </span>&#123;</span><br><span class="line">        SocketChannel channel = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            channel = (SocketChannel) key.channel();</span><br><span class="line">            ByteBuffer byteBuffer = (ByteBuffer) key.attachment();</span><br><span class="line">            <span class="keyword">int</span> read = channel.read(byteBuffer);</span><br><span class="line">            <span class="keyword">if</span>(read &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                String s = <span class="keyword">new</span> String(byteBuffer.array());</span><br><span class="line">                System.out.println(<span class="string">&quot;收到&quot;</span> + channel.getRemoteAddress() + <span class="string">&quot;的消息: &quot;</span> + s);</span><br><span class="line">                <span class="comment">//转发</span></span><br><span class="line">                sendInfoTo(s,channel);</span><br><span class="line">                byteBuffer.clear();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(channel.getRemoteAddress() + <span class="string">&quot;下线&quot;</span>);</span><br><span class="line">                key.cancel();</span><br><span class="line">                channel.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e1) &#123;</span><br><span class="line">                e1.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">sendInfoTo</span><span class="params">(String msg, SocketChannel channel)</span></span>&#123;</span><br><span class="line">        Set&lt;SelectionKey&gt; keys = selector.keys();</span><br><span class="line">        keys.forEach((key)-&gt;&#123;</span><br><span class="line">            SelectableChannel channel1 = key.channel();</span><br><span class="line">            <span class="keyword">if</span>(channel1 <span class="keyword">instanceof</span> SocketChannel &amp;&amp; channel1 != channel)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    ((SocketChannel) channel1).write(ByteBuffer.wrap(msg.getBytes()));</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        GroupChatServer groupChatServer = <span class="keyword">new</span> GroupChatServer();</span><br><span class="line">        groupChatServer.listen();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行效果 : </p>
+<ul>
+<li>客户端 1<ul>
+<li>收到来自/127.0.0.1:15473的消息: 6                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </li>
+<li>收到来自/127.0.0.1:15473的消息: 8                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </li>
+<li>456 (PS:这是发送数据)</li>
+</ul>
+</li>
+<li>客户端 2<ul>
+<li>6</li>
+<li>8</li>
+<li>收到来自/127.0.0.1:15481的消息: 456</li>
+</ul>
+</li>
+<li>服务器 :<br>  /127.0.0.1:15473上线了<br>  /127.0.0.1:15481上线了<br>  收到/127.0.0.1:15481的消息: 6<br>  收到/127.0.0.1:15481的消息: 8<br>  收到/127.0.0.1:15473的消息: 456<br>  /127.0.0.1:15481下线<br>  /127.0.0.1:15473下线</li>
+</ul>
+</li>
+</ul>
+<h4 id="作者水平有限感觉还是没说清楚"><a href="#作者水平有限感觉还是没说清楚" class="headerlink" title="作者水平有限感觉还是没说清楚^_^"></a>作者水平有限感觉还是没说清楚^_^</h4><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
   </entry>
   <entry>
     <title>code</title>
