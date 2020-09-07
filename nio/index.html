@@ -20,17 +20,17 @@
     var CONFIG = {"hostname":"zqblog.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="nio nio 有两个版本,在1.4推出了nio,1.7又对io进行了升级推出了nio2 这里统称nio I&#x2F;O 模型 : 就是用什么样的通道进行数据的发送和接收 java 支持 三种网络编程模型I&#x2F;O模式 : BIO.NIO.AIO BIO : 同步并阻塞(原生io) 服务器实现模式为一个链接一个线程 即客户端有链接请求时就需要启动一个线程,若这个链接什么都不做会造成不必要的开销 NIO : 同">
+  <meta name="description" content="nio相关">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nio">
 <meta property="og:url" content="http://zqblog.com/nio/index.html">
 <meta property="og:site_name" content="谦&#39;s Blog">
-<meta property="og:description" content="nio nio 有两个版本,在1.4推出了nio,1.7又对io进行了升级推出了nio2 这里统称nio I&#x2F;O 模型 : 就是用什么样的通道进行数据的发送和接收 java 支持 三种网络编程模型I&#x2F;O模式 : BIO.NIO.AIO BIO : 同步并阻塞(原生io) 服务器实现模式为一个链接一个线程 即客户端有链接请求时就需要启动一个线程,若这个链接什么都不做会造成不必要的开销 NIO : 同">
+<meta property="og:description" content="nio相关">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://zqblog.com/nio/0copy.png">
 <meta property="og:image" content="http://zqblog.com/nio/0copy1.png">
 <meta property="article:published_time" content="2020-08-25T14:05:28.000Z">
-<meta property="article:modified_time" content="2020-08-25T16:16:50.703Z">
+<meta property="article:modified_time" content="2020-08-26T10:27:11.512Z">
 <meta property="article:author" content="qianqian">
 <meta property="article:tag" content="zq">
 <meta name="twitter:card" content="summary">
@@ -133,7 +133,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -143,7 +143,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">23</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -233,7 +233,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-26 00:16:50" itemprop="dateModified" datetime="2020-08-26T00:16:50+08:00">2020-08-26</time>
+                <time title="修改时间：2020-08-26 18:27:11" itemprop="dateModified" datetime="2020-08-26T18:27:11+08:00">2020-08-26</time>
               </span>
 
           
@@ -258,6 +258,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>9 分钟</span>
             </span>
+            <div class="post-description">nio相关</div>
 
         </div>
       </header>
@@ -457,7 +458,10 @@
     <a href="/juc/" rel="prev" title="juc">
       <i class="fa fa-chevron-left"></i> juc
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/internet/" rel="next" title="internet">
+      internet <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -532,7 +536,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -545,7 +549,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -594,13 +598,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">67k</span>
+    <span title="站点总字数">132k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:01</span>
+    <span title="站点阅读时长">2:01</span>
 </div>
 
         

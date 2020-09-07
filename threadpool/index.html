@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"zqblog.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="线程池 线程池可以看做是线程的集合。在没有任务时线程处于空闲状态，当请求到来：线程池给这个请求分配一个空闲的线程，任务完成后回到线程池中等待下次任务(而不是销毁)。这样就实现了线程的重用。  为什么要用线程池,我直接new线程不香嘛 当使用分线程时每一个请求都新开一个线程这样会导致 线程大量创建影响内存,程序容易挂 线程生命周期的开销非常高。每个线程都有自己的生命周期，创建和销毁线程所花费的时间和">
+  <meta name="description" content="线程池相关技术">
 <meta property="og:type" content="article">
 <meta property="og:title" content="threadpool">
 <meta property="og:url" content="http://zqblog.com/threadpool/index.html">
 <meta property="og:site_name" content="谦&#39;s Blog">
-<meta property="og:description" content="线程池 线程池可以看做是线程的集合。在没有任务时线程处于空闲状态，当请求到来：线程池给这个请求分配一个空闲的线程，任务完成后回到线程池中等待下次任务(而不是销毁)。这样就实现了线程的重用。  为什么要用线程池,我直接new线程不香嘛 当使用分线程时每一个请求都新开一个线程这样会导致 线程大量创建影响内存,程序容易挂 线程生命周期的开销非常高。每个线程都有自己的生命周期，创建和销毁线程所花费的时间和">
+<meta property="og:description" content="线程池相关技术">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://zqblog.com/threadpool/executor.png">
 <meta property="article:published_time" content="2020-08-23T09:44:49.000Z">
-<meta property="article:modified_time" content="2020-08-26T06:36:08.694Z">
+<meta property="article:modified_time" content="2020-08-26T10:27:11.112Z">
 <meta property="article:author" content="qianqian">
 <meta property="article:tag" content="zq">
 <meta name="twitter:card" content="summary">
@@ -132,7 +132,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -142,7 +142,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">23</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -232,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-26 14:36:08" itemprop="dateModified" datetime="2020-08-26T14:36:08+08:00">2020-08-26</time>
+                <time title="修改时间：2020-08-26 18:27:11" itemprop="dateModified" datetime="2020-08-26T18:27:11+08:00">2020-08-26</time>
               </span>
 
           
@@ -248,15 +248,16 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
+              <span>4.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>4 分钟</span>
             </span>
+            <div class="post-description">线程池相关技术</div>
 
         </div>
       </header>
@@ -291,8 +292,10 @@
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService executor = Executors.newFixedThreadPool(5); //固定数量线程池</span><br><span class="line">ExecutorService singleExecutor = Executors.newSingleThreadExecutor(); // 单例只有一个线程的线程池</span><br><span class="line">ExecutorService cacheExecutor = Executors.newCachedThreadPool(); // 可扩容的线程池</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>上面三种线程池底层都用了下面的这个构造器,可以看到不论是那一种线程池用的都是这个7个参数的构造器</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public ThreadPoolExecutor(int corePoolSize,</span><br><span class="line">                              int maximumPoolSize,</span><br><span class="line">                              long keepAliveTime,</span><br><span class="line">                              TimeUnit unit,</span><br><span class="line">                              BlockingQueue&lt;Runnable&gt; workQueue) &#123;</span><br><span class="line">    this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,</span><br><span class="line">         Executors.defaultThreadFactory(), defaultHandler);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>上面三种线程池底层都用了下面的这个构造器,可以看到不论是那一种线程池用的都是这个7个参数的构造器</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public ThreadPoolExecutor(int corePoolSize,</span><br><span class="line">                              int maximumPoolSize,</span><br><span class="line">                              long keepAliveTime,</span><br><span class="line">                              TimeUnit unit,</span><br><span class="line">                              BlockingQueue&lt;Runnable&gt; workQueue) &#123;</span><br><span class="line">    this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,</span><br><span class="line">         Executors.defaultThreadFactory(), defaultHandler);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
 <li><p>先来列举一下构造器的7个参数都是什么</p>
 <ul>
 <li>int corePoolSize,   //常驻线程数</li>
@@ -334,8 +337,26 @@
 </ul>
 </li>
 </ul>
+<h5 id="线程池的内部状态"><a href="#线程池的内部状态" class="headerlink" title="线程池的内部状态"></a>线程池的内部状态</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0));</span><br><span class="line">private static final int COUNT_BITS = Integer.SIZE - 3;</span><br><span class="line">private static final int COUNT_MASK = (1 &lt;&lt; COUNT_BITS) - 1;</span><br><span class="line"></span><br><span class="line">// runState is stored in the high-order bits</span><br><span class="line">private static final int RUNNING    = -1 &lt;&lt; COUNT_BITS;</span><br><span class="line">private static final int SHUTDOWN   =  0 &lt;&lt; COUNT_BITS;</span><br><span class="line">private static final int STOP       =  1 &lt;&lt; COUNT_BITS;</span><br><span class="line">private static final int TIDYING    =  2 &lt;&lt; COUNT_BITS;</span><br><span class="line">private static final int TERMINATED =  3 &lt;&lt; COUNT_BITS;</span><br></pre></td></tr></table></figure>
+
+<p>变量ctl定义为AtomicInteger，记录了“线程池中的任务数量”和“线程池的状态”两个信息。<br>左边三位记录了线程池状态,右面的COUNT_BITS记录栏线程池的任务数量<br>线程的状态:</p>
+<ul>
+<li>RUNNING：线程池能够接受新任务，以及对新添加的任务进行处理。</li>
+<li>SHUTDOWN：线程池不可以接受新任务，但是可以对队列等待的任务进行处理。</li>
+<li>STOP：线程池不接收新任务，不处理队列等待的任务，并且会中断正在处理的任务。</li>
+<li>TIDYING：当所有的任务已终止，ctl记录的”任务数量”为0，线程池会变为TIDYING状态。当线程池变为TIDYING状态时，会执行钩子函数terminated()。terminated()在ThreadPoolExecutor类中是空的，若用户想在线程池变为TIDYING时，进行相应的处理；可以通过重载terminated()函数来实现。</li>
+<li>TERMINATED：线程池彻底终止的状态。</li>
+</ul>
+<ul>
+<li>线程池关闭 :<ul>
+<li>shutdown() 线程池状态立刻变为SHUTDOWN</li>
+<li>shutdownNow()，线程池状态立刻变为STOP。</li>
+</ul>
+</li>
+</ul>
 <h4 id="ForkJoinPool"><a href="#ForkJoinPool" class="headerlink" title="ForkJoinPool"></a>ForkJoinPool</h4><ul>
 <li>另一种线程池 他用于实现分支合并框架,需要传入一个 ForkJoinTask 对象,他的实现类 RecursiveTask 主要思想是将 任务分支交给不同线程去调用 再合并 这样比一个线程使用 栈 或递归调用要快</li>
+<li>例子 : 0-100 累加<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ForkJoinPoolTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException </span>&#123;</span><br><span class="line">        ForkJoinPool forkJoinPool = <span class="keyword">new</span> ForkJoinPool();</span><br><span class="line">        Task task = <span class="keyword">new</span> Task(<span class="number">1</span>,<span class="number">101</span>);</span><br><span class="line">        ForkJoinTask&lt;Integer&gt; submit = forkJoinPool.submit(task);</span><br><span class="line">        System.out.println(submit.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Task</span> <span class="keyword">extends</span> <span class="title">RecursiveTask</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">     <span class="keyword">int</span> end;</span><br><span class="line">     <span class="keyword">int</span> begin;</span><br><span class="line">     <span class="keyword">int</span> result;</span><br><span class="line"> </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="title">Task</span><span class="params">(<span class="keyword">int</span> begin, <span class="keyword">int</span> middle)</span> </span>&#123;</span><br><span class="line">         <span class="keyword">this</span>.begin =begin;</span><br><span class="line">         <span class="keyword">this</span>.end = middle;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="meta">@Override</span></span><br><span class="line">     <span class="function"><span class="keyword">protected</span> Integer <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>((end - begin) &lt; <span class="number">10</span>)&#123;</span><br><span class="line">             <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; end; i++) &#123;</span><br><span class="line">             result = result + i;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             <span class="keyword">int</span> middle = (end + begin)/<span class="number">2</span>;</span><br><span class="line">             Task task = <span class="keyword">new</span> Task(begin,middle);</span><br><span class="line">             Task task1 = <span class="keyword">new</span> Task(middle,end);</span><br><span class="line">             task.fork();</span><br><span class="line">             task1.fork();</span><br><span class="line">             result = task.join() + task1.join();</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span>  result;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
@@ -473,7 +494,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">1.</span> <span class="nav-text">线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E6%88%91%E7%9B%B4%E6%8E%A5new%E7%BA%BF%E7%A8%8B%E4%B8%8D%E9%A6%99%E5%98%9B"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要用线程池,我直接new线程不香嘛</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Excutor"><span class="nav-number">1.2.</span> <span class="nav-text">Excutor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadPoolExecutor"><span class="nav-number">1.3.</span> <span class="nav-text">ThreadPoolExecutor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ForkJoinPool"><span class="nav-number">1.4.</span> <span class="nav-text">ForkJoinPool</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">1.</span> <span class="nav-text">线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E6%88%91%E7%9B%B4%E6%8E%A5new%E7%BA%BF%E7%A8%8B%E4%B8%8D%E9%A6%99%E5%98%9B"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要用线程池,我直接new线程不香嘛</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Excutor"><span class="nav-number">1.2.</span> <span class="nav-text">Excutor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadPoolExecutor"><span class="nav-number">1.3.</span> <span class="nav-text">ThreadPoolExecutor</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%86%85%E9%83%A8%E7%8A%B6%E6%80%81"><span class="nav-number">1.3.1.</span> <span class="nav-text">线程池的内部状态</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ForkJoinPool"><span class="nav-number">1.4.</span> <span class="nav-text">ForkJoinPool</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -489,7 +510,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -502,7 +523,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -551,13 +572,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">67k</span>
+    <span title="站点总字数">132k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:01</span>
+    <span title="站点阅读时长">2:01</span>
 </div>
 
         

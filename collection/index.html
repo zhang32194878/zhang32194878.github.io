@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"zqblog.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="深入理解CollectionhashMap  为什么8版本将 链表插入换为了尾插法参考(https:&#x2F;&#x2F;www.cnblogs.com&#x2F;aobing&#x2F;p&#x2F;12014271.html)  java8之前是头插法，就是说新来的值会取代原有的值，原有的值就顺推到链表中去,因为写这个代码的作者认为后来的值被查找的可能性更大一点，提升查找的效率。 在java8之后，都是所用尾部插入了。  头部插入和尾部插入">
+  <meta name="description" content="集合总结,集合看这一篇就够了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="collection">
 <meta property="og:url" content="http://zqblog.com/collection/index.html">
 <meta property="og:site_name" content="谦&#39;s Blog">
-<meta property="og:description" content="深入理解CollectionhashMap  为什么8版本将 链表插入换为了尾插法参考(https:&#x2F;&#x2F;www.cnblogs.com&#x2F;aobing&#x2F;p&#x2F;12014271.html)  java8之前是头插法，就是说新来的值会取代原有的值，原有的值就顺推到链表中去,因为写这个代码的作者认为后来的值被查找的可能性更大一点，提升查找的效率。 在java8之后，都是所用尾部插入了。  头部插入和尾部插入">
+<meta property="og:description" content="集合总结,集合看这一篇就够了">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://zqblog.com/collection/hashMap.png">
 <meta property="og:image" content="http://zqblog.com/collection/hashmapYangzi.png">
@@ -48,7 +48,7 @@
 <meta property="og:image" content="http://zqblog.com/collection/concurrent7.bmp">
 <meta property="og:image" content="http://zqblog.com/collection/cas.bmp">
 <meta property="article:published_time" content="2020-08-23T10:35:09.000Z">
-<meta property="article:modified_time" content="2020-08-26T05:44:36.055Z">
+<meta property="article:modified_time" content="2020-08-26T10:27:10.835Z">
 <meta property="article:author" content="qianqian">
 <meta property="article:tag" content="zq">
 <meta name="twitter:card" content="summary">
@@ -151,7 +151,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -161,7 +161,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">23</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -251,7 +251,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-26 13:44:36" itemprop="dateModified" datetime="2020-08-26T13:44:36+08:00">2020-08-26</time>
+                <time title="修改时间：2020-08-26 18:27:10" itemprop="dateModified" datetime="2020-08-26T18:27:10+08:00">2020-08-26</time>
               </span>
 
           
@@ -276,6 +276,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>8 分钟</span>
             </span>
+            <div class="post-description">集合总结,集合看这一篇就够了</div>
 
         </div>
       </header>
@@ -649,7 +650,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -662,7 +663,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -711,13 +712,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">67k</span>
+    <span title="站点总字数">132k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:01</span>
+    <span title="站点阅读时长">2:01</span>
 </div>
 
         

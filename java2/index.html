@@ -20,20 +20,21 @@
     var CONFIG = {"hostname":"zqblog.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="java 基础第二部分多线程程序|进程|线程 程序(program) 是为完成特定任务、用某种语言编写的一组指令的集合。即指一段静态的代码，静态对象  进程(process) 是程序的一次执行过程，或是正在运行的一个程序。是一个动态的过程：有它自身的产生、存在和消亡的过程。——生命周期  线程(thread)，进程可进一步细化为线程，是一个程序内部的一条执行路径 何时需要多线程 程序需要同时执行两">
+  <meta name="description" content="Java基础第二部分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java2">
 <meta property="og:url" content="http://zqblog.com/java2/index.html">
 <meta property="og:site_name" content="谦&#39;s Blog">
-<meta property="og:description" content="java 基础第二部分多线程程序|进程|线程 程序(program) 是为完成特定任务、用某种语言编写的一组指令的集合。即指一段静态的代码，静态对象  进程(process) 是程序的一次执行过程，或是正在运行的一个程序。是一个动态的过程：有它自身的产生、存在和消亡的过程。——生命周期  线程(thread)，进程可进一步细化为线程，是一个程序内部的一条执行路径 何时需要多线程 程序需要同时执行两">
+<meta property="og:description" content="Java基础第二部分">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://zqblog.com/java2/thread.png">
 <meta property="og:image" content="http://zqblog.com/java2/string.png">
 <meta property="og:image" content="http://zqblog.com/java2/hashMap.png">
 <meta property="og:image" content="http://zqblog.com/java2/io.png">
 <meta property="og:image" content="http://zqblog.com/java2/iostream.png">
+<meta property="og:image" content="http://zqblog.com/java2/function.png">
 <meta property="article:published_time" content="2020-08-23T06:10:18.000Z">
-<meta property="article:modified_time" content="2020-08-25T16:27:26.486Z">
+<meta property="article:modified_time" content="2020-09-03T09:22:59.743Z">
 <meta property="article:author" content="qianqian">
 <meta property="article:tag" content="zq">
 <meta name="twitter:card" content="summary">
@@ -136,7 +137,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -146,7 +147,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">23</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -236,7 +237,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-26 00:27:26" itemprop="dateModified" datetime="2020-08-26T00:27:26+08:00">2020-08-26</time>
+                <time title="修改时间：2020-09-03 17:22:59" itemprop="dateModified" datetime="2020-09-03T17:22:59+08:00">2020-09-03</time>
               </span>
 
           
@@ -252,15 +253,16 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>8.5k</span>
+              <span>14k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
+              <span>13 分钟</span>
             </span>
+            <div class="post-description">Java基础第二部分</div>
 
         </div>
       </header>
@@ -374,6 +376,68 @@
 <li>notifyAll ()：唤醒正在排队等待资源的所有线程结束等待</li>
 </ul>
 </li>
+</ul>
+<h4 id="volatile-关键字"><a href="#volatile-关键字" class="headerlink" title="volatile 关键字"></a>volatile 关键字</h4><p>参考  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/dolphin0520/p/3920373.html">https://www.cnblogs.com/dolphin0520/p/3920373.html</a></p>
+<ul>
+<li><p>volatile关键字保证了数据的可见性,有序性 </p>
+<ul>
+<li><p>可见性 </p>
+<ul>
+<li>使用volatile关键字会强制将修改的值立即写入主存；</li>
+<li>使用volatile关键字的话，当线程2进行修改时，会导致线程1的工作内存中缓存变量无效（反映到硬件层的话，就是CPU的L1或者L2缓存中对应的缓存行无效）；</li>
+<li>由于线程1的工作内存中缓存变量stop的缓存行无效，所以线程1再次读取变量stop的值时会去主存读取。</li>
+</ul>
+</li>
+<li><p>有序性</p>
+<ol>
+<li>禁止指令重排序,这样保证指令顺序执行</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>volatile 原理 </p>
+<ul>
+<li>volatile可以保证线程可见性且提供了一定的有序性，但是无法保证原子性。在JVM底层volatile是采用“内存屏障”来实现的。观察加入volatile关键字和没有加入volatile关键字时所生成的汇编代码发现，加入volatile关键字时，会多出一个lock前缀指令，lock前缀指令实际上相当于一个内存屏障（也成内存栅栏）<ol>
+<li>它确保指令重排序时不会把其后面的指令排到内存屏障之前的位置，也不会把前面的指令排到内存屏障的后面；即在执行到内存屏障这句指令时，在它前面的操作已经全部完成；</li>
+<li>它会强制将对缓存的修改操作立即写入主存；</li>
+<li>如果是写操作，它会导致其他CPU中对应的缓存行无效。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>volatile适用于已经保证过原子性的并发操作(volatile不能保证原子性,不能代替synchronized)</p>
+<ul>
+<li>如单例模式的双重检查</li>
+</ul>
+</li>
+</ul>
+<h4 id="原子性如何保证呢"><a href="#原子性如何保证呢" class="headerlink" title="原子性如何保证呢"></a>原子性如何保证呢</h4><ol>
+<li>使用synchronized</li>
+<li>使用Lock</li>
+<li>使用Atomic类</li>
+</ol>
+<p>我们来做个测试 创建1000个线程同时对t进行++操作 将t从0加到1000000</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PermutationTree</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">volatile</span> <span class="keyword">static</span> <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Integer count = <span class="number">1000000</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ExecutorService executor = Executors.newFixedThreadPool(<span class="number">1000</span>);</span><br><span class="line">        CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(count);</span><br><span class="line">        ReentrantLock reentrantLock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">                executor.execute(()-&gt; &#123;</span><br><span class="line">                    t++; <span class="comment">//测试i++的原子性</span></span><br><span class="line">                    countDownLatch.countDown();<span class="comment">// 这里只是保证下面sout时获取的值是最新的值(不然有可能在线程池执行完前sout)</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            countDownLatch.await();</span><br><span class="line">            executor.shutdown();</span><br><span class="line">            System.out.println(t);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果 :  999894(每次结果不一样)</p>
+<ul>
+<li>使用synchronized</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PermutationTree</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">volatile</span> <span class="keyword">static</span> <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Integer count = <span class="number">1000000</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ExecutorService executor = Executors.newFixedThreadPool(<span class="number">1000</span>);</span><br><span class="line">        CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(count);</span><br><span class="line">        ReentrantLock reentrantLock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">                executor.execute(()-&gt; &#123;</span><br><span class="line">                    <span class="keyword">synchronized</span> (executor)&#123;</span><br><span class="line">                        t++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    countDownLatch.countDown();</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            countDownLatch.await();</span><br><span class="line">            executor.shutdown();</span><br><span class="line">            System.out.println(t);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果 : 1000000</p>
+<ul>
+<li>使用Lock锁</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PermutationTree</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">volatile</span> <span class="keyword">static</span> <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Integer count = <span class="number">1000000</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ExecutorService executor = Executors.newFixedThreadPool(<span class="number">1000</span>);</span><br><span class="line">        CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(count);</span><br><span class="line">        ReentrantLock reentrantLock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">                executor.execute(()-&gt; &#123;</span><br><span class="line">                    reentrantLock.lock();</span><br><span class="line">                    t++;</span><br><span class="line">                    reentrantLock.unlock();</span><br><span class="line">                    countDownLatch.countDown();</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            countDownLatch.await();</span><br><span class="line">            executor.shutdown();</span><br><span class="line">            System.out.println(t);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果 1000000 </p>
+<ul>
+<li>atomic类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PermutationTree</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">volatile</span> <span class="keyword">static</span> AtomicInteger t = <span class="keyword">new</span> AtomicInteger(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Integer count = <span class="number">1000000</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ExecutorService executor = Executors.newFixedThreadPool(<span class="number">1000</span>);</span><br><span class="line">        CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(count);</span><br><span class="line">        ReentrantLock reentrantLock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">                executor.execute(()-&gt; &#123;</span><br><span class="line">                    t.incrementAndGet();</span><br><span class="line">                    countDownLatch.countDown();</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            countDownLatch.await();</span><br><span class="line">            executor.shutdown();</span><br><span class="line">            System.out.println(t);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从前文我们知道synchronized和lock是通过锁机制来保证,那原子类是如何保证原子性的呢</p>
+<ul>
+<li>atomic 通过cas来保证原子性</li>
 </ul>
 <h4 id="多线程深入理解-✪ω✪-详解"><a href="#多线程深入理解-✪ω✪-详解" class="headerlink" title="多线程深入理解 (✪ω✪) 详解"></a><a href="/juc">多线程深入理解 (✪ω✪) 详解</a></h4><h3 id="常用类"><a href="#常用类" class="headerlink" title="常用类"></a>常用类</h3><h4 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h4><ul>
 <li>String是一个final类，代表不可变的字符序列。 </li>
@@ -622,7 +686,89 @@
 </ul>
 </li>
 </ul>
-<h4 id="nio详解๑O௰O๑"><a href="#nio详解๑O௰O๑" class="headerlink" title="nio详解๑Ő௰Ő๑)"></a><a href="/nio">nio详解๑Ő௰Ő๑)</a></h4><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+<h4 id="nio详解๑O௰O๑"><a href="#nio详解๑O௰O๑" class="headerlink" title="nio详解๑Ő௰Ő๑)"></a><a href="/nio">nio详解๑Ő௰Ő๑)</a></h4><h3 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h3><ul>
+<li>这一块主要是 计算机网络的知识</li>
+<li>代码部分就是一些socket套接字和InetAddress 的使用之类主要还是计算机网络的知识这里就略过了</li>
+</ul>
+<h4 id="计算机网络-’∇’-シ┳━┳"><a href="#计算机网络-’∇’-シ┳━┳" class="headerlink" title="计算机网络(’∇’)シ┳━┳"></a><a href="/internet">计算机网络(’∇’)シ┳━┳</a></h4><h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><h4 id="类的加载-重点-这里在问jvm的时候也会问到-如果这一块答不上来jvm就没必要问了-jvm部分就直接gg"><a href="#类的加载-重点-这里在问jvm的时候也会问到-如果这一块答不上来jvm就没必要问了-jvm部分就直接gg" class="headerlink" title="类的加载(重点,这里在问jvm的时候也会问到,如果这一块答不上来jvm就没必要问了,jvm部分就直接gg)"></a>类的加载(重点,这里在问jvm的时候也会问到,如果这一块答不上来jvm就没必要问了,jvm部分就直接gg)</h4><ul>
+<li>类的加载 –&gt; 链接 –&gt; 初始化</li>
+<li>加载<ul>
+<li>将类的.class文件(字节码)读入内存,将这些静态数据转换成方法区的运行时数据结构创建此类的Class对象,作为方法区中类数据的访问入口（即引用地址）。所有需要访问和使用类数据只能通过这个Class对象,由类加载器来完成此过程.</li>
+</ul>
+</li>
+<li>链接,将类的二进制数据合并到jre中<ul>
+<li>验证：确保加载的类信息符合JVM规范，例如：以cafe开头，没有安全方面的问题</li>
+<li>准备：正式为类变量（static）分配内存并设置类变量默认初始值的阶段，这些内都将在方法区中进行分配。 </li>
+<li>解析：虚拟机常量池内的符号引用（常量名）替换为直接引用（地址）的过程。</li>
+</ul>
+</li>
+<li>类的初始化<ul>
+<li>JVM负责对类进行初始化  </li>
+<li>此阶段给属性赋初始值(注意不是默认值如int默认值为0)   </li>
+<li>若父类未初始化要先初始化父类      </li>
+</ul>
+</li>
+</ul>
+<h5 id="类的初始化什么时候才会触发"><a href="#类的初始化什么时候才会触发" class="headerlink" title="类的初始化什么时候才会触发"></a>类的初始化什么时候才会触发</h5><ul>
+<li>类的主动引用（一定会发生类的初始化）<ul>
+<li>当虚拟机启动，先初始化main方法所在的类 </li>
+<li>new一个类的对象</li>
+<li>调用类的静态成员（除了final常量）和静态方法</li>
+<li>使用java.lang.reflect包的方法对类进行反射调用</li>
+<li>当初始化一个类，如果其父类没有被初始化，则先会初始化它的父类</li>
+</ul>
+</li>
+</ul>
+<h5 id="类加载器-classloader"><a href="#类加载器-classloader" class="headerlink" title="类加载器 classloader"></a>类加载器 classloader</h5><ul>
+<li>类的加载过程由他完成</li>
+<li>类缓存 : 标准的JavaSE类加载器可以按要求查找类，但一旦某个类被加载到类加载器中，它将维持加载（缓存）一段时间。不过JVM垃圾回收机制可以回收这些Class对象。</li>
+<li>类加载器的分类<ul>
+<li>引导类加载器 -&gt; 扩展类加载器 -&gt; 系统类加载器 -&gt; 自定义类加载器</li>
+<li>加载从左到右,检查从右到左 </li>
+</ul>
+</li>
+<li>当前类是由系统类加载器加载的    <ul>
+<li>重要方法 : 获取获取类路径下的指定文件的输入流 this.getClass().getClassLoader().getResourceAsStream(“xxx.properties”);</li>
+</ul>
+</li>
+</ul>
+<h4 id="Class-对象ee"><a href="#Class-对象ee" class="headerlink" title="Class 对象ee"></a>Class 对象ee</h4><ul>
+<li>通过获取类的class对象可以可.创建实例.获得属性.调用方法.获取泛型 等操作(具体操作就略过了)   </li>
+</ul>
+<h4 id="反射应用"><a href="#反射应用" class="headerlink" title="反射应用"></a>反射应用</h4><ul>
+<li>反射在框架中应用的很多如spring反射创建bean,springmvc反射给对象赋值</li>
+<li>在servlet中反射根据方法名(或标识)调用类方法</li>
+</ul>
+<h3 id="java8-新特性"><a href="#java8-新特性" class="headerlink" title="java8 新特性"></a>java8 新特性</h3><h4 id="Lambda表达式-方法引用"><a href="#Lambda表达式-方法引用" class="headerlink" title="Lambda表达式/方法引用"></a>Lambda表达式/方法引用</h4><ul>
+<li><p>Lambda 表达式：在Java 8 语言中引入的一种新的语法元素和操作符。这个操作符为 “-&gt;” ， 该操作符被称为 Lambda 操作符或箭头操作符。它将 Lambda 分为两个部分：</p>
+<ul>
+<li>左侧：指定了 Lambda 表达式需要的参数列表</li>
+<li>右侧：指定了 Lambda 体，是抽象方法的实现逻辑，也即<br>Lambda 表达式要执行的功能。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="comment">//不使用lambda表达式</span></span><br><span class="line">    Runnable r1 = <span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">          System.out.println(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">      &#125;  </span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">//使用lambda表达式</span></span><br><span class="line">    Runnable r1 = ()-&gt;System.out.println(<span class="string">&quot;helloworld&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>方法引用,使用操作符 “::” 将类(或对象) 与 方法名分隔开来</p>
+</li>
+<li><p>方法引用可以看做是Lambda表达式深层次的表达。换句话说，方法引用就是Lambda表达式，也就是函数式接口的一个实例，通过方法的名字来指向一个方法，可以认为是Lambda表达式的一个语法糖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        ()-&gt;System.out.println(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">        (x1,x2)-&gt;Integer.compare(x1,x2);</span><br><span class="line">        <span class="keyword">new</span> Object();</span><br><span class="line">        <span class="comment">//使用方法引用</span></span><br><span class="line">        System.out::println;</span><br><span class="line">        Integer::compare;</span><br><span class="line">        Object::<span class="keyword">new</span>;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h4><ul>
+<li>是参考python或js等技术使java不但可以支持OOP还可以支持OOF（面向函数编程）</li>
+<li>Lambda表达式是对象，而不是函数，它们必须依附于一类特别的对象类型——函数式接口。</li>
+<li>Lambda表达式就是一个函数式接口的实例。所以以前用匿名实现类表示的现在都可以用Lambda表达式来写<ul>
+<li>如  new Thread(()-&gt;{}); </li>
+</ul>
+</li>
+<li>四大函数式接口<br><img src="/java2/function.png" alt="function"><h4 id="Stream流式编程"><a href="#Stream流式编程" class="headerlink" title="Stream流式编程"></a>Stream流式编程</h4></li>
+<li>Stream 是 Java8 中处理集合的关键抽象概念，它可以指定你希望对集合进行的操作，可以执行非常复杂的查找、过滤和映射数据等操作</li>
+<li>“集合讲的是数据，Stream讲的是计算！”</li>
+<li>通过stream可以进行过滤 筛选 切片 映射 排序等一些列操作<h4 id="Optional类"><a href="#Optional类" class="headerlink" title="Optional类"></a>Optional类</h4></li>
+<li>Optional<T> 类(java.util.Optional) 是一个容器类，它可以保存类型T的值，代表这个值存在。或者仅仅保存null，表示这个值不存在。用于避免空指针异常</T></li>
+<li>Optional类的Javadoc描述如下：这是一个可以为null的容器对象。如果值存在则isPresent()方法会返回true，调用get()方法会返回该对象</li>
+</ul>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
     </div>
 
     
@@ -758,7 +904,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#java-%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text">java 基础第二部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F-%E8%BF%9B%E7%A8%8B-%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">程序|进程|线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E9%9C%80%E8%A6%81%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">何时需要多线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA%E5%8F%8A%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">java中的线程创建及使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="nav-number">1.1.4.</span> <span class="nav-text">线程调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.1.5.</span> <span class="nav-text">线程生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="nav-number">1.1.6.</span> <span class="nav-text">线程同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">1.1.7.</span> <span class="nav-text">线程通信</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E2%9C%AA%CF%89%E2%9C%AA-%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.1.8.</span> <span class="nav-text">多线程深入理解 (✪ω✪) 详解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">常用类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#String%E7%B1%BB"><span class="nav-number">1.2.1.</span> <span class="nav-text">String类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Comparable-Comparator"><span class="nav-number">1.2.2.</span> <span class="nav-text">Comparable&#x2F;Comparator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Collections-%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">1.2.3.</span> <span class="nav-text">Collections 工具类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.3.</span> <span class="nav-text">注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-number">1.4.</span> <span class="nav-text">集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-%E9%9B%86%E5%90%88%E5%8F%AF%E5%88%86%E4%B8%BA-Collection-%E5%92%8C-Map-%E4%B8%A4%E7%A7%8D%E4%BD%93%E7%B3%BB"><span class="nav-number">1.4.1.</span> <span class="nav-text">Java 集合可分为 Collection 和 Map 两种体系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.2.</span> <span class="nav-text">List接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ArrayList-%E7%B1%BB"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">ArrayList 类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LinkedList-%E7%B1%BB"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">LinkedList 类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Vector-%E7%B1%BB"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">Vector 类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set-%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.3.</span> <span class="nav-text">Set 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HashSet-%E7%B1%BB"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">HashSet 类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map-%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.4.</span> <span class="nav-text">Map 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#queue-%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.5.</span> <span class="nav-text">queue 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E2%9C%AA%CF%89%E2%9C%AA-%E8%AF%A6%E8%A7%A3-%E9%9D%A2%E8%AF%95%E9%9B%86%E5%90%88%E7%9C%8B%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86"><span class="nav-number">1.4.6.</span> <span class="nav-text">集合深入理解 (✪ω✪) 详解 !!面试集合看这一篇就够了!!</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iterator"><span class="nav-number">1.4.7.</span> <span class="nav-text">iterator</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#io%E6%B5%81"><span class="nav-number">1.5.</span> <span class="nav-text">io流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#File-%E7%B1%BB"><span class="nav-number">1.5.1.</span> <span class="nav-text">File 类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.5.2.</span> <span class="nav-text">流的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">1.5.3.</span> <span class="nav-text">对象序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D-%E5%92%8Cnio%E9%87%8C%E7%9A%840%E6%8B%B7%E8%B4%9D%E6%98%AF%E4%B8%A4%E7%A0%81%E4%BA%8B"><span class="nav-number">1.5.4.</span> <span class="nav-text">深拷贝和浅拷贝(和nio里的0拷贝是两码事)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nio-new-IO-2-%E6%88%96%E5%8F%AB-no-block-io-%E4%B9%9F%E5%8F%AF"><span class="nav-number">1.5.5.</span> <span class="nav-text">Nio (new IO 2 或叫 no-block io 也可)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nio%E8%AF%A6%E8%A7%A3%E0%B9%91O%E0%AF%B0O%E0%B9%91"><span class="nav-number">1.5.6.</span> <span class="nav-text">nio详解๑Ő௰Ő๑)</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#java-%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text">java 基础第二部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F-%E8%BF%9B%E7%A8%8B-%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">程序|进程|线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E9%9C%80%E8%A6%81%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">何时需要多线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA%E5%8F%8A%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">java中的线程创建及使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="nav-number">1.1.4.</span> <span class="nav-text">线程调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.1.5.</span> <span class="nav-text">线程生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="nav-number">1.1.6.</span> <span class="nav-text">线程同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">1.1.7.</span> <span class="nav-text">线程通信</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#volatile-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.1.8.</span> <span class="nav-text">volatile 关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%91%A2"><span class="nav-number">1.1.9.</span> <span class="nav-text">原子性如何保证呢</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E2%9C%AA%CF%89%E2%9C%AA-%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.1.10.</span> <span class="nav-text">多线程深入理解 (✪ω✪) 详解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">常用类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#String%E7%B1%BB"><span class="nav-number">1.2.1.</span> <span class="nav-text">String类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Comparable-Comparator"><span class="nav-number">1.2.2.</span> <span class="nav-text">Comparable&#x2F;Comparator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Collections-%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">1.2.3.</span> <span class="nav-text">Collections 工具类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.3.</span> <span class="nav-text">注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-number">1.4.</span> <span class="nav-text">集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-%E9%9B%86%E5%90%88%E5%8F%AF%E5%88%86%E4%B8%BA-Collection-%E5%92%8C-Map-%E4%B8%A4%E7%A7%8D%E4%BD%93%E7%B3%BB"><span class="nav-number">1.4.1.</span> <span class="nav-text">Java 集合可分为 Collection 和 Map 两种体系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.2.</span> <span class="nav-text">List接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ArrayList-%E7%B1%BB"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">ArrayList 类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LinkedList-%E7%B1%BB"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">LinkedList 类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Vector-%E7%B1%BB"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">Vector 类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set-%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.3.</span> <span class="nav-text">Set 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HashSet-%E7%B1%BB"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">HashSet 类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map-%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.4.</span> <span class="nav-text">Map 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#queue-%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.5.</span> <span class="nav-text">queue 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E2%9C%AA%CF%89%E2%9C%AA-%E8%AF%A6%E8%A7%A3-%E9%9D%A2%E8%AF%95%E9%9B%86%E5%90%88%E7%9C%8B%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86"><span class="nav-number">1.4.6.</span> <span class="nav-text">集合深入理解 (✪ω✪) 详解 !!面试集合看这一篇就够了!!</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#iterator"><span class="nav-number">1.4.7.</span> <span class="nav-text">iterator</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#io%E6%B5%81"><span class="nav-number">1.5.</span> <span class="nav-text">io流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#File-%E7%B1%BB"><span class="nav-number">1.5.1.</span> <span class="nav-text">File 类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.5.2.</span> <span class="nav-text">流的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">1.5.3.</span> <span class="nav-text">对象序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D-%E5%92%8Cnio%E9%87%8C%E7%9A%840%E6%8B%B7%E8%B4%9D%E6%98%AF%E4%B8%A4%E7%A0%81%E4%BA%8B"><span class="nav-number">1.5.4.</span> <span class="nav-text">深拷贝和浅拷贝(和nio里的0拷贝是两码事)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nio-new-IO-2-%E6%88%96%E5%8F%AB-no-block-io-%E4%B9%9F%E5%8F%AF"><span class="nav-number">1.5.5.</span> <span class="nav-text">Nio (new IO 2 或叫 no-block io 也可)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nio%E8%AF%A6%E8%A7%A3%E0%B9%91O%E0%AF%B0O%E0%B9%91"><span class="nav-number">1.5.6.</span> <span class="nav-text">nio详解๑Ő௰Ő๑)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="nav-number">1.6.</span> <span class="nav-text">网络编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E2%80%99%E2%88%87%E2%80%99-%E3%82%B7%E2%94%B3%E2%94%81%E2%94%B3"><span class="nav-number">1.6.1.</span> <span class="nav-text">计算机网络(’∇’)シ┳━┳</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84"><span class="nav-number">1.7.</span> <span class="nav-text">反射</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD-%E9%87%8D%E7%82%B9-%E8%BF%99%E9%87%8C%E5%9C%A8%E9%97%AEjvm%E7%9A%84%E6%97%B6%E5%80%99%E4%B9%9F%E4%BC%9A%E9%97%AE%E5%88%B0-%E5%A6%82%E6%9E%9C%E8%BF%99%E4%B8%80%E5%9D%97%E7%AD%94%E4%B8%8D%E4%B8%8A%E6%9D%A5jvm%E5%B0%B1%E6%B2%A1%E5%BF%85%E8%A6%81%E9%97%AE%E4%BA%86-jvm%E9%83%A8%E5%88%86%E5%B0%B1%E7%9B%B4%E6%8E%A5gg"><span class="nav-number">1.7.1.</span> <span class="nav-text">类的加载(重点,这里在问jvm的时候也会问到,如果这一块答不上来jvm就没必要问了,jvm部分就直接gg)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E6%89%8D%E4%BC%9A%E8%A7%A6%E5%8F%91"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">类的初始化什么时候才会触发</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8-classloader"><span class="nav-number">1.7.1.2.</span> <span class="nav-text">类加载器 classloader</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Class-%E5%AF%B9%E8%B1%A1ee"><span class="nav-number">1.7.2.</span> <span class="nav-text">Class 对象ee</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.7.3.</span> <span class="nav-text">反射应用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java8-%E6%96%B0%E7%89%B9%E6%80%A7"><span class="nav-number">1.8.</span> <span class="nav-text">java8 新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8"><span class="nav-number">1.8.1.</span> <span class="nav-text">Lambda表达式&#x2F;方法引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.8.2.</span> <span class="nav-text">函数式接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stream%E6%B5%81%E5%BC%8F%E7%BC%96%E7%A8%8B"><span class="nav-number">1.8.3.</span> <span class="nav-text">Stream流式编程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Optional%E7%B1%BB"><span class="nav-number">1.8.4.</span> <span class="nav-text">Optional类</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -774,7 +920,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -787,7 +933,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -836,13 +982,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">67k</span>
+    <span title="站点总字数">132k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:01</span>
+    <span title="站点阅读时长">2:01</span>
 </div>
 
         
